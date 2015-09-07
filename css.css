@@ -1,0 +1,7 @@
+/* CSS Document */
+
+@font-face {
+font-family: 'QuicksandBook';
+src: url('fonts/Quicksand_Book-webfont.eot');
+src: url('fonts/Quicksand_Book-webfont.eot?#iefix')format('embedded-opentype'),
+	url('fonts/Quicksand_Book-webfont.woff') format('woff'),
