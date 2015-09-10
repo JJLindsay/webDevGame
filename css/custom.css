@@ -1,0 +1,69 @@
+img
+{
+width:100%;
+}
+
+.myimg
+{
+	opacity:.5;	
+	color:green;
+}
+
+#inner
+{
+background-color:white;
+}
+
+.bigwrapper
+{
+	position:absolute;
+	left:25%;
+	top:25%;
+	width:50%;
+}
+.table-responsive
+{
+opacity:.9;
+}
+
+.panel-heading
+{
+	
+}
+
+.navbar-default .navbar-brand
+{
+ color:#fff;
+}
+
+.navbar-default .navbar-nav>li>a
+{
+ color:#fff;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form
+{
+ color:#fff;
+}
+
+.navbar-default {
+    background-color: #333;
+    border-color: #ffd90f;
+}
+
+.label-info
+{
+	background-color:#333;
+}
+
+.mypanel
+{
+	position:absolute;
+	left:40%;
+	bottom:0;
+	top:30%;
+	opacity:.92;
+}
+body{
+background-color:pink;
+}
