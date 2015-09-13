@@ -4,7 +4,7 @@
 <title>Prisoner's Dilemma</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-	<link href="stylesheet.css" rel="stylesheet">
+	<link href="css/stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link href="css/custom.css" rel="stylesheet">
@@ -44,19 +44,34 @@
 		</div><!-- /.container-fluid -->
 	</header><!-- end Navigation Bar -->
 	
-	<center><h1>ZillionSparks presents<br/></h1>
+	<center><h1 id="zsname">ZillionSparks presents<br/></h1>
 
-	<div class="container indexcontainer" id="indexcontainer">
+	<!--div class="container indexcontainer" id="indexcontainer">
 		<div>
-			<img src="img/green-firework.jpg" alt="" class="img-rounded" id="indeximg">
+			
 			 <h1 class="indextitle"><span class="label label-default">Prisoner's Dilemma</span></h1>
+			 <img src="img/green-firework.jpg" alt="" class="img-circle" id="indeximg">
 			<p>
 				<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
 				<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
 			</p>
 		</div>
-	</div>
+	</div -->
 	</center>
+	
+	    <!-- row 2 -->
+	<!--images should all have img-responsive!! img-rounded/circle etc optional. Multiple can be in one class like styles-->
+    <div class="container"><div class="jumbotron" id="indexjumbo"><!-- jumbotron are assumed to cover the entire 12 columns and don't need the sm lg xs etc-->
+        <center><h1 class="indextitle"><span class="label label-default">Prisoner's Dilemma</span></h1>
+        			<br/>
+				<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
+				<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
+			</center>
+    </div>
+	
+	
+	
+	
 	
 	<div class="container">
 		<div class="jumbotron">

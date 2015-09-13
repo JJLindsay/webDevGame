@@ -79,26 +79,25 @@ background-color:white;
 
 .indextitle
 {
-	position:absolute;
-	top:235px;
-	right:39%;
 	font-size:290%;
+	position:relative;
+	margin-bottom:140px;
 }
 
 .indexbtn
 {
-	position:absolute;
-	bottom:2%;
-	left:33%;
-	width:10%;
+	postion:absolute;
+	botom:2%;
+	let:33%;
+	widh:10%;
 }
 
 .indexbtn2
 {
-	position:absolute;
-	bottom:2%;
-	right:33%;
-	width:10%;
+	poition:absolute;
+	bottm:2%;
+	rigt:33%;
+	with:10%;
 	
 }
 
@@ -107,7 +106,6 @@ background-color:white;
 	background-color:black;
 }
 
-/*index(home page) theme  */
 .label-default
 {
 	background-color:black;
@@ -122,4 +120,33 @@ background-color:white;
 a
 {
 	color:white;
+}
+
+.img-circle
+{
+max-width:30%;
+}
+
+#zsname
+{
+	background-image:url(../img/burst-of-green-sparks.jpg);
+
+	background-position:cover;
+	background-repeat:none;
+	color:white;
+	height:60px;
+}
+
+#indexjumbo
+{
+    background: url("../img/American History X-Cellent.jpg") no-repeat center center; 
+    -webkit-background-size: 90% 100%;
+    -moz-background-size: 90% 100%;
+    -o-background-size: 90% 100%;
+    background-size: 90% 100%;
+	opacity:.8;
+
+
+
+	
 }
