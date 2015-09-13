@@ -64,6 +64,62 @@ opacity:.9;
 	top:30%;
 	opacity:.92;
 }
-body{
-background-color:pink;
+
+
+/*This is for the index page*/
+.indexbody{
+background-color:white;
+}
+
+.indexcontainer
+{
+
+background-color:white;
+}
+
+.indextitle
+{
+	position:absolute;
+	top:235px;
+	right:39%;
+	font-size:290%;
+}
+
+.indexbtn
+{
+	position:absolute;
+	bottom:2%;
+	left:33%;
+	width:10%;
+}
+
+.indexbtn2
+{
+	position:absolute;
+	bottom:2%;
+	right:33%;
+	width:10%;
+	
+}
+
+.btn-primary
+{
+	background-color:black;
+}
+
+/*index(home page) theme  */
+.label-default
+{
+	background-color:black;
+	border:#2e6da4 1px solid;	
+}
+
+#indeximg
+{
+	border:#ffd90f 1px solid;	
+}
+
+a
+{
+	color:white;
 }

@@ -7,6 +7,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 	<link href="stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,14 +22,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="home.html">Home</a></li>
-					<li><a href="useronline.html">Who's online</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="useronline.html">Who's Online</a></li>
 					<li><a href="#">Play Game</a></li>
 					<li><a href="#">Check Score</a></li>
 					<li class="dropdown active">
@@ -90,7 +92,10 @@
 
 									</tbody>
 								</table>
-								<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="float:right"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
+								<button type="button" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
+									<i class="glyphicon glyphicon-edit"></i> Edit Profile
+								</button>
+								<!-- a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="float:right"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a -->
 
 							</div>
 						</div>
@@ -106,6 +111,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type=" src=js/myscript.js"></script>
-
+<script src="js/zsparks.js"></script>
 </body>
 </html>

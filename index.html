@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <title>Prisoner's Dilemma</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 	<link href="stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/custom.css" rel="stylesheet">
+	
 </head>
-<body>
+<body class="indexbody">
 
 <!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
@@ -27,43 +29,55 @@
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="index.html">Home</a></li>
-					<li><a href="signup.html">Join</a></li>
-					<li><a href="#">Login</a></li>
 					<!--Trying to create an icon for admin login vs
 						them using the standard login for standard user -->
-					<li><button type="submit" class="btn btn-default nav-element">
-								<span class="glyphicon glyphicon-user">
-									<span class="sr-only">Admin</span>
-								</span>
-							</button></li>
-						</ul>
+					<li>
+					<!--NOTE: this isn't necessary since with one login, a database can discern privileges -->
+						<!--button type="submit" class="btn btn-default nav-element">
+							<span class="glyphicon glyphicon-user">
+								<span class="sr-only">Admin</span>
+							</span>
+						</button-->
+					</li>
+				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</header><!-- end Navigation Bar -->
 	
-	<center><h1> Welcome to Prisoner's Dilemma</h1>
-	<img src="http://f0.pepst.com/c/4C03B8/955054/ssc3/home/038/full.mp3.clochette/albums/spark1.gif_480_480_0_64000_0_1_0.gif" 
-		alt="Zillion Sparks" 
-			style="width:304px;height:228px;"> </center>
+	<center><h1>ZillionSparks presents<br/></h1>
+
+	<div class="container indexcontainer" id="indexcontainer">
+		<div>
+			<img src="img/green-firework.jpg" alt="" class="img-rounded" id="indeximg">
+			 <h1 class="indextitle"><span class="label label-default">Prisoner's Dilemma</span></h1>
+			<p>
+				<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
+				<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
+			</p>
+		</div>
+	</div>
+	</center>
 	
 	<div class="container">
-	<div class="jumbotron">
-		<p>Prisoner's Dilemma is a web-based game designed by ZillionSparks.</p>    
-		<p>This website comes in handy when you need to review lessons from your biology course.</p>      
-  		<p>It is also great for expanding your knowledge of biology and competing with friends to help enhance your learning experience.</p>      
+		<div class="jumbotron">
+			<p>Prisoner's Dilemma is a web-based game designed by ZillionSparks.</p>    
+			<p>This website comes in handy when you need to review lessons from your biology course.</p>      
+			<p>It is also great for expanding your knowledge of biology and competing with friends to help enhance your learning experience.</p>      
 		</div>
-</div>
+	</div>
 
-<div class="container">
-                    <p class="pull-left">
-                        Copyright &copy;
-                        <a href="https://github.com/JJLindsay/webDevGame"> Zillion Sparks</a>
-                        2015                    </p>
-                </div>
+	<div class="container">
+		<p class="pull-left">
+			Copyright &copy;
+			<a href="https://github.com/JJLindsay/webDevGame"> Zillion Sparks</a>
+			2015                    
+		</p>
+	</div>
 		
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type=" src=js/myscript.js"></script>
+	<script src="js/zsparks.js"></script>
 </body>
-	</html>
+</html>

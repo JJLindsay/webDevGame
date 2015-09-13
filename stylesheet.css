@@ -45,3 +45,111 @@ body {
 	margin-top:20px;
 }
 
+/*theme changes*/
+.panel-title
+{
+	color:white;
+}
+
+.panel-info>.panel-heading
+{
+	background-color:black;
+	border-color:#ffd90f;
+	
+}
+
+.panel-info
+{
+	border-color:black;
+}
+
+/*Matish css
+-------------------------------------------------------------*/
+.registerbody {
+	background-image: url(img/maxresdefault.jpg);
+	background-position:cover;
+	background-repeat:none;
+}
+
+div {
+	border-radius: 5px;
+}
+
+#header {
+	height: 100px;
+	background-color: rgba(0, 0, 0, 0.95);
+	background-attachment: fixed;
+	margin-bottom:10px;
+	color:white;
+	padding-left:75px;
+	padding-top: 18px;
+	padding-right:75px;
+	text-align: right;
+	
+	text-decoration: underline;
+}
+
+/*.left {
+	height: 600px;
+	width: 300px;
+	background-color: rgba(0,0,0,0.7);
+	float: left;
+	margin-bottom: 10px;
+}*/
+
+.p_signUp_attributes {
+	font-family: Tahoma, san-serif;
+	font-size:1.5em;
+	margin-left:10px;
+	}
+	
+.right {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:auto;
+	margin-bottom:auto;
+padding-top:.1%;
+padding-bottom:.1px;
+	width: 650px;
+	background-color: #E0E4CC;
+	
+
+	background-attachment:fixed;
+	
+}
+#wrap_center {
+	margin: 50px 50px 10px 50px;
+}
+
+.border_form {
+	border:1px solid #FFFFFF;
+	margin:25px;
+}
+::-webkit-input-placeholder { 
+	padding-left:10px;
+	font-family:Tahoma, san-serif;
+	font-size: 14px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    padding-left:10px;
+	font-family:Tahoma, san-serif;
+	font-size: 14px; 
+}
+
+/*#footer {
+	height: 50px;
+	clear: both;
+	background-color: rgba(0, 0, 0, 0.85);
+	color: white;
+	font-size:12px;
+	padding-left: 50px;
+	padding-top: 15px;
+	padding-bottom: auto;
+	} */
+
+	
+	label
+	{
+		font-weight:100;
+	}
