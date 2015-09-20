@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<!--
+  This file is part of ZillionSparks sign in page.
+  This will temporarily fill the gap for signin from home navigation.
+  J.N.
+-->
+
+<html>
+
+<head>
+    <meta name="viewport" content="user-scalable=yes,
+	    minimum-scale=1, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="js/jquery10.1.js"></script>
+    <script type="text/javascript" src="js/avoid_console_errors.js"></script>
+    <script>
+        var uName = null;
+        var pWord = null;
+
+        /**
+         * Prompts for the username from sessionStorage
+         */
+        function getUserName() {
+            var uName = sessionStorage.user;
+            if (uName != "undefined")
+                $("#userNameField").attr('value', uName);
+        }
+
+    	var redirectAction = sessionStorage.redirectAction;
+    	sessionStorage.redirectAction = "?action=index";
+
+    	function showErrorMessage() {
+
+    		default:
+    		    $("#loginErrorMessage").html("<font color='red'>Please log in</font>").show();
+    	    }
+    	}
+
+        $(document).ready(function () {
+            getUserName();
+            $("#userNameField").focus();
+	        showErrorMessage();
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <div id="content">
+            <!-- Top content -->
+            <div class="topContent">
+		<!-- SignIn -->
+		<div id="userCredentialHome">
+		    <a onclick="window.location='?action=index'">
+			<img alt="PrisonersDilemma" src="http://logofury.com/wp-content/uploads/8936/SPARK_DG_LOGO_001.jpg" />
+		    </a>
+		</div>
+	    </div>
+            <!-- Top Content -->
+
+            <div id="loginDiv" style="margin: auto; width: 100%; padding-top: 25px;">
+                <form action="" name="myform" id="loginForm" style="margin: auto;">
+                    <label for="userNameField">Username</label>
+                    <input id="userNameField" type="text" onkeypress="" name="user" />
+                    <br />
+                    <br />
+                    <label for="passwordField">Password</label>
+                    <input type="password" onkeypress="" name="pass" />
+                    <br />
+                    <br />
+                    <input type="submit" value="Log In" />
+                </form>
+            </div>
+            <div id="loginErrorMessage"></div>
+        </div>
+    </center>
+
+    <script type="text/javascript">
+        var user;
+        /* attach a submit handler to the form */
+        $("#loginForm").submit(function (event) {
+            /* stop form from submitting normally */
+            event.preventDefault();
+            $("#logginErrorMessage").hide();
+
+            /* get some values from elements on the page: */
+            var $form = $(this);
+            pass = $form.find('input[name="pass"]').val();
+            user = $form.find('input[name="user"]').val();
+	    //redirectAction = sessionStorage.redirectAction;
+
+	    url = localStorage.domain + localStorage.path + localStorage.loginRequest +
+	    '&user=' + user;
+            //check to see if the username or password field are empty
+            if (pass == '' || pass == null || user == '' || user == null) {
+                $("#loginErrorMessage").html("<font color='red'>Please fill in both fields</font>").show();
+            } else {
+                /* Send the data using post */
+                var posting = $.post(url, {
+                    pass: pass
+                });
+
+                /* Put the results in a div */
+                posting.done(function (data) {
+                    if (data === "no") {
+                        //console.log('response is no')
+                        $("#loginErrorMessage").html("<font color='red'>Username or password incorrect</font>").show();
+                    } else {
+                        //console.log('response is yes');
+                        sessionStorage.user = user;
+                        sessionStorage.loggedInStatus = "true";
+                        //saveSessionStorage(); // Save the session information on the server
+			//checkMentor();
+
+			window.location = "?action=" + redirectAction;
+			sessionStorage.redirectAction = "?action=index";
+                    }
+                });
+            }
+        });
+
+	function saveSessionStorage() {
+	    var sessionStorageInfo = {
+		"user" : sessionStorage.user
+	    }
+
+	    url = localStorage.domain + localStorage.path +
+		"request=storesession";
+
+	    var postSessionStorage = $.post(url, {
+		info: sessionStorageInfo
+	    });
+
+	    postSessionStorage.done(function (data) {
+
+	    });
+	}
+    </script>
+
+</body>
+
+</html>
+    
+    
