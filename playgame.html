@@ -29,8 +29,8 @@
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.html">Home</a></li>
-					<li class="active"><a href="useronline.html">Who's Online</a></li>
-					<li><a href="playgame.html">Play Game</a></li>
+					<li><a href="useronline.html">Who's Online</a></li>
+					<li class="active"><a href="playgame.html">Play Game</a></li>
 					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
@@ -45,39 +45,16 @@
 		</div><!-- /.container-fluid -->
 	</header><!-- end Navigation Bar -->
 
-	<!-- list of users online -->
-	<div class="container">
-		<table class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 top-margin user-list">
-			<thead>
-					<td>Who's Online</td>
-					<td>First Name</td>
-					<td>Last Name</td>
-			</thead>
-			<tbody>
-				<tr>
-					<td><img id="avatar" alt="User Pic" src="img/user_avatar.jpg"></td>
-					<td>John</td>
-					<td>Doe</td>
-				</tr>
-				<tr>
-					<td><img id="avatar" alt="User Pic" src="img/user_avatar.jpg"></td>
-					<td>Mary</td>
-					<td>Johnson</td>
-				</tr>
-				<tr>
-					<td><img id="avatar" alt="User Pic" src="img/user_avatar.jpg"></td>
-					<td>Tiffany</td>
-					<td>Yang</td>
-				</tr>
-				<tr>
-					<td><img id="avatar" alt="User Pic" src="img/user_avatar.jpg"></td>
-					<td>Bob</td>
-					<td>William</td>
-				</tr>
-			</tbody>
-		</table>
-
+	<div class="container" align="center">
+				<h3>Prisoner's Dilemma Game Play</h3>
+				<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000; background-color:lightgrey;">
+				</canvas>
+				<div>
+					<button class="btn btn-primary">Play Game</button>
+					<button class="btn btn-primary">Check Score</button>
+				</div>
 	</div>
+
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

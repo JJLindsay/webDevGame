@@ -1,7 +1,7 @@
-img
+/*img
 {
 width:100%;
-}
+}*/
 
 .myimg
 {
@@ -141,4 +141,17 @@ background-color:white;
 
 
 	
+}
+
+/* user's online page */
+#avatar {
+	border: 1px solid #000000;
+}
+
+table.user-list tr {
+	border: 1px solid #000000;
+}
+
+table.user-list td{
+	padding: 10px;
 }
