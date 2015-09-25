@@ -137,21 +137,60 @@ background-color:white;
     -o-background-size: 90% 100%;
     background-size: 90% 100%;
 	opacity:.8;
-
-
-
 	
 }
 
-/* user's online page */
-#avatar {
-	border: 1px solid #000000;
+/* user's online */
+.user-list li
+{
+	float: left;
+	margin: 10px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+  
+.user-list li .outerContainer
+{
+	display: table;
+	height: 80px;
+	overflow: hidden;
+	width: 80px;
+	border-radius: 50%;
+	border-bottom: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+  
+.user-list li .outerContainer:Hover
+{
+	background-color: #EBEBEB;
 }
 
-table.user-list tr {
-	border: 1px solid #000000;
+.user-list li .outerContainer .innerContainer
+{
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 20px;
+	color: white;
 }
 
-table.user-list td{
-	padding: 10px;
+/* playgame page */
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+.green {
+	background-color: green;
+}
+.black {
+ 	background-color: black;
+}
+
+#gamescreen{
+	width: 400px;
+	height: 400px;
 }
