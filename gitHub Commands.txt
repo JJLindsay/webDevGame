@@ -1,0 +1,58 @@
+GITHUB COMMANDS:
+----------------
+git pull  << Do this often((!!)) after everything is cloned and connected, it retrieves the latest
+	     changes other members have pushed to gitHub.com and merges your folder with the latest. 
+cd .. << moves up one directory
+cd enter folder name  << moves to that directory
+dir  << retrieves a list of directories and files
+
+
+****Starting off********
+(((!!!)))commands here intentionally lack detail. See COMMAND DETAILS for that.
+
+step 1) enter gitHub directory you want to use for github work
+        >> step 1.5) if starting new, type (git clone) to create a project specific git folder
+
+step 2) work on program file in gitHub folder or add/move more files to folder
+
+step 3) when syncing to GitHub try (git status), (git add), (git commit -m), then (git push)
+
+
+COMMAND DETAILS
+----------------
+
+git clone enter clone url  << copies from gitHub.com into the open directory
+git status << used with github folder, it shows what is different between us and gitHub in the sky
+git add -A
+
+-----Common add, commit, push commands---------
+
+git add  "enter name of file" << notice the quotes! This adds a file by name. This is case senstive(!)
+-- OR --
+git add -A  << careful, all files in this folder will be added unless you place them in .gitignore
+
+
+git commit -m "enter a message" << this is locking it into the repository but not syncing up to GitHub.com yet.
+				<< the -m means we're adding a small message.
+git push  << takes anything in this directory and pushes it to GitHub.com
+
+
+
+
+------MISC---------
+
+
+git config --global user.email "you@example.com"  << Setting up gitHub.com connection to folder
+git config --global user.name "Your Name"  << Setting up gitHub.com connection
+--Connecting to your own account for pushing purposes is different and requires your password.
+
+git status  << self explanatory
+git rm readme.md <<< removes file readme.md
+
+
+----- cycle process Basics--
+(after making a change)
+git add -A
+git commit -m "message here"
+git push
+----------------------------
