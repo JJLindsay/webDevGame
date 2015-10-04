@@ -57,19 +57,51 @@ d) Be able to export the data(player and score) from the database. - is Excel ok
 
 
 <div class="page-header">
-  <h1>Welcome Administrator <small>TO BIOLOGY 1001</small></h1>
+  <h1>Welcome Administrator <small>TO 
+  <button class="btn btn-default dropdown-toggle" type="button" id="choosecourse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		BIOLOGY 1001<span class="caret"></span>
+	</button>
+		<ul class="dropdown-menu" aria-labelledby="admindropdown">
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">Biology</a>
+		</li>
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">Phycology</a>
+		</li>
+	</ul>
+	</h1>
 </div>
 
 
 <div>
-  <!--div class="container"-->
   <img src="img/American History X-Cellent.jpg" alt="" class="img-rounded myimg" >
-	
 	<div class="bigwrapper">
-	<!--div class="panel panel-default mypanel">  <!-- responsive table -->
-  <!-- Default panel contents -->
-  <!--div class="panel-heading"><h3>Section 03</h3></div-->
-  <div class="panel-heading"><h3><span class="label label-default label-info">Section 03</span></h3></div>
+  <div class="dropdown">
+	<button class="btn btn-default dropdown-toggle" type="button" id="admindropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		Section 03<span class="caret"></span>  
+	</button><button type="button" onclick=""><span class="glyphicon glyphicon-plus"></span></button>
+	<ul class="dropdown-menu" aria-labelledby="admindropdown">
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">section 01</a>
+		</li>
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">section 05</a>
+		</li>
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">section 06</a>
+		</li>
+		<li class="list-group-item">
+			<span class="badge glyphicon glyphicon-minus" onclick="#">del</span>
+			<a href="#">section 07</a>
+		</li>
+	</ul>
+</div>
+  
 <div class="wrapper">
   <div class="table-responsive"><!--Add this for responsive table -->
   <!-- Table -->
@@ -158,18 +190,11 @@ d) Be able to export the data(player and score) from the database. - is Excel ok
 	 <button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="exportbtn">
 		Export to SpreadSheet
 	</button>
-	 		  <!--p><a class="btn btn-lg " href="#" role="button"></a></p -->
-
 	</div>
 	</div>
 	
-	
-	
-
   <!--/div-->
 </div>
-
-
 
 <!-- javascript -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>

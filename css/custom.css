@@ -1,7 +1,7 @@
-/*img
+img
 {
 width:100%;
-}*/
+}
 
 .myimg
 {
@@ -24,11 +24,6 @@ background-color:white;
 .table-responsive
 {
 opacity:.9;
-}
-
-.panel-heading
-{
-	
 }
 
 .navbar-default .navbar-brand
@@ -64,6 +59,26 @@ opacity:.9;
 	top:30%;
 	opacity:.92;
 }
+
+/*restoring*/
+
+.btn-default 
+{
+    color: white;
+}
+
+#choosecourse
+{
+    background-color: #ccc;
+}
+
+/*admin list*/
+.dropdown-menu>li>a 
+{
+	clear:left;
+}
+
+/*end*/
 
 
 /*This is for the index page*/
@@ -114,6 +129,12 @@ background-color:white;
 }
 
 .label-default
+{
+	background-color:black;
+	border:#2e6da4 1px solid;	
+}
+
+#admindropdown
 {
 	background-color:black;
 	border:#2e6da4 1px solid;	
@@ -200,4 +221,57 @@ background-color:white;
 #gamescreen{
 	width: 400px;
 	height: 400px;
+}
+
+/*Play Game page*/
+.customBadge
+{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: #0f0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #000;
+    border-radius: 10px;
+	float: right;
+}
+
+/*This will need to be handled in javascript so this is 
+manually done for demonstration purposes only*/
+.customBadgeAct
+{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: #f00;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #fff;
+    border-radius: 10px;
+	float: right;
+}
+
+#gameContacts
+{
+	position: relative;
+	left:;
+	top:;
+}
+
+b{
+	font-size:20px;
+}
+
+#dilemmas
+{
+	border: 1px solid black;
 }
