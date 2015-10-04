@@ -7,114 +7,61 @@
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/custom.css" rel="stylesheet">
-
-	   <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
-	
 </head>
 <body class="indexbody">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-        	<!--Creates a clean position and seperate pages from home-->
-          <ul class="nav navbar-nav navbar-right">
-            <!--<li class="active"><a href="index.html">Prisoner's Dilemma</a></li>-->
-            <li><a href="signup.html">Join</a></li>
-            <li><a href="signin.html">Login</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div><!--Container-Fluid-->
-    </nav> <!--End Nav Bar-->
+<!-- Navigation Bar begin -->
+	<header class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand/Logo and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Prisoner's Dilemma</a>
+			</div>
 
-	<!--These two breaks sperate the banner from the nav bar-->
-	<!--Didnt have enough time to play with it and find a neater way to do it atm-->
-	</br>
-    </br>
-	<center><h1 id="zsname">ZillionSparks presents<br/></h1>
-	</center>
+			<!-- Collect the nav links and other content for toggling -->
+			<div class="collapse navbar-collapse" id="collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="index.html">Home</a></li>
+				</ul>
+			</div><!--.navbar-collapse -->
+		</div><!--.container-fluid -->
+	</header><!--Navigation Bar -->
+	<center><h1 id="zsname">ZillionSparks presents<br/></h1></center>
 
-	
-	    <!-- row 2 -->
-	<!--images should all have img-responsive!! img-rounded/circle etc optional. Multiple can be in one class like styles-->
     <div class="container"><div class="jumbotron" id="indexjumbo"><!-- jumbotron are assumed to cover the entire 12 columns and don't need the sm lg xs etc-->
         <center><h1 class="indextitle"><span class="label label-default">Prisoner's Dilemma</span></h1>
-        			<br/>
-				<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
-				<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
-			</center>
-    </div>
+    	<br/>
 	
-<!--Creates containers with site information-->
-	<center>
-	<div class="infocontainer">
-<div class="col-md-7">
-		<div class="infobox">
-			      <h1>About Prisoner's Dilemma</h1>
-      <div class="info1">
+	<form class="form-horizontal" id='indexform' role="form">
+		<div class="form-group">
+		  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<input type="username" class="form-control" id="username" placeholder="Enter username">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">          
+			<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+		  </div><br/><br/><br/><br/>
+		</div>
+	</form>	
+			<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
+			<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
+		</center>
+    </div></div>
+	
+		
+	<center><div class="container">
+		<div class="jumbotron">
 			<p>Prisoner's Dilemma is a web-based game designed by ZillionSparks.<br/>    
 			This website comes in handy when you need to review lessons from your biology course.<br/>     
 			It is also great for expanding your knowledge of biology and competing with friends to help enhance your learning experience.</p>      
 		</div>
 	</div></center>
-
-	<!--<div class="info3"><span class="span6"></span></div>-->
-
-<!--Creates second view-->
-	<div class="infocontainer">
-                <div class="row misc">
-                    <div class="col-md-3" >
-		<center>
-		 <h2>Login</h2>
-		</center>
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="username"></label>
-      <div class="col-sm-10">
-        <input type="username" class="form-control" id="username" placeholder="Enter username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd"></label>
-      <div class="col-sm-10">          
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-      </div>
-    </div>
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">
-        	Submit
-        </button>
-         <button type="reset" class="btn btn-default">
-        	Cancel
-        </button>
-
-      </div>
-    </div>
-  </form>
- </div>
-</div>
-
-
 
 <!--Creates footer with navigation to repositroy-->
 	<div class="container">
