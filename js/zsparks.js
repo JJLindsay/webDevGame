@@ -14,16 +14,15 @@ $(document).ready(function()
 	$("#registerbtn").click(register);
 });
 
-
 /*registration page scripts*/
-$(document).ready(function()
-{
-	function completeregistration()
+	/*$(document).ready(function()
+	{
+		function completeregistration()
 	{
 		window.open ('administration.html','_self')	
 	}
-	$("#completeregistrationbtn").click(completeregistration);
-});
+		$("#completeregistrationbtn").click(completeregistration);
+	});*/
 
 
 /*profile page scripts*/
