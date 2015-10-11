@@ -2,13 +2,14 @@
 function DoCustomEmailVerification()
 {
 	var frm = document.forms["myForm"];
-	if(frm.firstEmail.value != frm.secondEmail.value) 
+	if(frm.email1.value != frm.email2.value) 
 	{
-		sfm_show_error_msg('The Email and Re-typed Email do not match!', frm.firstEmail);
+		sfm_show_error_msg('The Email and Re-typed Email do not match!', frm.email1);
 		return false;
 	}
 	else 
 	{
+	
 		return true;
 	}
 }
@@ -25,6 +26,16 @@ function DoCustomValidation()
   }
   else
   {
+	/*registration page scripts*/
+	/*$(document).ready(function()
+	{
+		function completeregistration()
+	{
+		window.open ('administration.html','_self')	
+	}
+		$("#completeregistrationbtn").click(completeregistration);
+	});*/
+  
     return true;
   }
 }
