@@ -1,3 +1,5 @@
+/*administration page */
+
 img
 {
 width:100%;
@@ -34,6 +36,22 @@ opacity:.9;
 .navbar-default .navbar-nav>li>a
 {
  color:#fff;
+}
+
+/*changes the banner fonts
+
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus, 
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #FFF;
+    background-color: #25D434;
+}
+*/
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color:black;
+  background-color: #a0a0a0;
+  /*background-color: #ccc;*/
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form
@@ -140,6 +158,13 @@ background-color:white;
 	border:#2e6da4 1px solid;	
 }
 
+#admindropdown:hover,
+#admindropdown:focus
+{
+	background-color:#969696;
+	border:#2e6da4 1px solid;	
+}
+
 #indeximg
 {
 	border:#ffd90f 1px solid;	
@@ -204,7 +229,7 @@ background-color:white;
 	color: white;
 }
 
-/* playgame page */
+/* playgame page <probably should be automatic somehow>*/
 .red {
 	background-color: red;
 }
