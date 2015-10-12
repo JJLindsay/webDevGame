@@ -192,6 +192,22 @@ background-color:white;
 	opacity:.8;
 	
 }
+/* Profile page */
+.outerContainer {
+	height: 80px;
+	overflow: hidden;
+	width: 80px;
+	border-radius: 50%;
+	border-bottom: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+}
+
+.innerContainer
+{
+	width: 100%;
+	font-size: 20px;
+	color: white;
+}
 
 /* user's online */
 .user-list li
@@ -243,9 +259,25 @@ background-color:white;
  	background-color: black;
 }
 
-#gamescreen{
-	width: 400px;
-	height: 400px;
+#totalScore {
+	height: 40px;
+	background-color: orange;
+	border: 1px solid black;
+	font-size: 18px;
+	padding: 5px;
+}
+#previousScore {
+	height: 40px;
+	background-color: red;
+	border: 1px solid black;
+	font-size: 18px;
+	padding: 5px;
+}
+
+#gameScreen {
+	height: 300px;
+	border: 1px solid #000000;
+	background-color: #123456;
 }
 
 /*Play Game page*/
