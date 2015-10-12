@@ -45,38 +45,56 @@
 		</div><!-- /.container-fluid -->
 	</header><!-- end Navigation Bar -->	
 	
-	<div class="container" id="gamescreen">
-		<h3>Prisoner's Dilemma Game Play</h3>
-		<div>
-			<canvas id="myCanvas" width="370" height= "300" style="border:1px solid #000000; background-color:lightgrey;">
-			</canvas>
-		</div>
-		<div class="btn-group btn-group-justified">
-			<div class="btn-group">
-				<button class="btn btn-primary">COOPERATE</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-2 top-margin" >
+				<h3>Prisoner's Dilemma Game Play</h3>
+				<br/>
+				<div class="row">
+					<div class="col-sm-3 col-md-3 col-lg-3">
+						<div id="totalScore">
+							Total score: 100
+						</div>
+						<div id="previousScore">
+							Previous score: 5
+						</div>
+					</div>
+					<div class="col-sm-9 col-md-9 col-lg-9">
+						<div id="gameScreen">
+							<!-- <canvas id="myCanvas" style="border:1px solid #000000; background-color:lightgrey;">
+							</canvas> -->
+						</div>
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group">
+								<button class="btn btn-primary">COOPERATE</button>
+							</div>
+							<div class="btn-group">
+								<button class="btn btn-primary">DEFECT</button>
+							</div>
+						</div>
+						<br/><br/>
+
+						<div class="list-group" id="gameContacts">
+							<b>Current Dilemmas</b>
+							<button type="button" class="list-group-item" id="dilemmas">
+								<span style="color:white;background-color:black;border-radius: 5px;padding:0% 1%;">Black-01</span>
+								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
+							</button>
+
+							<button type="button" class="list-group-item" id="dilemmas">
+								<span style="color:white;background-color:blue;border-radius: 5px;padding:0% 1%;">Blue-04</span>
+							</button>
+
+							<button type="button" class="list-group-item" id="dilemmas">
+								<span style="color:white;background-color:red;border-radius: 5px;padding:0% 1%;">Red-01</span>
+								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
+							</button>
+						</div>
+
+					</div>
+				</div>
 			</div>
-			<div class="btn-group">
-				<button class="btn btn-primary">DEFECT</button>
-			</div>
 		</div>
-		<br/><br/>
-		
-			<div class="list-group" id="gameContacts">
-		<b>Current Dilemmas</b>
-		<button type="button" class="list-group-item" id="dilemmas">
-			<span style="color:white;background-color:black;border-radius: 5px;padding:0% 1%;">Black-01</span>
-			<span class="glyphicon glyphicon-flag customBadgeAct"></span>
-		</button>
-	
-		<button type="button" class="list-group-item" id="dilemmas">
-			<span style="color:white;background-color:blue;border-radius: 5px;padding:0% 1%;">Blue-04</span>
-		</button>
-		
-		<button type="button" class="list-group-item" id="dilemmas">
-			<span style="color:white;background-color:red;border-radius: 5px;padding:0% 1%;">Red-01</span>
-			<span class="glyphicon glyphicon-flag customBadgeAct"></span>
-		</button>
-	</div>
 	</div>
 
 	
