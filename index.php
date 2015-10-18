@@ -37,20 +37,36 @@
         <center><h1 class="indextitle"><span class="label label-default">Prisoner's Dilemma</span></h1>
     	<br/>
 	
-	<form class="form-horizontal" id='indexform' role="form">
+	<form class="form-horizontal" id='indexform' role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+	
+	<?php
+
+		include('loginnn.php'); // Includes Login Script
+
+		if(isset($_SESSION['login_user'])){
+			header("location:profilepage.php");
+		}
+	?>
+		
 		<div class="form-group">
 		  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			<input type="username" class="form-control" id="username" placeholder="Enter username" />
+			<span style="color:black;"><b><?php echo $error; ?></b></span>
+			<input type="text" name="username" class="form-control" id="username" placeholder="Enter username" />
 		  </div>
 		</div>
 		<div class="form-group">
 		  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">          
-			<input type="password" class="form-control" id="pwd" placeholder="Enter password" />
-		  </div><br/><br/><br/><br/>
+			<input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" />
+		  </div>
+		</div>
+		<div class="form-group">
+		   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<button type="submit" name="submit" class="btn btn-primary btn-lg indexbtn" >Login</button>
+			<button type="button" class="btn btn-primary btn-lg indexbtn2" >Register</button>
+			
+		   </div>
 		</div>
 	</form>	
-			<button type="button" class="btn btn-primary btn-lg indexbtn" id="loginbtn">Login</button>
-			<button type="button" class="btn btn-primary btn-lg indexbtn2" id="registerbtn">Register</button>
 		</center>
     </div></div>
 	

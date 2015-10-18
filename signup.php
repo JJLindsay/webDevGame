@@ -72,7 +72,7 @@
 					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, pw, confirmed_pw) 
             VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$password1', '$password2')");
 					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
-					header('Location:index.html');
+					header('Location:index.php');
 				}
 
 			}
