@@ -1,17 +1,20 @@
+<?php
+	include('session.php');
+?>
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<!--<meta charset="utf-8">-->
 	<title>Prisoner's Dilemma</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
 	<link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
+
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -28,16 +31,16 @@
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="useronline.html">Who's Online</a></li>
 					<li><a href="playgame.html">Play Game</a></li>
-					<li><a href="#">Check Score</a></li>
+					<li><a href="">Check Score</a></li>
 					<li class="dropdown active">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+						<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.html">My Profile</a></li>
+							<li><a href="profile.php">My Profile</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Logout</a></li>
+							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -59,7 +62,7 @@
 						<div class="row">
 							<div class="col-sm-3 col-md-3 col-lg-3" align="center">
 								<div class="outerContainer red">
-									<div class="innerContainer">1
+									<div class="innerContainer"><br><?php echo $login_id; ?>
 									</div>
 								</div> 
 							</div>
@@ -68,11 +71,16 @@
 									<tbody>
 										<tr>
 											<td>Name</td>
-											<td>John Doe</td>
+											<td><?php echo $login_session. " ".$login_lname; ?></td>
+										</tr>
+										<tr>
+											<td>Username</td>
+											<td><?php echo $login_uname; ?></a></td>
 										</tr>
 										<tr>
 											<td>Email</td>
-											<td><a href="mailto:myemail@gmail.com">myemail@gmail.com</a></td>
+											<td><?php echo $login_session_email; ?></a></td>
+										</tr>	
 									</tbody>
 								</table>
 								<button type="button" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
