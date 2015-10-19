@@ -119,7 +119,7 @@ temporarily on a local server with php.
 			</tr>
   <?php
   		//connect to mysql
-		$db = mysqli_connect("localhost", "root", "", "students");
+		$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");
 		if (mysqli_connect_errno())
 		{
 			print "Connect failed: " . mysqli_connect_error();
@@ -129,7 +129,7 @@ temporarily on a local server with php.
 		//get the query and clean it up (delete leading and trailing
 		// whitespace and remove backslashes from magic_quotes_gpc)
 		
-			$query = 'select * from students;';
+			$query = 'select usernames, last_name, first_name, totalscore from users u join totalscore ts on u.id = ts.users_id;';
 			trim($query);
 			echo $query;
 			$query = stripslashes($query);
