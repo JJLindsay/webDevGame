@@ -31,4 +31,5 @@ if (isset($_POST['submit'])) {
 		mysql_close($connection); // Closing Connection
 	}
 }
+
 ?>

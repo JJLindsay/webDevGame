@@ -55,6 +55,8 @@
 		$users     = $_POST['Username'];
 		$password1 = $_POST['Password'];
 		$password2 = $_POST['RePassword'];
+		$Course	   = $_POST['CourseName'];
+		$Section   = $_POST['Section'];
 		
 		
 		
@@ -69,8 +71,8 @@
 				if($password1 == $password2) {
 					//echo "<h4> Passwords also match!! </h4>";
 						
-					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, pw, confirmed_pw) 
-            VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$password1', '$password2')");
+					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course_name, section, pw, confirmed_pw) 
+            VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
 					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
 					header('Location:index.php');
 				}
@@ -123,11 +125,33 @@
 					<label> <input type="text" name="ReEmail" id="email2" placeholder="Confirm E-mail" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
 						<span class="error"> <?php  echo $emailErr2; ?></span>
 					<label> <input type="text" name="Username" id="uname" placeholder="Username" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
-						<span class="error"> <?php  echo $userErr; ?></span>
+						<span class="error"> <?php  echo $userErr; ?></span>	
 					<label> <input type="password" name="Password" id="pass1"  placeholder="New Password" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
 						<span class="error"> <?php  echo $passErr1; ?></span>
 					<label> <input type="password" name="RePassword" id="pass2" placeholder="Confirm Password" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
 						<span class="error"> <?php  echo $passErr2; ?></span>
+					<label style="margin-top:10px; font-size:1.2em">&nbsp;&nbsp;<strong>Current Course & Section</strong></label><br><select class = "dropdown_1" name="CourseName" style="margin-left: 10px; margin-top: 10px; height:30px">
+                        <option>Course</option>
+						<option>BIOL1999</option>
+                        <option>CHEM1212</option>
+                        <option>BIOL1201</option>
+                        <option>BIOL4800</option>
+                        <option>BIOL2111</option>
+                    </select>
+					<select class = "dropdown_1" name="Section" style="margin-left: 10px; margin-top: 10px; height:30px">
+                        <option>Section</option>
+						<option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+						<option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                    </select>	
+						
 					<div style="font-size:14px; margin-left: 10px; margin-top: 10px">
                         <p>By clicking Sign Up, you agree to our 
                             <a href="" target="" rel="nofollow">Terms</a> 

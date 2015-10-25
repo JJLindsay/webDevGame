@@ -14,6 +14,8 @@ $login_session =$row['first_name'];
 $login_lname=$row['last_name'];
 $login_uname=$row['usernames'];
 $login_session_email=$row['email'];
+$course=$row['course_name'];
+$section=$row['section'];
 
 if(!isset($login_session)){
 	mysql_close($connection); // Closing Connection

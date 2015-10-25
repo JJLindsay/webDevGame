@@ -14,16 +14,25 @@ $(document).ready(function()
 	$("#registerbtn").click(register);
 });
 
-/*registration page scripts*/
-	/*$(document).ready(function()
+/*edit profile page button scripts*/
+	$(document).ready(function()
 	{
-		function completeregistration()
+		function editprofile()
 	{
-		window.open ('administration.html','_self')	
+		window.open ('edit_profile.php','_self')	
 	}
-		$("#completeregistrationbtn").click(completeregistration);
-	});*/
+		$("#editbtn").click(editprofile);
+	});
 
+/*Go to Registration Page from Login Page Button*/
+	$(document).ready(function()
+	{
+		function index()
+	{
+		window.open ('signup.php','_self')	
+	}
+		$("#regPagebtn").click(index);
+	});
 
 /*profile page scripts*/
 $(document).ready(function()

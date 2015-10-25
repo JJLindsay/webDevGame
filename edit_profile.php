@@ -1,5 +1,21 @@
 <?php
 	include('session.php');
+	include('connection.php');
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+	{
+			$fname=$_POST['fname'];
+			$lname=$_POST['lname'];
+			$email=$_POST['Email'];
+			$uname=$_POST['Username'];
+			$cname=$_POST['CourseName'];
+			$section=$_POST['Section'];
+			
+			$query3=mysql_query("UPDATE users SET first_name='$fname', last_name='$lname', email='$email', confirmed_email='$email', usernames='$uname', course_name='$cname', section='$section' where id='$login_id'");
+			if($query3)
+			{
+				header('location:profilepage.php');
+			}
+	}
 ?>
 <!doctype html>
 <html>
@@ -14,6 +30,9 @@
 </head>
 
 <body>
+			
+
+
 
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
@@ -67,33 +86,50 @@
 								</div> 
 							</div>
 							<div class="col-sm-9 col-md-9 col-lg-9 "> 
+							
+							
 								<table class="table table-user-information">
-									<tbody>
+									
+									<form method="post" action="<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 										<tr>
-											<td>Name</td>
-											<td><?php echo $login_session. " ".$login_lname; ?></td>
+											<td>First Name</td>
+											<td><input type="text" name ="fname" value="<?php echo $login_session ?>" /></td>
+										</tr>
+											<tr>
+											<td>Last Name</td>
+											<td><input type="text" name ="lname" value="<?php echo $login_lname; ?>" /></td>
 										</tr>
 										<tr>
 											<td>Username</td>
-											<td><?php echo $login_uname; ?></a></td>
+											<td><input type="text" name ="Username" value="<?php echo $login_uname; ?>" /></td>
 										</tr>
 										<tr>
 											<td>Email</td>
-											<td><?php echo $login_session_email; ?></a></td>
+											<td><input type="text" name ="Email" value="<?php echo $login_session_email; ?>" /></td>
 										</tr>
 										<tr>
 											<td>Course Name</td>
-											<td><?php echo $course; ?></a></td>
+											<td><input type="text" name ="CourseName" value="<?php echo $course; ?>" /></td>
 										</tr>
 										<tr>
 											<td>Course Section</td>
-											<td><?php echo $section; ?></a></td>
+											<td><input type="text" name ="Section" value="<?php echo $section; ?>" /></td>
 										</tr>
-									</tbody>
+										<tr>
+											<td> </td>
+											<td>
+												<input type="submit" name="submit" value="Update" class="btn btn-default dropdown-toggle btn-warning" style="float:right" id="editbtn" />
+												
+												<!--<button type="submit" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
+													<i class="glyphicon glyphicon-edit"></i> Update Profile
+												</button>-->
+											</td>
+										</tr>
+									</form>
+										
 								</table>
-								<button type="button" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
-									<i class="glyphicon glyphicon-edit"></i> Edit Profile
-								</button>
+								
+								
 								<!-- a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="float:right"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a -->
 
 							</div>
