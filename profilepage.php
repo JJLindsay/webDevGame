@@ -32,7 +32,7 @@
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Home</a></li>
-					<li><a href="useronline.html">Who's Online</a></li>
+					<li><a href="useronline.php">Who's Online</a></li>
 					<li><a href="playgame.html">Play Game</a></li>
 					<li><a href="">Check Score</a></li>
 					<li class="dropdown active">
@@ -61,7 +61,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-3 col-md-3 col-lg-3" align="center">
-								<div class="outerContainer red">
+								<div class="outerContainer green">
 									<div class="innerContainer"><br><?php echo $login_id; ?>
 									</div>
 								</div> 

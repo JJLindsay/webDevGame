@@ -10,6 +10,7 @@ $user_check=$_SESSION['login_user'];
 $ses_sql=mysql_query("SELECT * from users where usernames='$user_check'", $connection);
 $row = mysql_fetch_assoc($ses_sql);
 $login_id=$row['id'];
+$login_status=$row['online_status'];
 $login_session =$row['first_name'];
 $login_lname=$row['last_name'];
 $login_uname=$row['usernames'];
