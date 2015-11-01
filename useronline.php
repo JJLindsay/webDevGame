@@ -66,10 +66,14 @@
 				<li>
 				<?php while ($row = $result->fetch_assoc()) 
 						{
-					echo "&nbsp;"."<div class='outerContainer green'>".
-						"<div class='innerContainer'>" .$row['id']."<br />".
-						"</div>".
-					"</div>";
+					
+							if (($row['id']) != $login_id) {
+								echo "&nbsp;"."<div class='outerContainer green'>".
+									"<div class='innerContainer'>"."<a href='playgame.php?id=".$row['id']."' style='color:white'>".$row['id']."</a>"."<br />".
+									"</div>".
+									"</div>";
+								
+							}
 						} 
 				}
 				?>
