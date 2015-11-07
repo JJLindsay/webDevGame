@@ -3,13 +3,13 @@ $(document).ready(function()
 {
 	function login()
 	{
-		window.open ('profile.html','_self')
+		window.open ('profile.php','_self')
 	}
 	$("#loginbtn").click(login);
 	
 	function register()
 	{
-		window.open ('signup.html','_self',false)
+		window.open ('signup.php','_self',false)
 	}
 	$("#registerbtn").click(register);
 });

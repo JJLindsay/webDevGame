@@ -1,3 +1,6 @@
+<?php
+	include('connection.php');
+?>
 <!doctype html>
 <html>
 <head>
@@ -129,7 +132,7 @@ temporarily on a local server with php.
 		//get the query and clean it up (delete leading and trailing
 		// whitespace and remove backslashes from magic_quotes_gpc)
 		
-			$query = 'select usernames, last_name, first_name, totalscore from users u join totalscore ts on u.id = ts.users_id;';
+			$query = 'select usernames, last_name, first_name, totals from users u join totals ts on u.id = ts.users_id;';
 			trim($query);
 			echo $query;
 			$query = stripslashes($query);
@@ -268,7 +271,11 @@ temporarily on a local server with php.
 	
   <!--/div-->
 </div>
-
+<?php
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($db);
+	//mysqli_close($db);//use for include connection.php BUT ONLY PICK ONE!
+?>
 <!-- javascript -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

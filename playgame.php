@@ -13,8 +13,10 @@
 
 <body>
 	<?php
+	 error_reporting(-1);
 		include('connection.php');
 		include('session.php');
+		include('functions.php');
 		//include('useronline.php');
 		
 							
@@ -60,10 +62,10 @@
 				<div class="row">
 					<div class="col-sm-3 col-md-3 col-lg-3">
 						<div id="totalScore">
-							Total score: 100
+							Total score: <?php echo highscore($_SESSION['login_id'])?>pts
 						</div>
 						<div id="previousScore">
-							Previous score: 5
+							Previous score:
 						</div>
 					</div>
 					<div class="col-sm-9 col-md-9 col-lg-9">
@@ -80,29 +82,102 @@
 							</div>
 						</div>
 						<br/>
-						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-							<input type="submit" name="Submit" value="COOPERATE" />
-						</form>
-						<br/>
-						<?php
-							//if (isset($_POST['Submit'])) 
-							//{
-								
-								// Updates user choice for current user to 1	
-								//$update_user_choice=mysql_query("UPDATE scores SET user_choice='1' WHERE id = '$login_id'",$connection);
-								
-														
-									//			echo "yey";
-									
-							//}
-						?>
+
 						
 						
 						<div class="list-group" id="gameContacts">
 							<b>Current Dilemmas</b>
+							<!--LOOP  set the id and collect the score against id-->
 							
-							<button type="button" class="list-group-item" id="dilemmas">
-								<span style="color:white;background-color:blue;border-radius: 5px;padding:0% 1%;"><?php echo "You: ".$login_id; ?></span>
+							
+							<?php
+							
+								$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");							
+								$query = "SELECT *";
+								$query .= " FROM dilemmas";
+								$query .= " WHERE p1 IN (SELECT tag";
+								$query .= " FROM teamcode";
+								$query .= " WHERE users_id=".$_SESSION['login_id'].")";
+								
+								$result=mysqli_query($db, $query);
+								
+								
+								//$result = mysqli_query($db, $query);																				
+								
+								if ($result) 
+								{
+									//get the number of rows within the result (or database) 
+								$num_rows = mysqli_num_rows($result);
+									
+									
+									
+									//success
+									//$row = mysqli_fetch_assoc($query);
+									$row = $result->fetch_assoc();  //get the contents of the row.
+									
+									//loop through
+									for ($index = 0; $index <  $num_rows; $index++)
+									{
+										
+										 ?>
+										<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
+											<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
+											<span class='glyphicon glyphicon-flag customBadgeAct'></span>
+										</button>
+										 <?php
+										 
+										 //$row['p2']
+										
+										$row = $result->fetch_assoc();  //get the contents of the next row.
+									}
+								}
+								
+								
+								$query = "SELECT *";
+								$query .= " FROM dilemmas";
+								$query .= " WHERE p2 LIKE (SELECT tag";
+								$query .= " FROM teamcode";
+								$query .= " WHERE users_id=".$_SESSION['login_id'].")";
+								
+								$result = mysqli_query($db, $query);
+								
+								
+								
+								if ($result)
+								{
+									//get the number of rows within the result (or database) 
+								$num_rows = mysqli_num_rows($result); 
+																					
+									
+									//success
+									$row = $result->fetch_assoc();  //get the contents of the row.
+									
+									//loop through
+									for ($index = 0; $index <  $num_rows; $index++)
+									{
+									
+										 ?>
+										<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
+											<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
+											<span class='glyphicon glyphicon-flag customBadgeAct'></span>
+										</button>
+										 <?php
+										 
+										 //$row['p1']
+										
+										$row = $result->fetch_assoc();  //get the contents of the next row.
+									}
+								}								
+								else
+								{
+									//failure
+									die("Database query failed.");
+								}
+								
+							?>
+							
+							<button type="button" class="list-group-item" id="dilemmas" onclick="recent_game_score()">
+								<span style="color:white;background-color:blue;border-radius: 5px;padding:0% 1%;">Blue-01</span>
 								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
 							</button>
 
@@ -111,22 +186,7 @@
 							</button>
 
 							<button type="button" class="list-group-item" id="dilemmas">
-								<span style="color:white;background-color:red;border-radius: 5px;padding:0% 1%;">
-									<?php
-										//error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-										
-										$query=mysql_connect("localhost","root","");
-											mysql_select_db("zillionsparks_db",$query);
-											if(isset($_GET['id']))
-											{
-												$id=$_GET['id'];
-												$query1=mysql_query("select * from users where id='$id'");
-												$query2=mysql_fetch_array($query1);
-												echo "Your Partner: ".$query2['id'];
-												 
-											}
-									?>
-								</span>
+								<span style="color:white;background-color:red;border-radius: 5px;padding:0% 1%;">Red-01</span>
 								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
 							</button>
 						</div>
@@ -137,11 +197,25 @@
 		</div>
 	</div>
 
-	
+<?php
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
+?>	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type=" src=js/myscript.js"></script>
 	<script src="js/zsparks.js"></script>
+	<script src="functions.php"></script>
+	
+	<script type="text/javascript">
+
+		function recent_game_score($score)
+		{
+			document.getElementById("previousScore").innerHTML='Prev. Score: ' + $score;
+		}
+		
+	</script>
+	
 </body>
 </html>

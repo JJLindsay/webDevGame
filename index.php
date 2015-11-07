@@ -1,3 +1,6 @@
+<?php
+	include('connection.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +48,8 @@
 		include('loginnn.php'); // Includes Login Script
 		//include('status.php'); // updates user's online_status to 1
 		if(isset($_SESSION['login_user'])){
-			header("location:profilepage.php");
-			include('session.php');
+			//header("location:profilepage.php");
+			include('session.php');//this may be too late to start a session
 			$update_status_query = mysql_query("UPDATE users SET online_status='1' WHERE usernames='$user_check'", $connection);
 		}
 	
@@ -90,7 +93,12 @@
 			&copy 2015                    
 		</p>
 	</div>
-		
+
+<?php
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
+?>	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
