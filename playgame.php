@@ -13,7 +13,8 @@
 
 <body>
 	<?php
-	 error_reporting(-1);
+		error_reporting(-1);
+		//session_start(); // Starting Session 
 		include('connection.php');
 		include('session.php');
 		include('functions.php');

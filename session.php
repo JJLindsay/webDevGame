@@ -1,12 +1,19 @@
 <?php
+/*PURPOSE:
+	This file retrieves all user information once its proven they 
+	have successfully logged in.
+*/
+
+error_reporting(-1);
+session_start(); // Starting Session 
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
 //$connection = mysql_connect("localhost", "root", "");
 // Selecting Database
 //$db = mysql_select_db("zillionsparks_db", $connection);
 $mysqli = new mysqli("localhost","root","", "zillionsparks_db");
-session_start();// Starting Session
+//session_start();// Starting Session is necessary to have access to the globals
 // Storing Session
-$user_check=$_SESSION['login_user'];  //what is this trying to do???
+$user_check=$_SESSION['login_user'];  
 
 // SQL Query To Fetch Complete Information Of User
 //$ses_sql=mysql_query("SELECT * from users where usernames='$user_check'", $connection);

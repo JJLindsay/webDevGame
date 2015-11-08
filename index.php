@@ -1,4 +1,6 @@
 <?php
+	error_reporting(-1);
+	session_start(); // Starting Session 
 	include('connection.php');
 ?>
 <!DOCTYPE html>
@@ -48,9 +50,9 @@
 		include('loginnn.php'); // Includes Login Script
 		//include('status.php'); // updates user's online_status to 1
 		if(isset($_SESSION['login_user'])){
-			//header("location:profilepage.php");
+			header("location:profilepage.php");
 			include('session.php');//this may be too late to start a session
-			$update_status_query = mysql_query("UPDATE users SET online_status='1' WHERE usernames='$user_check'", $connection);
+			$update_status_query = mysqli_query($dbc, "UPDATE users SET online_status='1' WHERE usernames='$user_check'");
 		}
 	
 	?>
