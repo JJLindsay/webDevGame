@@ -183,100 +183,71 @@ temporarily on a local server with php.
 			else
 			{
 				print "There were no such rows in the table <br />";
-			}
-		//print "</table>";
-  
+			}  
   ?>
-<!--
-			<tr>
-				<td>user1</td>
-				<td>LName1</td>
-				<td>FName1</td>
-				<td>111</td>
-			</tr>
-			<tr>
-				<td>user2</td>
-				<td>LName2</td>
-				<td>FName2</td>
-				<td>102</td>
-			</tr>
-			<tr>
-				<td>user3</td>
-				<td>LName3</td>
-				<td>FName3</td>
-				<td>103</td>
-			</tr>
-			<tr>
-				<td>user4</td>
-				<td>LName4</td>
-				<td>FName4</td>
-				<td>104</td>
-			</tr>
-			<tr>
-				<td>user5</td>
-				<td>LName5</td>
-				<td>FName5</td>
-				<td>105</td>
-			</tr>
-			<tr>
-				<td>user6</td>
-				<td>LName6</td>
-				<td>FName6</td>
-				<td>106</td>
-			</tr>
-			<tr>
-				<td>user7</td>
-				<td>LName7</td>
-				<td>FName7</td>
-				<td>107</td>
-			</tr>
-			<tr>
-				<td>user8</td>
-				<td>LName8</td>
-				<td>FName8</td>
-				<td>108</td>
-			</tr>
-			<tr>
-				<td>user9</td>
-				<td>LName9</td>
-				<td>FName9</td>
-				<td>109</td>
-			</tr>
-			<tr>
-				<td>user10</td>
-				<td>LName10</td>
-				<td>FName10</td>
-				<td>110</td>
-			</tr>
-			<tr>
-				<td>user11</td>
-				<td>LName11</td>
-				<td>FName11</td>
-				<td>111</td>
-			</tr>
-			<tr>
-				<td>user12</td>
-				<td>LName12</td>
-				<td>FName12</td>
-				<td>112</td>
-			</tr -->
 		</table>
 	 </div>
-	 <!--/div>  <!-- End of responsive table -->
 	 <button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="exportbtn">
 		Export to SpreadSheet
 	</button>
 	</div>
 	</div>
 	
-  <!--/div-->
+	
+	<!--There needs to be a button -->
+	<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="">
+		Choose number of groups
+	</button>
+	
+	<?php
+	/* algorithm: */
+	count max(group_id)
+	$groups = mysqli_query($dbc, "SELECT DISTINCT USER_GROUP FROM teamcode");  //produces red, blue, yellow
+	$num_groups = mysqli_num_rows($groups);
+	$teamcode = $groups->fetch_assoc();  //get the contents of the 1st row.
+	/* 
+	loop through each group:
+	turns true/false. Success actually returns a mysqli_result object 
+	*/
+	$group_players = mysqli_query($dbc, "SELECT * FROM teamcode WHERE user_group LIKE '$teamcode'");
+	$group_players2 = $group_players;
+	$num_group_players = mysqli_num_rows($group_players);
+	$p1_index = 1;
+	$p1 = $group_players->fetch_assoc();  //get the contents of the next row.
+	$p2 = $group_players2->fetch_assoc();
+	$p2_index = 1;
+	while ($p1_index < $num_group_players)
+	{		
+		$p2 = $group_players2->fetch_assoc();  //get the contents of the next row.
+		$p2_index++;
+		while ($p2_index <= $num_group_players)
+		{
+			mysqli_query($dbc, "INSERT INTO dilemmas (p1, P2) VALUES ('$p1','$p2')");
+			$p2 = $group_players2->fetch_assoc();  //get the contents of the next row.
+			$p2_index++;
+		}
+		$p1_index++;
+		$p2_index = $p1_index;
+		$p1 = $group_players->fetch_assoc();  //get the contents of the next row.
+		$group_players2->fetch_assoc();
+	}
+	/*		
+	while id != max(id_of_group)
+		1v2 update statement
+		1v3
+		2v3
+		
+	*/
+	?>
+	
+	
 </div>
 <?php
 	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
 	mysqli_close($db);
 	//mysqli_close($db);//use for include connection.php BUT ONLY PICK ONE!
 ?>
-<!-- javascript -->
+	<!-- javascript -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/zsparks.js"></script>

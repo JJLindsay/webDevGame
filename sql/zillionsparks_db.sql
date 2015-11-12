@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2015 at 03:02 PM
+-- Generation Time: Oct 19, 2015 at 03:05 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dilemmas`
+-- Table structure for table `gamescore`
 --
 
-CREATE TABLE IF NOT EXISTS `dilemmas` (
+CREATE TABLE IF NOT EXISTS `gamescore` (
   `id` int(3) NOT NULL,
   `p1` text NOT NULL,
   `p2` text NOT NULL,
@@ -37,13 +37,13 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dilemmas`
+-- Dumping data for table `gamescore`
 --
 
-INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`) VALUES
-(1, 'A1', 'B1', 0, 1, 6, 0),
-(2, 'B1', 'C1', 1, 1, 3, 3),
-(3, 'C1', 'A1', 0, 0, 0, 0);
+INSERT INTO `gamescore` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`) VALUES
+(1, 'A1', 'B1', NULL, NULL, 0, 0),
+(2, 'B1', 'C1', NULL, NULL, 0, 0),
+(3, 'C1', 'A1', NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -68,21 +68,21 @@ INSERT INTO `teamcode` (`users_id`, `tag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `totals`
+-- Table structure for table `totalscore`
 --
 
-CREATE TABLE IF NOT EXISTS `totals` (
+CREATE TABLE IF NOT EXISTS `totalscore` (
   `users_id` int(4) NOT NULL,
   `totalscore` int(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `totals`
+-- Dumping data for table `totalscore`
 --
 
-INSERT INTO `totals` (`users_id`, `totalscore`) VALUES
+INSERT INTO `totalscore` (`users_id`, `totalscore`) VALUES
 (1, 0),
-(2, 40),
+(2, 0),
 (3, 0);
 
 -- --------------------------------------------------------
@@ -101,27 +101,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `pw` varchar(255) NOT NULL,
   `confirmed_pw` varchar(255) NOT NULL,
   `course` varchar(12) DEFAULT NULL,
-  `section` int(2) DEFAULT NULL,
-  `online_status` int(1) NOT NULL DEFAULT '0'
+  `section` int(2) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`, `online_status`) VALUES
-(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0),
-(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1),
-(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0);
+INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`) VALUES
+(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL),
+(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL),
+(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `dilemmas`
+-- Indexes for table `gamescore`
 --
-ALTER TABLE `dilemmas`
+ALTER TABLE `gamescore`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -131,9 +130,9 @@ ALTER TABLE `teamcode`
   ADD PRIMARY KEY (`users_id`);
 
 --
--- Indexes for table `totals`
+-- Indexes for table `totalscore`
 --
-ALTER TABLE `totals`
+ALTER TABLE `totalscore`
   ADD PRIMARY KEY (`users_id`);
 
 --
@@ -147,9 +146,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `dilemmas`
+-- AUTO_INCREMENT for table `gamescore`
 --
-ALTER TABLE `dilemmas`
+ALTER TABLE `gamescore`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`

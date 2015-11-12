@@ -11,7 +11,7 @@ $(document).ready(function()
 	{
 		window.open ('signup.php','_self',false)
 	}
-	$("#registerbtn").click(register);
+	$("#regPagebtn").click(register);
 });
 
 /*edit profile page button scripts*/

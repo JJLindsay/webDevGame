@@ -71,7 +71,7 @@
 		<div class="form-group">
 		   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<button type="submit" name="submit" class="btn btn-primary btn-lg indexbtn" >Login</button>
-			<button type="submit" id="regPagebtn" class="btn btn-primary btn-lg indexbtn2" >Register</button>
+			<button type="button" id="regPagebtn" class="btn btn-primary btn-lg indexbtn2" >Register</button>
 			
 		   </div>
 		</div>

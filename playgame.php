@@ -108,7 +108,7 @@
 								if ($result) 
 								{
 									//get the number of rows within the result (or database) 
-								$num_rows = mysqli_num_rows($result);
+									$num_rows = mysqli_num_rows($result);
 									
 									
 									

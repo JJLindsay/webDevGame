@@ -1,3 +1,6 @@
+<?php
+	include('connection.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,12 +25,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+                    <a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
                 </div>
                 <!-- Collect the nav links and other content for toggling -->
                 <div class="collapse navbar-collapse" id="collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -71,7 +74,7 @@
 				if($password1 == $password2) {
 					//echo "<h4> Passwords also match!! </h4>";
 						
-					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course_name, section, pw, confirmed_pw) 
+					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
             VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
 					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
 					header('Location:index.php');
