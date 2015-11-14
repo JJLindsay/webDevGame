@@ -1,6 +1,11 @@
 <!doctype html>
 <html>
 <head>
+<?php
+	error_reporting(-1);
+	include('connection.php');
+?>
+
     <meta charset="utf-8">
     <title>Prisoner's Dilemma</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +13,11 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
-    <script src="js/respond.js"></script>	
+    <!--<script src="js/respond.js"></script -->	
+	
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js\zsparks.js"></script>
 </head>
 <body>
 <!--Add bootstrap to folder!! -->
@@ -33,21 +42,21 @@ temporarily on a local server with php.
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="selectmode.html">Select Play Mode</a></li>
-					<li class="active"><a href="administration.html">Check Scores</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+					<li class="active"><a href="administration.php">Check Scores</a></li>
+					<li class="dropdown active">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="profile.html">My Profile</a></li>
+							<li><a href="profilepage.php">My Profile</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Logout</a></li>
+							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -116,6 +125,8 @@ temporarily on a local server with php.
 				<th>Last Name</th>
 				<th>First Name</th>
 				<th>Score</th>
+				<th>Course</th>
+				<th>Section</th>
 			</tr>
   <?php
   		//connect to mysql
@@ -129,7 +140,7 @@ temporarily on a local server with php.
 		//get the query and clean it up (delete leading and trailing
 		// whitespace and remove backslashes from magic_quotes_gpc)
 		
-			$query = 'select usernames, last_name, first_name, totalscore from users u join totalscore ts on u.id = ts.users_id;';
+			$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id;';
 			trim($query);
 			echo $query;
 			$query = stripslashes($query);
@@ -180,98 +191,38 @@ temporarily on a local server with php.
 			else
 			{
 				print "There were no such rows in the table <br />";
-			}
-		//print "</table>";
-  
+			}  
   ?>
-<!--
-			<tr>
-				<td>user1</td>
-				<td>LName1</td>
-				<td>FName1</td>
-				<td>111</td>
-			</tr>
-			<tr>
-				<td>user2</td>
-				<td>LName2</td>
-				<td>FName2</td>
-				<td>102</td>
-			</tr>
-			<tr>
-				<td>user3</td>
-				<td>LName3</td>
-				<td>FName3</td>
-				<td>103</td>
-			</tr>
-			<tr>
-				<td>user4</td>
-				<td>LName4</td>
-				<td>FName4</td>
-				<td>104</td>
-			</tr>
-			<tr>
-				<td>user5</td>
-				<td>LName5</td>
-				<td>FName5</td>
-				<td>105</td>
-			</tr>
-			<tr>
-				<td>user6</td>
-				<td>LName6</td>
-				<td>FName6</td>
-				<td>106</td>
-			</tr>
-			<tr>
-				<td>user7</td>
-				<td>LName7</td>
-				<td>FName7</td>
-				<td>107</td>
-			</tr>
-			<tr>
-				<td>user8</td>
-				<td>LName8</td>
-				<td>FName8</td>
-				<td>108</td>
-			</tr>
-			<tr>
-				<td>user9</td>
-				<td>LName9</td>
-				<td>FName9</td>
-				<td>109</td>
-			</tr>
-			<tr>
-				<td>user10</td>
-				<td>LName10</td>
-				<td>FName10</td>
-				<td>110</td>
-			</tr>
-			<tr>
-				<td>user11</td>
-				<td>LName11</td>
-				<td>FName11</td>
-				<td>111</td>
-			</tr>
-			<tr>
-				<td>user12</td>
-				<td>LName12</td>
-				<td>FName12</td>
-				<td>112</td>
-			</tr -->
 		</table>
 	 </div>
-	 <!--/div>  <!-- End of responsive table -->
 	 <button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="exportbtn">
 		Export to SpreadSheet
 	</button>
+	<br/>
+	<button type="button" class="btn btn-lg btn-warning" aria-haspopup="true" aria-expanded="false" id="iterationbtn">
+		Compete by Iteration (deletes previous values)
+	</button>
+	<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
+		Compete with Random Players (deletes previous values)
+	</button>		
+	
 	</div>
 	</div>
 	
-  <!--/div-->
+	
 </div>
 
-<!-- javascript -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/zsparks.js"></script>
+	<!--There needs to be a button -->
+
+
+	
+	<!-- javascript -->
+<?php
+
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($db);
+	//mysqli_close($db);//use for include connection.php BUT ONLY PICK ONE!
+?>
+
 </body>
 </html>

@@ -1,3 +1,8 @@
+<?php
+	error_reporting(-1);
+	session_start(); // Starting Session 
+	include('connection.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +49,16 @@
 
 		include('loginnn.php'); // Includes Login Script
 		//include('status.php'); // updates user's online_status to 1
-		if(isset($_SESSION['login_user'])){
-			header("location:profilepage.php");
-			include('session.php');
-			$update_status_query = mysql_query("UPDATE users SET online_status='1' WHERE usernames='$user_check'", $connection);
+		if(isset($_SESSION['login_user']))
+		{
+			if($_SESSION['admin_name'] == 'admin'){
+				header("location:administration.php");
+			}
+			else{
+				header("location:profilepage.php");
+			}
+			include('session.php');//this may be too late to start a session
+			$update_status_query = mysqli_query($dbc, "UPDATE users SET online_status='1' WHERE usernames='$user_check'");
 		}
 	
 	?>
@@ -66,7 +77,7 @@
 		<div class="form-group">
 		   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			<button type="submit" name="submit" class="btn btn-primary btn-lg indexbtn" >Login</button>
-			<button type="submit" id="regPagebtn" class="btn btn-primary btn-lg indexbtn2" >Register</button>
+			<button type="button" id="regPagebtn" class="btn btn-primary btn-lg indexbtn2" >Register</button>
 			
 		   </div>
 		</div>
@@ -90,7 +101,12 @@
 			&copy 2015                    
 		</p>
 	</div>
-		
+
+<?php
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
+?>	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

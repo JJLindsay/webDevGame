@@ -1,5 +1,6 @@
 <?php
 //define variables
+error_reporting(-1);
 $hostname = "localhost";
 $username = "root";
 $password = "";

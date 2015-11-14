@@ -1,3 +1,7 @@
+<?php
+	error_reporting(-1);
+	include('connection.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,12 +26,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+                    <a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
                 </div>
                 <!-- Collect the nav links and other content for toggling -->
                 <div class="collapse navbar-collapse" id="collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -71,10 +75,54 @@
 				if($password1 == $password2) {
 					//echo "<h4> Passwords also match!! </h4>";
 						
-					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course_name, section, pw, confirmed_pw) 
+					
+					
+					
+					
+					//SET TEAMCODE ID's
+					$max = mysqli_query($dbc, "SELECT * FROM teamcode WHERE users_id = (SELECT MAX(users_id) FROM teamcode)");  
+					$num_rows = mysqli_num_rows($max);  
+					$row = $max->fetch_assoc();  //gets the first one
+					/* 
+					loop through each group:
+					turns true/false. Success actually returns a mysqli_result object 
+					*/
+					
+					if ($num_rows == 1)
+					{
+						$values = array_values($row);  //splits the fetched row contents into an array
+						
+						$id = $values[0];
+						$id = $id +1;
+						
+						$group = $values[2];
+						if ($group == 'yellow')
+							$group = 'red';
+						else if ($group == 'red')
+							$group = 'blue';
+						else
+							$group = 'red';
+
+						$tag = strtoupper(substr($group,0,1)) . $id;
+						
+						//ON GOING ATTEMPT TO MAKE THIS TEST-INSERT WORK FOR TEAMCODE!!!!!!!!!
+						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (74,tag,group)");  //sets the total score to 0 on registration
+						//echo $id;
+						//echo $group;
+						//echo $tag;
+						//inserts default total score
+						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration
+					}
+							
+							
+					
+					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
             VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
+			
+					//"SELECT tag,user_group FROM teamcode WHERE id = (SELECT MAX(id) FROM teamcode)";
+					
 					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
-					header('Location:index.php');
+					//header('Location:index.php');
 				}
 
 			}
