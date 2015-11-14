@@ -3,8 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2015 at 09:45 PM
-
+-- Generation Time: Nov 14, 2015 at 10:15 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -37,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
   `p2_score` int(4) NOT NULL DEFAULT '0',
   `games_per_week` int(2) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
-
 
 --
 -- Dumping data for table `dilemmas`
@@ -141,8 +139,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `course` varchar(12) DEFAULT NULL,
   `section` int(2) DEFAULT NULL,
   `online_status` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
-
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -203,7 +200,7 @@ ALTER TABLE `dilemmas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

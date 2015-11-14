@@ -15,7 +15,6 @@ $(document).ready(function()
 	$("#regPagebtn").click(register);
 
 
-
 	/*edit profile page button scripts*/
 	
 		function editprofile()

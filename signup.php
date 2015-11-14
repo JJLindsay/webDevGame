@@ -75,7 +75,8 @@
 				if($password1 == $password2) {
 					//echo "<h4> Passwords also match!! </h4>";
 						
-					
+					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
+            VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
 					
 					
 					
@@ -105,24 +106,19 @@
 
 						$tag = strtoupper(substr($group,0,1)) . $id;
 						
-						//ON GOING ATTEMPT TO MAKE THIS TEST-INSERT WORK FOR TEAMCODE!!!!!!!!!
-						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (74,tag,group)");  //sets the total score to 0 on registration
-						//echo $id;
-						//echo $group;
-						//echo $tag;
-						//inserts default total score
+						
+						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES ($id,'$tag','$group')");  //sets the total score to 0 on registration
 						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration
 					}
 							
 							
 					
-					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
-            VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
+					
 			
 					//"SELECT tag,user_group FROM teamcode WHERE id = (SELECT MAX(id) FROM teamcode)";
 					
 					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
-					//header('Location:index.php');
+					header('Location:index.php');
 				}
 
 			}
