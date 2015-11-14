@@ -1,3 +1,6 @@
+<?php
+	include('connection.php');
+?>
 <!doctype html>
 <html>
 <head>
@@ -209,7 +212,6 @@ temporarily on a local server with php.
 	</div>
 	</div>
 	
-	
 </div>
 
 	<!--There needs to be a button -->
@@ -218,11 +220,9 @@ temporarily on a local server with php.
 	
 	<!-- javascript -->
 <?php
-
 	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
 	mysqli_close($db);
 	//mysqli_close($db);//use for include connection.php BUT ONLY PICK ONE!
 ?>
-
 </body>
 </html>

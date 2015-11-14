@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) {
 		// SQL query to fetch information of registerd users and finds user match.
 		//$query = mysql_query("select * from users where pw='$password' AND usernames='$username'", $connection);
 		$result=mysqli_query($dbc, "select first_name from users where pw='$password' AND usernames='$username'"); //THE REPLACEMENT FOR mysql_query
+
 		$rows = mysqli_num_rows($result);
 		if ($rows == 1) {
 			$_SESSION['login_user']=$username; // Initializing Session
