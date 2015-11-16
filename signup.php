@@ -97,12 +97,12 @@
 						$id = $id +1;
 						
 						$group = $values[2];
-						if ($group == 'yellow')
+						if ($group == 'green')
 							$group = 'red';
 						else if ($group == 'red')
 							$group = 'blue';
 						else
-							$group = 'red';
+							$group = 'green';
 
 						$tag = strtoupper(substr($group,0,1)) . $id;
 						

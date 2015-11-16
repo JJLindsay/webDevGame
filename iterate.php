@@ -4,8 +4,7 @@ error_reporting(-1);
 
 mysqli_query($dbc, "TRUNCATE TABLE dilemmas"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
 
-//count max(group_id)
-$groups = mysqli_query($dbc, "SELECT DISTINCT USER_GROUP FROM teamcode");  //produces red, blue, yellow
+$groups = mysqli_query($dbc, "SELECT DISTINCT USER_GROUP FROM teamcode");  //produces red, blue, green
 $num_groups = mysqli_num_rows($groups);  //returns 3
 $teamcode = $groups->fetch_assoc();  //gets the first one
 /* 
@@ -20,7 +19,6 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	$values = array_values($teamcode);  //splits the fetch row contents into an array
 	
 	$value = htmlspecialchars($values[0]);
-	print $value; //prints yellow, red, blue
 	//i have this select stmt result
 	//fetch assoc
 	//get fields using array values method

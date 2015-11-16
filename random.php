@@ -3,11 +3,10 @@ include('connection.php');
 error_reporting(-1);
 
 mysqli_query($dbc, "TRUNCATE TABLE dilemmas"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
-//there must be another column that sets random
 
 //assuming only 3 group colors
 $arr = array(
-    0 => "yellow",
+    0 => "green",
 	1 => "red",
     2 => "blue",
 );
@@ -30,16 +29,15 @@ for ($count = 1; $count <= $tag_count; $count++)
 	$id = htmlspecialchars($content_cols[0]);
 	
 	mysqli_query($dbc,"UPDATE teamcode SET random_group = '$arr[$rndNum]' WHERE users_id = $id");  //sets the total score to 0 on registration
-	//mysqli_query($dbc,"UPDATE teamcode SET random_group = 'yellow' WHERE user_id = $id");  //sets the total score to 0 on registration
 	$rndNum = rand(0, 2); //values are inclusive
 }
 
 
-
+//The following code will empty dilemmas and repopulate it with random groups
+//----------------------------------------------------------------------------
 mysqli_query($dbc, "TRUNCATE TABLE dilemmas"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
 
-//count max(group_id)
-$groups = mysqli_query($dbc, "SELECT DISTINCT random_group FROM teamcode");  //produces red, blue, yellow
+$groups = mysqli_query($dbc, "SELECT DISTINCT random_group FROM teamcode");  //produces red, blue, green
 $num_groups = mysqli_num_rows($groups);  //returns 3
 $teamcode = $groups->fetch_assoc();  //gets the first one
 /* 
@@ -54,7 +52,6 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	$values = array_values($teamcode);  //splits the fetch row contents into an array
 	
 	$value = htmlspecialchars($values[0]);
-	print $value; //prints yellow, red, blue
 	//i have this select stmt result
 	//fetch assoc
 	//get fields using array values method
@@ -109,7 +106,4 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	unset($arr);
 	$teamcode = $groups->fetch_assoc();  //get the contents of the next row.
 }
-
-
-
 ?>

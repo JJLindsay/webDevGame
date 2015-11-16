@@ -142,7 +142,6 @@ temporarily on a local server with php.
 		
 			$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id;';
 			trim($query);
-			echo $query;
 			$query = stripslashes($query);
 			
 		//execute the query

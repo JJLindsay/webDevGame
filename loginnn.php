@@ -43,5 +43,4 @@ if (isset($_POST['submit'])) {
 		//mysql_close($connection); // Closing Connection  //closed in index so not needed
 	}
 }
-
 ?>
