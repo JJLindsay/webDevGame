@@ -204,7 +204,7 @@ temporarily on a local server with php.
 	</button>
 	<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
 		Compete with Random Players (deletes previous values)
-	</button>		
+	</button>			
 	
 	</div>
 	</div>

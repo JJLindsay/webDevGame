@@ -69,7 +69,7 @@ $(document).ready(function()
 	{
 		alert("tbd!")
 		$.ajax({
-			//url: './random.php',
+			url: './random.php',
 			success: function() {
 				alert("Random not configured")
 			},

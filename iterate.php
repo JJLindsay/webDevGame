@@ -56,6 +56,8 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 			$p2 = htmlspecialchars($p2_values[0]);
 			echo "('$p1','$p2')<br/>";
 			mysqli_query($dbc, "INSERT INTO dilemmas (p1, P2) VALUES ('$p1','$p2')");
+			mysqli_query($dbc, "COMMIT");
+			
 			if (!$allset)
 				$arr[] = $p2;
 			

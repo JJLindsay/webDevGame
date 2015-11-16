@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2015 at 10:15 PM
+-- Generation Time: Nov 16, 2015 at 09:53 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -35,32 +35,34 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
   `p1_score` int(4) NOT NULL DEFAULT '0',
   `p2_score` int(4) NOT NULL DEFAULT '0',
   `games_per_week` int(2) NOT NULL DEFAULT '10'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dilemmas`
 --
 
 INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`, `games_per_week`) VALUES
-(1, 'A1', 'B1', NULL, NULL, 0, 0, 10),
-(2, 'A1', 'C1', NULL, NULL, 0, 0, 10),
-(3, 'B1', 'C1', NULL, NULL, 0, 0, 5151),
-(4, 'A2', 'B3', 1, NULL, 0, 0, 10),
-(5, 'A2', 'C4', NULL, 0, 0, 0, 10),
-(6, 'A2', 'B4', NULL, NULL, 0, 0, 10),
-(7, 'B3', 'C4', NULL, NULL, 0, 0, 10),
-(8, 'B3', 'B4', NULL, NULL, 15, 0, 10),
-(9, 'C4', 'B4', NULL, NULL, 0, 0, 10),
-(10, 'B2', 'C2', NULL, NULL, 0, 0, 10),
-(11, 'B2', 'C3', NULL, NULL, 0, 0, 10),
-(12, 'B2', 'A3', NULL, NULL, 0, 0, 10),
-(13, 'B2', 'A4', NULL, NULL, 0, 0, 10),
-(14, 'C2', 'C3', NULL, NULL, 0, 0, 10),
-(15, 'C2', 'A3', NULL, NULL, 0, 0, 10),
-(16, 'C2', 'A4', NULL, NULL, 0, 0, 10),
-(17, 'C3', 'A3', NULL, NULL, 0, 0, 10),
-(18, 'C3', 'A4', NULL, NULL, 0, 0, 10),
-(19, 'A3', 'A4', NULL, NULL, 0, 0, 10);
+(1, 'A1', 'C3', NULL, NULL, 0, 0, 10),
+(2, 'A1', 'B4', NULL, NULL, 0, 0, 10),
+(3, 'C3', 'B4', NULL, NULL, 0, 0, 10),
+(4, 'B1', 'C1', NULL, NULL, 0, 0, 10),
+(5, 'B1', 'A2', NULL, NULL, 0, 0, 10),
+(6, 'B1', 'B2', NULL, NULL, 0, 0, 10),
+(7, 'B1', 'B3', NULL, NULL, 0, 0, 10),
+(8, 'B1', 'A3', NULL, NULL, 0, 0, 10),
+(9, 'C1', 'A2', NULL, NULL, 0, 0, 10),
+(10, 'C1', 'B2', NULL, NULL, 0, 0, 10),
+(11, 'C1', 'B3', NULL, NULL, 0, 0, 10),
+(12, 'C1', 'A3', NULL, NULL, 0, 0, 10),
+(13, 'A2', 'B2', NULL, NULL, 0, 0, 10),
+(14, 'A2', 'B3', NULL, NULL, 0, 0, 10),
+(15, 'A2', 'A3', NULL, NULL, 0, 0, 10),
+(16, 'B2', 'B3', NULL, NULL, 0, 0, 10),
+(17, 'B2', 'A3', NULL, NULL, 0, 0, 10),
+(18, 'B3', 'A3', NULL, NULL, 0, 0, 10),
+(19, 'C2', 'C4', NULL, NULL, 0, 0, 10),
+(20, 'C2', 'A4', NULL, NULL, 0, 0, 10),
+(21, 'C4', 'A4', NULL, NULL, 0, 0, 10);
 
 -- --------------------------------------------------------
 
@@ -71,26 +73,27 @@ INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, 
 CREATE TABLE IF NOT EXISTS `teamcode` (
   `users_id` int(3) NOT NULL,
   `tag` varchar(4) NOT NULL,
-  `user_group` varchar(13) NOT NULL
+  `user_group` varchar(13) NOT NULL,
+  `random_group` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teamcode`
 --
 
-INSERT INTO `teamcode` (`users_id`, `tag`, `user_group`) VALUES
-(1, 'A1', 'green'),
-(2, 'B1', 'green'),
-(3, 'C1', 'green'),
-(4, 'A2', 'yellow'),
-(5, 'B2', 'blue'),
-(6, 'C2', 'blue'),
-(7, 'B3', 'yellow'),
-(8, 'C3', 'blue'),
-(9, 'A3', 'blue'),
-(10, 'C4', 'yellow'),
-(11, 'A4', 'blue'),
-(12, 'B4', 'yellow');
+INSERT INTO `teamcode` (`users_id`, `tag`, `user_group`, `random_group`) VALUES
+(1, 'A1', 'red', 'blue'),
+(2, 'B1', 'red', 'yellow'),
+(3, 'C1', 'red', 'yellow'),
+(4, 'A2', 'yellow', 'yellow'),
+(5, 'B2', 'blue', 'yellow'),
+(6, 'C2', 'blue', 'red'),
+(7, 'B3', 'yellow', 'yellow'),
+(8, 'C3', 'blue', 'blue'),
+(9, 'A3', 'blue', 'yellow'),
+(10, 'C4', 'yellow', 'red'),
+(11, 'A4', 'blue', 'red'),
+(12, 'B4', 'yellow', 'blue');
 
 -- --------------------------------------------------------
 
@@ -148,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`, `online_status`) VALUES
 (1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0),
 (2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1),
-(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0),
+(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 1),
 (4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL4800', 6, 1),
 (5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 1),
 (6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0),
@@ -195,7 +198,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dilemmas`
 --
 ALTER TABLE `dilemmas`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `users`
 --
