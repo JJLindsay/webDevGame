@@ -57,7 +57,7 @@ $(document).ready(function()
 	{
 		alert("found method!")
 		$.ajax({
-			url: './secs.php',
+			url: './iterate.php',
 			success: function() {
 				alert("updated database:dilemmas table!")
 			},
@@ -69,7 +69,7 @@ $(document).ready(function()
 	{
 		alert("tbd!")
 		$.ajax({
-			//url: '',
+			//url: './random.php',
 			success: function() {
 				alert("Random not configured")
 			},

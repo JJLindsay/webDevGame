@@ -76,7 +76,7 @@
 					//echo "<h4> Passwords also match!! </h4>";
 						
 					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
-            VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
+										VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
 					
 					
 					
@@ -89,7 +89,7 @@
 					turns true/false. Success actually returns a mysqli_result object 
 					*/
 					
-					if ($num_rows == 1)
+					if ($num_rows == 1) //to ensure admin has no points, set a default admin. name and password are changable but admin is not deletable.
 					{
 						$values = array_values($row);  //splits the fetched row contents into an array
 						
@@ -109,6 +109,11 @@
 						
 						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES ($id,'$tag','$group')");  //sets the total score to 0 on registration
 						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration
+					}
+					else  //no one is in team code therefore non one in users table and this is first registration
+					{
+						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (1,'B1','blue')");  //sets the total score to 0 on registration
+						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES (1, 0)");  //sets the total score to 0 on registration
 					}
 							
 							
