@@ -72,5 +72,7 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	}
 	unset($arr);
 	$teamcode = $groups->fetch_assoc();  //get the contents of the next row.
+	
+	mysqli_query($dbc,"UPDATE game_mode SET play_random = 0");  //sets the total score to 0 on registration
 }
 ?>

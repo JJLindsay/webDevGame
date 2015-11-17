@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2015 at 09:53 PM
+-- Generation Time: Nov 17, 2015 at 02:11 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -35,34 +35,55 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
   `p1_score` int(4) NOT NULL DEFAULT '0',
   `p2_score` int(4) NOT NULL DEFAULT '0',
   `games_per_week` int(2) NOT NULL DEFAULT '10'
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dilemmas`
 --
 
 INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`, `games_per_week`) VALUES
-(1, 'A1', 'C3', NULL, NULL, 0, 0, 10),
-(2, 'A1', 'B4', NULL, NULL, 0, 0, 10),
-(3, 'C3', 'B4', NULL, NULL, 0, 0, 10),
-(4, 'B1', 'C1', NULL, NULL, 0, 0, 10),
-(5, 'B1', 'A2', NULL, NULL, 0, 0, 10),
-(6, 'B1', 'B2', NULL, NULL, 0, 0, 10),
-(7, 'B1', 'B3', NULL, NULL, 0, 0, 10),
-(8, 'B1', 'A3', NULL, NULL, 0, 0, 10),
-(9, 'C1', 'A2', NULL, NULL, 0, 0, 10),
-(10, 'C1', 'B2', NULL, NULL, 0, 0, 10),
-(11, 'C1', 'B3', NULL, NULL, 0, 0, 10),
-(12, 'C1', 'A3', NULL, NULL, 0, 0, 10),
-(13, 'A2', 'B2', NULL, NULL, 0, 0, 10),
-(14, 'A2', 'B3', NULL, NULL, 0, 0, 10),
-(15, 'A2', 'A3', NULL, NULL, 0, 0, 10),
-(16, 'B2', 'B3', NULL, NULL, 0, 0, 10),
-(17, 'B2', 'A3', NULL, NULL, 0, 0, 10),
-(18, 'B3', 'A3', NULL, NULL, 0, 0, 10),
-(19, 'C2', 'C4', NULL, NULL, 0, 0, 10),
-(20, 'C2', 'A4', NULL, NULL, 0, 0, 10),
-(21, 'C4', 'A4', NULL, NULL, 0, 0, 10);
+(1, 'A1', 'C1', NULL, NULL, 0, 0, 10),
+(2, 'A1', 'C2', NULL, NULL, 0, 0, 10),
+(3, 'A1', 'A3', NULL, NULL, 0, 0, 10),
+(4, 'A1', 'C4', NULL, NULL, 0, 0, 10),
+(5, 'C1', 'C2', NULL, NULL, 0, 0, 10),
+(6, 'C1', 'A3', NULL, NULL, 0, 0, 10),
+(7, 'C1', 'C4', NULL, NULL, 0, 0, 10),
+(8, 'C2', 'A3', NULL, NULL, 0, 0, 10),
+(9, 'C2', 'C4', NULL, NULL, 0, 0, 10),
+(10, 'A3', 'C4', NULL, NULL, 0, 0, 10),
+(11, 'B1', 'A2', NULL, NULL, 0, 0, 10),
+(12, 'B1', 'B2', NULL, NULL, 0, 0, 10),
+(13, 'B1', 'B3', NULL, NULL, 0, 0, 10),
+(14, 'B1', 'C3', NULL, NULL, 0, 0, 10),
+(15, 'B1', 'A4', NULL, NULL, 0, 0, 10),
+(16, 'A2', 'B2', NULL, NULL, 0, 0, 10),
+(17, 'A2', 'B3', NULL, NULL, 0, 0, 10),
+(18, 'A2', 'C3', NULL, NULL, 0, 0, 10),
+(19, 'A2', 'A4', NULL, NULL, 0, 0, 10),
+(20, 'B2', 'B3', NULL, NULL, 0, 0, 10),
+(21, 'B2', 'C3', NULL, NULL, 0, 0, 10),
+(22, 'B2', 'A4', NULL, NULL, 0, 0, 10),
+(23, 'B3', 'C3', NULL, NULL, 0, 0, 10),
+(24, 'B3', 'A4', NULL, NULL, 0, 0, 10),
+(25, 'C3', 'A4', NULL, NULL, 0, 0, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_mode`
+--
+
+CREATE TABLE IF NOT EXISTS `game_mode` (
+  `play_random` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `game_mode`
+--
+
+INSERT INTO `game_mode` (`play_random`) VALUES
+(0);
 
 -- --------------------------------------------------------
 
@@ -83,17 +104,17 @@ CREATE TABLE IF NOT EXISTS `teamcode` (
 
 INSERT INTO `teamcode` (`users_id`, `tag`, `user_group`, `random_group`) VALUES
 (1, 'A1', 'red', 'blue'),
-(2, 'B1', 'red', 'yellow'),
-(3, 'C1', 'red', 'yellow'),
-(4, 'A2', 'yellow', 'yellow'),
-(5, 'B2', 'blue', 'yellow'),
-(6, 'C2', 'blue', 'red'),
-(7, 'B3', 'yellow', 'yellow'),
-(8, 'C3', 'blue', 'blue'),
-(9, 'A3', 'blue', 'yellow'),
-(10, 'C4', 'yellow', 'red'),
+(2, 'B1', 'red', 'red'),
+(3, 'C1', 'red', 'blue'),
+(4, 'A2', 'green', 'red'),
+(5, 'B2', 'blue', 'red'),
+(6, 'C2', 'blue', 'blue'),
+(7, 'B3', 'green', 'red'),
+(8, 'C3', 'blue', 'red'),
+(9, 'A3', 'blue', 'blue'),
+(10, 'C4', 'green', 'blue'),
 (11, 'A4', 'blue', 'red'),
-(12, 'B4', 'yellow', 'blue');
+(12, 'B4', 'green', 'green');
 
 -- --------------------------------------------------------
 
@@ -173,6 +194,12 @@ ALTER TABLE `dilemmas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `game_mode`
+--
+ALTER TABLE `game_mode`
+  ADD PRIMARY KEY (`play_random`);
+
+--
 -- Indexes for table `teamcode`
 --
 ALTER TABLE `teamcode`
@@ -198,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dilemmas`
 --
 ALTER TABLE `dilemmas`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `users`
 --

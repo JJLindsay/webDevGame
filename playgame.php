@@ -101,35 +101,54 @@
 								$query .= " WHERE users_id=".$_SESSION['login_id'].")";
 								
 								$result=mysqli_query($db, $query);
-								
-								
-								//$result = mysqli_query($db, $query);																				
-								
+																
 								if ($result) 
 								{
 									//get the number of rows within the result (or database) 
 									$num_rows = mysqli_num_rows($result);
 									
-									
-									
-									//success
-									//$row = mysqli_fetch_assoc($query);
 									$row = $result->fetch_assoc();  //get the contents of the row.
 									
-									//loop through
 									for ($index = 0; $index <  $num_rows; $index++)
-									{
+									{						
+										//sets which button color to use>>
+										//get the group color of p1 if play random is false
+										//else get random group color of p1 if play random is true
 										
-										 ?>
-										<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
-											<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
-											<span class='glyphicon glyphicon-flag customBadgeAct'></span>
-										</button>
-										 <?php
-										 
-										 //$row['p2']
+										$query = "SELECT *";
+										$query .= " FROM teamcode";
+										$query .= " WHERE tag LIKE '".$row['p2']."'";
 										
-										$row = $result->fetch_assoc();  //get the contents of the next row.
+										$teamcode_result = mysqli_query($db, $query);
+										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.
+										
+										include('game_mode.php');
+										
+										if ($play_random == 0)
+											$color = $getColor['user_group'];
+										else
+											$color = $getColor['random_group'];
+										
+										//sets which button to use>>
+										//if p1_score !null and p2_score is Null
+										if (!is_null($row['p2_choice']) && is_null($row['p1_choice']))
+										{
+											 ?>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
+												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
+												<span class='glyphicon glyphicon-flag customBadgeAct'></span>
+											</button>
+											<?php
+										}
+										else
+										{		
+											?>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
+												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
+											</button>										
+											<?php
+										}
+										$row = $result->fetch_assoc();  //get the contents of the row.
 									}
 								}
 								
@@ -142,13 +161,10 @@
 								
 								$result = mysqli_query($db, $query);
 								
-								
-								
 								if ($result)
 								{
 									//get the number of rows within the result (or database) 
-								$num_rows = mysqli_num_rows($result); 
-																					
+									$num_rows = mysqli_num_rows($result); 		
 									
 									//success
 									$row = $result->fetch_assoc();  //get the contents of the row.
@@ -156,16 +172,43 @@
 									//loop through
 									for ($index = 0; $index <  $num_rows; $index++)
 									{
-									
-										 ?>
-										<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
-											<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
-											<span class='glyphicon glyphicon-flag customBadgeAct'></span>
-										</button>
-										 <?php
-										 
-										 //$row['p1']
+										//sets which button color to use>>
+										//get the group color of p1 if play random is false
+										//else get random group color of p1 if play random is true
 										
+										$query = "SELECT *";
+										$query .= " FROM teamcode";
+										$query .= " WHERE tag LIKE '".$row['p1']."'";
+										
+										$teamcode_result = mysqli_query($db, $query);
+										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.
+										
+										include('game_mode.php');
+										
+										if ($play_random == 0)
+											$color = $getColor['user_group'];
+										else
+											$color = $getColor['random_group'];
+										
+										//sets which button to use>>
+										//if p1_score !null and p2_score is Null
+										if (!is_null($row['p1_choice']) && is_null($row['p2_choice']))
+										{
+											 ?>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
+												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
+												<span class='glyphicon glyphicon-flag customBadgeAct'></span>
+											</button>
+											<?php
+										}
+										else
+										{		
+											?>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
+												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
+											</button>										
+											<?php
+										}
 										$row = $result->fetch_assoc();  //get the contents of the next row.
 									}
 								}								
@@ -174,22 +217,7 @@
 									//failure
 									die("Database query failed.");
 								}
-								
 							?>
-							
-							<button type="button" class="list-group-item" id="dilemmas" onclick="recent_game_score()">
-								<span style="color:white;background-color:blue;border-radius: 5px;padding:0% 1%;">Blue-01</span>
-								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
-							</button>
-
-							<button type="button" class="list-group-item" id="dilemmas">
-								<span style="color:white;background-color:black;border-radius: 5px;padding:0% 1%;">Black-04</span>
-							</button>
-
-							<button type="button" class="list-group-item" id="dilemmas">
-								<span style="color:white;background-color:red;border-radius: 5px;padding:0% 1%;">Red-01</span>
-								<span class="glyphicon glyphicon-flag customBadgeAct"></span>
-							</button>
 						</div>
 
 					</div>
