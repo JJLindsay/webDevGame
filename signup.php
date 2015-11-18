@@ -87,6 +87,15 @@
 					/* 
 					loop through each group:
 					turns true/false. Success actually returns a mysqli_result object 
+					
+					
+					>>UPDATE CODE
+					if all count of group(fixed group) = 3
+					start at red but set fixed_group to max + 1
+					else
+						someone dropped or they never had enough for a full group
+						check each user group through checkpoint like ifs to add right 
+						color to that group
 					*/
 					
 					if ($num_rows == 1) //to ensure admin has no points, set a default admin. name and password are changable but admin is not deletable.
@@ -97,14 +106,14 @@
 						$id = $id +1;
 						
 						$group = $values[2];
-						if ($group == 'green')
-							$group = 'red';
-						else if ($group == 'red')
-							$group = 'blue';
+						if ($group == 'Green')
+							$group = 'Red';
+						else if ($group == 'Red')
+							$group = 'Blue';
 						else
-							$group = 'green';
+							$group = 'Green';
 
-						$tag = strtoupper(substr($group,0,1)) . $id;
+						$tag = $group . "-" . $id;
 						
 						
 						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES ($id,'$tag','$group')");  //sets the total score to 0 on registration
@@ -117,7 +126,18 @@
 					}
 							
 							
+					/*
+					max(fixed_group)
+					if doesn't exist start at 1
+					eles
+					Red Max(grop_id) + 1
+					Green Max(grop_id) + 1
+					Blue Max(grop_id) + 1
 					
+					
+					
+					
+					*/
 					
 			
 					//"SELECT tag,user_group FROM teamcode WHERE id = (SELECT MAX(id) FROM teamcode)";

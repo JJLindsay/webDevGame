@@ -1,55 +1,43 @@
-
 $(document).ready(function()
 {
 	/*home page scripts*/
 	function login()
 	{
 		window.open ('profile.php','_self')
-	}
-	$("#loginbtn").click(login);
+	}$("#loginbtn").click(login);
 	
 	function register()
 	{
 		window.open ('signup.php','_self',false)
-	}
-	$("#regPagebtn").click(register);
+	}$("#regPagebtn").click(register);
 
-
-	/*edit profile page button scripts*/
-	
-		function editprofile()
+	/*edit profile page button scripts*/	
+	function editprofile()
 	{
 		window.open ('edit_profile.php','_self')	
-	}
-		$("#editbtn").click(editprofile);
+	}$("#editbtn").click(editprofile);
 
 
 	/*Go to Registration Page from Login Page Button*/
-	
-		function index()
+	function index()
 	{
 		window.open ('signup.php','_self')	
-	}
-		$("#regPagebtn").click(index);
+	}$("#regPagebtn").click(index);
 	
 
 	/*profile page scripts*/
-
 	function editbtn()
 	{
 		//todo
-	}
-	$("#id_here").click(editbtn);
+	}$("#id_here").click(editbtn);
 
 
 
 	/*admin page script*/
-
 	function exportbtn()
 	{
 		//todo
-	}
-	$("#id_here").click(exportbtn);
+	}$("#id_here").click(exportbtn);
 
 
 	//executes Play Iteration
@@ -59,7 +47,7 @@ $(document).ready(function()
 		$.ajax({
 			url: './iterate.php',
 			success: function() {
-				alert("updated database:dilemmas table!")
+				alert("Fixed group configured: updated dilemmas table!")
 			},
 		});				
 	}$("#iterationbtn").click(playIteration);
@@ -67,11 +55,11 @@ $(document).ready(function()
 	//executes Play Random
 	function playAtRandom()
 	{
-		alert("tbd!")
+		alert("found method!")
 		$.ajax({
 			url: './random.php',
 			success: function() {
-				alert("Random not configured")
+				alert("Random configured: dilemmas table updated")
 			},
 		});				
 	}$("#playrandombtn").click(playAtRandom);

@@ -22,7 +22,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="profilepage.php">Home</a></li>
 					<li class="active"><a href="useronline.php">Who's Online</a></li>
-					<li><a href="playgame.html">Play Game</a></li>
+					<li><a href="playgame.php">Play Game</a></li>
 					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>

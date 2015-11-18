@@ -4,7 +4,7 @@ error_reporting(-1);
 
 mysqli_query($dbc, "TRUNCATE TABLE dilemmas"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
 
-$groups = mysqli_query($dbc, "SELECT DISTINCT USER_GROUP FROM teamcode");  //produces red, blue, green
+$groups = mysqli_query($dbc, "SELECT DISTINCT fixed_group FROM teamcode");  //produces red, blue, green
 $num_groups = mysqli_num_rows($groups);  //returns 3
 $teamcode = $groups->fetch_assoc();  //gets the first one
 /* 
@@ -25,8 +25,8 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	//print
 	//fetch the next select stmt result
 
-	$group_players = mysqli_query($dbc, "SELECT tag FROM teamcode WHERE user_group LIKE '$value'");  //returns all the players for this team
-	$group_players2 = mysqli_query($dbc, "SELECT tag FROM teamcode WHERE user_group LIKE '$value'");  //returns all the players for this team
+	$group_players = mysqli_query($dbc, "SELECT tag FROM teamcode WHERE fixed_group LIKE '$value'");  //returns all the players for this team
+	$group_players2 = mysqli_query($dbc, "SELECT tag FROM teamcode WHERE fixed_group LIKE '$value'");  //returns all the players for this team
 	$num_group_players = mysqli_num_rows($group_players);
 	$p1_index = 0;
 	$p1 = $group_players->fetch_assoc();  //fetch row.
@@ -73,6 +73,6 @@ for ($row_num = 0; $row_num <  $num_groups; $row_num++)
 	unset($arr);
 	$teamcode = $groups->fetch_assoc();  //get the contents of the next row.
 	
-	mysqli_query($dbc,"UPDATE game_mode SET play_random = 0");  //sets the total score to 0 on registration
+	mysqli_query($dbc,"UPDATE game_mode SET play_random = 0"); 
 }
 ?>

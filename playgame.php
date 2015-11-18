@@ -32,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
@@ -40,7 +40,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="useronline.php">Who's Online</a></li>
-					<li class="active"><a href="playgame.html">Play Game</a></li>
+					<li class="active"><a href="playgame.php">Play Game</a></li>
 					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
@@ -122,12 +122,12 @@
 										$teamcode_result = mysqli_query($db, $query);
 										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.
 										
-										include('game_mode.php');
+										//include('game_mode.php');
 										
-										if ($play_random == 0)
+										//if ($play_random == 0)
 											$color = $getColor['user_group'];
-										else
-											$color = $getColor['random_group'];
+										//else
+											//$color = $getColor['random_group'];
 										
 										//sets which button to use>>
 										//if p1_score !null and p2_score is Null
@@ -183,12 +183,12 @@
 										$teamcode_result = mysqli_query($db, $query);
 										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.
 										
-										include('game_mode.php');
+										//include('game_mode.php');
 										
-										if ($play_random == 0)
+										//if ($play_random == 0)
 											$color = $getColor['user_group'];
-										else
-											$color = $getColor['random_group'];
+										//else
+											//$color = $getColor['random_group'];
 										
 										//sets which button to use>>
 										//if p1_score !null and p2_score is Null
