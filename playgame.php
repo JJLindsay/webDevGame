@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,7 +7,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<link href="css/custom.css" rel="stylesheet">
 </head>
 
@@ -41,6 +41,7 @@
 					<li><a href="index.php">Home</a></li>
 					<li><a href="useronline.php">Who's Online</a></li>
 					<li class="active"><a href="playgame.php">Play Game</a></li>
+					<li><a href="playgame_live.php">Play Game Live</a></li>
 					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
@@ -76,10 +77,10 @@
 						</div>
 						<div class="btn-group btn-group-justified">
 							<div class="btn-group">
-								<input type="submit" class="btn btn-primary" name="BtnCop" value="COOPERATE" />
+								<button class="btn btn-primary" id="btnCoop" submitChoice="0">Remain Silent <!--(Don't Speak)--></button>
 							</div>
 							<div class="btn-group">
-								<button class="btn btn-primary" name="BtnDef">DEFECT</button>
+								<button class="btn btn-primary" id="btnCoop" submitChoice="1">Betray <!--(Spill the Beans)--></button>
 							</div>
 						</div>
 						<br/>
@@ -134,7 +135,7 @@
 										if (!is_null($row['p2_choice']) && is_null($row['p1_choice']))
 										{
 											 ?>
-											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>, "<?php echo $row['p2'] ?>")'>
 												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
 												<span class='glyphicon glyphicon-flag customBadgeAct'></span>
 											</button>
@@ -143,7 +144,7 @@
 										else
 										{		
 											?>
-											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>)'>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p1_score']?>, "<?php echo $row['p2'] ?>" )'>
 												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p2']?></span>
 											</button>										
 											<?php
@@ -195,7 +196,7 @@
 										if (!is_null($row['p1_choice']) && is_null($row['p2_choice']))
 										{
 											 ?>
-											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>, "<?php echo $row['p1'] ?>")'>
 												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
 												<span class='glyphicon glyphicon-flag customBadgeAct'></span>
 											</button>
@@ -204,7 +205,7 @@
 										else
 										{		
 											?>
-											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>)'>
+											<button type='button' class='list-group-item' id='dilemmas' onclick='recent_game_score(<?php echo $row['p2_score']?>, "<?php echo $row['p1'] ?>")'>
 												<span style='color:white;background-color:<?php echo $color ?>;border-radius: 5px;padding:0% 1%;'><?php echo $row['p1']?></span>
 											</button>										
 											<?php
@@ -239,9 +240,16 @@
 	
 	<script type="text/javascript">
 
-		function recent_game_score($score)
+		function recent_game_score($score, $opponent_tag)
 		{
 			document.getElementById("previousScore").innerHTML='Prev. Score: ' + $score;
+			
+			$.ajax({
+				url: "./setOpponentTag.php?opptag="+ $opponent_tag,
+				success: function() {
+					alert("opponent_tag sent")
+				},
+			});	
 		}
 		
 	</script>

@@ -31,9 +31,9 @@ if (isset($_POST['submit'])) {
 		if ($rows == 1) {
 			$_SESSION['login_user']=$username; // Initializing Session
 			
-			//stores the name to see if its the admin
+			//retrieves the row
 			$fnames = $result->fetch_assoc(); 
-			$fname = array_values($fnames);  //splits the fetch row contents into an array			
+			$fname = array_values($fnames);  //splits the fetched row contents into an array			
 			$adminname = htmlspecialchars($fname[0]);
 			$_SESSION['admin_name'] = $adminname;
 				//header("location: profile.php"); // Redirecting To Other Page

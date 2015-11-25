@@ -88,9 +88,10 @@
 		
 	<center><div class="container">
 		<div class="jumbotron">
-			<p>Prisoner's Dilemma is a web-based game designed by ZillionSparks.<br/>    
-			This website comes in handy when you need to review lessons from your biology course.<br/>     
-			It is also great for expanding your knowledge of biology and competing with friends to help enhance your learning experience.</p>      
+			<p>You and your friend are busted!<br/>
+			A crime has been committed and the police have accused you and your friend.<br/>
+			The problem is only one person could have committed the crime and the police want to know,<br/>
+			will you talk or will your friend.</p>      
 		</div>
 	</div></center>
 
