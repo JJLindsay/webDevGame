@@ -1,3 +1,14 @@
+$(function(){
+
+$('#addcourse').on('click', function (e) {
+
+    alert('Hello!');
+
+});
+    
+
+});
+
 $(document).ready(function()
 {
 	/*home page scripts*/
@@ -125,4 +136,14 @@ $(document).ready(function()
 		});		
 			
 	}$("#btnDef").click(defectButtonCode);*/
+	
+	function addCourse()
+	{
+		alert("found choice method!")
+		$.ajax({
+			url: "./admin_add_course.php"		
+		});		
+				
+	}$("#addcour").click(addCourse);
 });
+

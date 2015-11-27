@@ -200,25 +200,27 @@
 					<label> <input type="password" name="RePassword" id="pass2" placeholder="Confirm Password" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
 						<span class="error"> <?php  echo $passErr2; ?></span>
 					<label style="margin-top:10px; font-size:1.2em">&nbsp;&nbsp;<strong>Current Course & Section</strong></label><br><select class = "dropdown_1" name="CourseName" style="margin-left: 10px; margin-top: 10px; height:30px">
-                        <option>Course</option>
-						<option>BIOL1999</option>
-                        <option>CHEM1212</option>
-                        <option>BIOL1201</option>
-                        <option>BIOL4800</option>
-                        <option>BIOL2111</option>
+                        <option hidden>Course</option>
+						<?php
+							$result = mysqli_query($dbc, "SELECT * FROM course");
+							
+							while ($row = mysqli_fetch_array($result))
+							{
+								echo "<option>". $row['course_and_number']."</option>";
+							}
+						?>
                     </select>
 					<select class = "dropdown_1" name="Section" style="margin-left: 10px; margin-top: 10px; height:30px">
-                        <option>Section</option>
-						<option>01</option>
-                        <option>02</option>
-                        <option>03</option>
-                        <option>04</option>
-                        <option>05</option>
-						<option>06</option>
-                        <option>07</option>
-                        <option>08</option>
-                        <option>09</option>
-                        <option>10</option>
+                        <option hidden>Section</option>
+						<?php
+							$result = mysqli_query($dbc, "SELECT * FROM course");
+							
+							while ($row = mysqli_fetch_array($result))
+							{
+								echo "<option>". $row['section']."</option>";
+							}
+							
+						?>
                     </select>	
 						
 					<div style="font-size:14px; margin-left: 10px; margin-top: 10px">

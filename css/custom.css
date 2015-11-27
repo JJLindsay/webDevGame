@@ -332,3 +332,10 @@ b{
 {
 	border: 1px solid black;
 }
+
+/*edit pages */
+#message 
+{
+	width: 50%;
+	margin: 2% 40%;
+}

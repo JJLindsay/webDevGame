@@ -55,22 +55,104 @@
 	
 	<div class="page-header">
 	  <h1>Welcome Administrator <small>TO THE EDIT GAME MENU</small></h1>	
-				<div> 
-		<!--img src='img/American History X-Cellent.jpg' alt='' class='img-rounded myimg' / --> 
-		<div class='bigwrapper'> 
-			
-			
-			<br/>
-			<br/>
-			Select how you wish the class to play. (Iterative play is set by default)
-			<button type="button" class="btn btn-lg btn-warning" aria-haspopup="true" aria-expanded="false" id="iterationbtn">
-				Iterative Play (deletes previous values)
-			</button>
-			<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
-				Random Play (deletes previous values)
-			</button>	
+		<div> 
+			<!--img src='img/American History X-Cellent.jpg' alt='' class='img-rounded myimg' / --> 
+			<div class='bigwrapper'> 			
+				<br/>
+				<br/>
+				Select how you wish the class to play. (Iterative play is set by default)
+				<button type="button" class="btn btn-lg btn-warning" aria-haspopup="true" aria-expanded="false" id="iterationbtn">
+					Iterative Play (deletes previous values)
+				</button>
+				<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
+					Random Play (deletes previous values)
+				</button>	
 			</div>
-			</div>
-			</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>		
+		<div>
+			<?php
+				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<tr>
+					<th align='left'><b>Edit</b></th>
+					<th align='left'><b>Delete</b></th>
+					<th align='left'><b>Name</b></th>
+					<th align='left'><b>Course</b></th>
+					<th align='left'><b>Section</b></th>
+				</tr>";
+
+				$r = mysqli_query($dbc, "SELECT * FROM users ORDER BY course, section");
+				while ($row = mysqli_fetch_array($r))
+				{
+					echo 
+					"<tr>
+					<td>
+						<a href='edit_user.php?id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&course=".$row['course']."&pwd=".$row['pw']."&section=".$row['section']."'>Edit</a>
+					</td>
+					<td>
+						<a href='delete_user.php?id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&course=".$row['course']."&section=".$row['section']."'>Delete</a>
+					</td>
+					<td>".
+						$row["last_name"]." , ".$row["first_name"]
+					."</td>
+					<td>".
+						$row["course"]
+					."</td>
+					<td>".
+						$row["section"]
+					."</td>
+					</tr>";
+				}
+				echo '</table>';
+			?>
+		</div>
+		<br/>
+		<div>
+			<?php
+				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<tr>
+					<th align='left'><b>Edit</b></th>
+					<th align='left'><b>Delete</b></th>
+					<th align='left'><b>Course and Course Number</b></th>
+					<th align='left'><b>Section</b></th>
+				</tr>";
+
+				$r = mysqli_query($dbc, "SELECT * FROM course  ORDER BY course_and_number, section");
+				while ($row = mysqli_fetch_array($r))
+				{
+					echo 
+					"<tr>
+					<td>
+						<a href='edit_course.php?id=".$row['id']."&course=".$row['course_and_number']."&section=".$row['section']."'>Edit</a>
+					</td>
+					<td>
+						<a href='delete_course.php?id=".$row['id']."&course=".$row['course_and_number']."&section=".$row['section']."'>Delete</a>
+					</td>
+					<td>".
+						$row["course_and_number"]
+					."</td>
+					<td>".
+						$row["section"]
+					."</td>
+					</tr>";
+				}
+				echo '</table>';
+			?>
+					<br/>
+				<button type="button" class="btn btn-lg btn-warning" style="position:relative; left:43%;" aria-haspopup="true" aria-expanded="false" id="addcour">
+					Add Course
+				</button>	
+		</div>		
+	</div>	
+
+	<?php
+		mysqli_close($dbc); //always close the connection for security
+	?>
 </body>
 </html>
