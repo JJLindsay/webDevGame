@@ -67,7 +67,7 @@
 	<h1 id='title'>Make your changes below</h1>
 	<?php		
 		echo "<form id='formbox' action='submit_course.php' method='post'>
-		<p>Course & Number: <input type='text' name= 'course' size='20' maxlength='10' value='BIOL 1001B'/></p>
+		<p>Course & Number: <input type='text' name= 'course' size='20' maxlength='10' placeholder='BIOL 1001B'/></p>
 		<p>Section: <input type='text' name= 'section' size='20' maxlength='2' placeholder='04'/></p>
 		
 		<p><input type='submit' name='Apply Changes' value='Submit' /></p>	   

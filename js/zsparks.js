@@ -1,21 +1,10 @@
-$(function(){
-
-$('#addcourse').on('click', function (e) {
-
-    alert('Hello!');
-
-});
-    
-
-});
-
 $(document).ready(function()
 {
-	/*home page scripts*/
+	/*home page scripts
 	function login()
 	{
 		window.open ('profile.php','_self')
-	}$("#loginbtn").click(login);
+	}$("#loginbtn").click(login);*/
 	
 	function register()
 	{
@@ -139,11 +128,8 @@ $(document).ready(function()
 	
 	function addCourse()
 	{
-		alert("found choice method!")
-		$.ajax({
-			url: "./admin_add_course.php"		
-		});		
-				
+		alert("found choice method!");
+		window.open ('admin_add_course.php','_self');	
 	}$("#addcour").click(addCourse);
 });
 
