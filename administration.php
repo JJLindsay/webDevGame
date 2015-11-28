@@ -60,7 +60,6 @@
 		<ul class="dropdown-menu" aria-labelledby="choosecourse">
 			<li class="list-group-item">
 				<form method = "POST" action = "<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
-					<input type = "hidden" name = "stage" value = "Biology" />  <!-- this triggers that we've been here once-->
 					<button style="background-color:#ddd; color:black" type = "submit" class="btn btn-default">All Courses</button>
 				</form>
 			</li>
@@ -79,7 +78,6 @@
 					//output the values of the fields in the rows
 					for ($row_num = 0; $row_num <  $num_rows; $row_num++)
 					{
-						//if ($row["course"] != null && $row["section"] != null)
 						?>
 						<li class='list-group-item'>					
 							<form method = "POST" action = "<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
@@ -92,9 +90,14 @@
 						$row = $result->fetch_assoc();  //get the contents of the row.
 					}
 				}
-			//?
-			
-
+				?>
+				<li class='list-group-item'>					
+					<form method = "POST" action = "<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
+						<input type = "hidden" name = "course" value = "history"/>
+						<button style="background-color:#ddd; color:black" type = "submit" class="btn btn-default">History</button>
+					</form>
+				</li>
+		<?php
 		echo "</ul> ".
 		"</span> ".
 		"</h1> ".
@@ -110,22 +113,33 @@
 	  
 			"<div class='wrapper'> ".
 			  "<div class='table-responsive'> ". //<!--Add this for responsive table -->
-			  //<!-- Table -->
 			  "<table class='table table-hover table-bordered table-striped' border=1 id='inner'> ".
-						"<tr> ".
+						"<tr> ";
+						
+					if (IsSet($_POST["course"]) && $_POST["course"] == "history")
+					{
+						echo
+							"<th>Player 01</th> ".
+							"<th>Player 02</th> ".
+							"<th>Player 01 - Choice</th> ".
+							"<th>Player 02 - Choice</th> ";
+					}
+					else
+					{
+						echo
 							"<th>User Name</th> ".
 							"<th>Last Name</th> ".
 							"<th>First Name</th> ".
 							"<th>Score</th> ".
 							"<th>Course</th> ".
-							"<th>Section</th> ".
-						"</tr> ";
-			  //<php					
-						//get the query and clean it up (delete leading and trailing
-						// whitespace and remove backslashes from magic_quotes_gpc)
-					
-					//$stage = $_POST["stage"];
-					if (!IsSet($_POST["course"]) || !IsSet($_POST["section"]))
+							"<th>Section</th> ";
+					}
+						echo "</tr> ";
+					if (IsSet($_POST["course"]) && $_POST["course"] == "history")
+					{
+						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM history';
+					}	
+					elseif (!IsSet($_POST["course"]) || !IsSet($_POST["section"]))
 					{
 							
 						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id;';
@@ -141,7 +155,7 @@
 						$result = mysqli_query($dbc, $query);
 						if (!$result)
 						{
-							print "Error - the query could not be executed" . mysqli_error();
+							print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 							exit;
 						}
 								
@@ -197,7 +211,6 @@
 
 	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
 	mysqli_close($dbc);
-	//mysqli_close($db);//use for include connection.php BUT ONLY PICK ONE!
 ?>
 </body>
 </html>

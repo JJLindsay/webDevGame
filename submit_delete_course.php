@@ -70,7 +70,7 @@
 
 		if (!$result)
 		{
-			print "Error - the query could not be executed" . mysqli_error();
+			print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 			exit;
 		}
 						

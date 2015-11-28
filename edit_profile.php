@@ -28,13 +28,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/custom.css" rel="stylesheet">
 </head>
-
 <body>
-			
-
-
-
-	<!-- Navigation Bar begin-->
+	<!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand/Logo and toggle get grouped for better mobile display -->
@@ -44,7 +39,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
@@ -52,11 +47,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="useronline.php">Who's Online</a></li>
-					<li><a href="playgame.html">Play Game</a></li>
+					<li><a href="playgame.php">Play Game</a></li>
 					<li><a href="playgame_live.php">Play Game Live</a></li>
-					<li><a href="">Check Score</a></li>
+					<li><a href="#">Check Score</a></li>
 					<li class="dropdown active">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="profilepage.php">My Profile</a></li>
 							<li role="separator" class="divider"></li>
@@ -66,7 +61,8 @@
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
-	</header><!--  end Navigation Bar -->
+	</header><!-- end Navigation Bar -->	
+	
 
 	<!-- Profile Table begin-->
 	<div class="container">
@@ -110,11 +106,11 @@
 										</tr>
 										<tr>
 											<td>Course Name</td>
-											<td><input type="text" name ="CourseName" value="<?php echo $course; ?>" /></td>
+											<td><input type="text" name ="CourseName" readonly value="<?php echo $course; ?>" /></td>
 										</tr>
 										<tr>
 											<td>Course Section</td>
-											<td><input type="text" name ="Section" value="<?php echo $section; ?>" /></td>
+											<td><input type="text" name ="Section" readonly value="<?php echo $section; ?>" /></td>
 										</tr>
 										<tr>
 											<td> </td>

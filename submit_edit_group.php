@@ -12,19 +12,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
-    <!--<script src="js/respond.js"></script -->	
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/zsparks.js"></script>
-	
-	<style>
-		#message 
-		{
-			width: 50%;
-			margin: 2% 40%;
-		}
-	</style>
 </head>
 <body>
 
@@ -61,33 +52,34 @@
 	</header><!--  end Navigation Bar -->
 	
 	<div id='message'>
-	<?php
-		//get the query
-		$id = $_POST['id'];
+		<?php
+			//get the query
+			$group = $_POST['fgroup'];
+			$id = $_POST['id'];
+				
+			//returns true or false for update
+			$result = mysqli_query($dbc, "UPDATE teamcode SET fixed_group = $group WHERE users_id = $id");
+			if (!$result)
+			{
+				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
+				exit;
+			}
+							
+			//if everything was ok:
+			if(mysqli_affected_rows($dbc) == 1)
+			{
+				//Ok message confirmation:
+				echo "Great. This course has been updated. <br/>";
+				echo "Return to Edit Game and <b>press Iterative Play</b> to refresh the game.<br/>";
+				echo '<a href="editgame.php">Return to tables</a>';
+			}else{
+				echo "The course could not be changed due to a system error. <br/>";
+				echo '<a href="editgame.php">Return to tables</a>';
+			}
 			
-		//execute the query
-		$result = mysqli_query($dbc, "delete from users where id = '$id'");
-
-		if (!$result)
-		{
-			print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
-			exit;
-		}
-						
-		//if everything was ok:
-		if(mysqli_affected_rows($dbc) == 1)
-		{
-			//Ok message confirmation:
-			echo "Great. This account has been deleted. <br/>";
-			echo '<a href="editgame.php">Return to tables</a>';
-		}else{
-			echo "The account could not be changed due to a system error. <br/>";
-			echo '<a href="editgame.php">Return to tables</a>';
-		}
-		
-		//close connection to db:
-		mysqli_close($dbc);
-	?>
+			//close connection to db:
+			mysqli_close($dbc);
+		?>
 	</div>
 </body>
 </html>

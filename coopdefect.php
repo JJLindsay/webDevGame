@@ -1,12 +1,12 @@
 <?php
+	//GAME HISTORY TEST using coop/defect buttons: This file is called by zsparks submitChoice()
 	include('connection.php');
 	include('session.php');
 	error_reporting(-1);
 
-	//echo $_SESSION['login_id'];
-	//echo $_SESSION["opponent_tag"];
+	echo $_SESSION['login_id'];
+	echo $_SESSION["opponent_tag"];
 	
-
 	//get the right row in dilemmas
 	$query = "SELECT *";
 	$query .= " FROM dilemmas";
@@ -21,12 +21,16 @@
 			$row = $result->fetch_assoc();  //get the contents of the row.
 			if (!is_null($row['p1_choice']))
 			{
-				//coop is 0, defect is 1
+				//coop(player kept quiet) is 0, defect(player spoke up) is 1
 				if ($_GET["decision"] == 0 && $row['p1_choice'] == 0)
 				{
 					$query = "UPDATE dilemmas SET p2_score = 3 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p1_score = 3 where id =". $row['id'];
+					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','coop','coop')";
 					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 0 && $row['p1_choice'] == 1)
@@ -35,6 +39,10 @@
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p1_score = 5 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','defect','coop')";
+					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 1 && $row['p1_choice'] == 0)
 				{
@@ -42,12 +50,20 @@
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p1_score = 0 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','coop','defect')";
+					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 1 && $row['p1_choice'] == 1)
 				{
 					$query = "UPDATE dilemmas SET p2_score = 1 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p1_score = 1 where id =". $row['id'];
+					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','defect','defect')";
 					$result = mysqli_query($dbc, $query);
 				}
 				else{echo "There's been an error with player_choice";}
@@ -80,12 +96,20 @@
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p2_score = 3 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','coop','coop')";
+					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 0 && $row['p2_choice'] == 1)
 				{
 					$query = "UPDATE dilemmas SET p1_score = 0 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p2_score = 5 where id =". $row['id'];
+					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','coop','defect')";
 					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 1 && $row['p2_choice'] == 0)
@@ -94,12 +118,20 @@
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p2_score = 0 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','defect','coop')";
+					$result = mysqli_query($dbc, $query);
 				}
 				elseif ($_GET["decision"] == 1 && $row['p2_choice'] == 1)
 				{
 					$query = "UPDATE dilemmas SET p1_score = 1 where id =". $row['id'];
 					$result = mysqli_query($dbc, $query);
 					$query = "UPDATE dilemmas SET p2_score = 1 where id =". $row['id'];
+					$result = mysqli_query($dbc, $query);
+					
+					$query = "INSERT INTO history (player1, player2, player1_choice, player2_choice) 
+					VALUES ('".$row['p1'] ."','".$row['p2']."','defect','defect')";
 					$result = mysqli_query($dbc, $query);
 				}
 				else{echo "There's been an error with player_choice";}

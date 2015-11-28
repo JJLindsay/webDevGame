@@ -12,10 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/custom.css" rel="stylesheet">
 </head>
-
 <body>
-
-	<!-- Navigation Bar begin-->
+	<!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand/Logo and toggle get grouped for better mobile display -->
@@ -25,7 +23,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
@@ -35,19 +33,20 @@
 					<li><a href="useronline.php">Who's Online</a></li>
 					<li><a href="playgame.php">Play Game</a></li>
 					<li><a href="playgame_live.php">Play Game Live</a></li>
-					<li><a href="">Check Score</a></li>
+					<li><a href="#">Check Score</a></li>
 					<li class="dropdown active">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="profilepage.php">My Profile</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="logout.php">Logout</a></li>
 						</ul>
-					</li>
+					</li>					
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
-	</header><!--  end Navigation Bar -->
+	</header><!-- end Navigation Bar -->	
+	
 
 	<!-- Profile Table begin-->
 	<div class="container">
@@ -63,7 +62,7 @@
 						<div class="row">
 							<div class="col-sm-3 col-md-3 col-lg-3" align="center">
 								<div class="outerContainer <?php echo $login_teamcolor ?>">
-									<div class="innerContainer"><br><?php echo $login_id; ?>
+									<div class="innerContainer"><br><?php echo $login_teamcolor_num; ?>
 									</div>
 								</div> 
 							</div>

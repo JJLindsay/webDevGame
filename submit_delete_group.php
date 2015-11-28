@@ -66,7 +66,7 @@
 		$id = $_POST['id'];
 			
 		//execute the query
-		$result = mysqli_query($dbc, "delete from users where id = '$id'");
+		$result = mysqli_query($dbc, "DELETE FROM teamcode WHERE users_id = '$id'");
 
 		if (!$result)
 		{
@@ -78,10 +78,11 @@
 		if(mysqli_affected_rows($dbc) == 1)
 		{
 			//Ok message confirmation:
-			echo "Great. This account has been deleted. <br/>";
+			echo "Great. This user has been permanently deleted from all groups. <br/>";
+			echo "Return to Edit Game and <b>press Iterative Play</b> to refresh the game.<br/>";
 			echo '<a href="editgame.php">Return to tables</a>';
 		}else{
-			echo "The account could not be changed due to a system error. <br/>";
+			echo "Sorry. The changes could not be made due to a system error. <br/>";
 			echo '<a href="editgame.php">Return to tables</a>';
 		}
 		

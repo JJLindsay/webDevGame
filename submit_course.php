@@ -61,7 +61,7 @@
 			$result = mysqli_query($dbc, "INSERT INTO course(course_and_number, section) VALUES ('$course', '$section')");
 			if (!$result)
 			{
-				print "Error - the query could not be executed" . mysqli_error();
+				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 				exit;
 			}
 							

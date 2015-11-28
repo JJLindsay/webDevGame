@@ -3,7 +3,7 @@
 	error_reporting(-1);
 
 	mysqli_query($dbc, "TRUNCATE TABLE dilemmas"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
-	mysqli_query($dbc, "UPDATE teamcode SET random_group = 0"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
+	mysqli_query($dbc, "UPDATE teamcode SET random_group = 0"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
 
 	$num_users = mysqli_query($dbc, "SELECT * FROM teamcode"); 
 		$tag_count = mysqli_num_rows($num_users);
@@ -32,7 +32,7 @@ $user_id = $num_users->fetch_assoc();  //fetch row.
 			
 		if ($rndNum != $fixed_group && $random_group_size < 3)
 		{
-		echo "$rndNum for $id and size: $random_group_size<br/>";
+			echo "$rndNum for $id and size: $random_group_size<br/>";
 			mysqli_query($dbc,"UPDATE teamcode SET random_group = $rndNum WHERE users_id = $id");  //sets the total score to 0 on registration
 			$count++;
 			$user_id = $num_users->fetch_assoc();  //fetch row.	

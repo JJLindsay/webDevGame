@@ -62,7 +62,7 @@
 			$result = mysqli_query($dbc, "UPDATE course SET course_and_number = '$course', section = '$section' WHERE id = $id");
 			if (!$result)
 			{
-				print "Error - the query could not be executed" . mysqli_error();
+				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 				exit;
 			}
 							

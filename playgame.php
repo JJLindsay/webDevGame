@@ -80,7 +80,7 @@
 								<button class="btn btn-primary" id="btnCoop" submitChoice="0">Remain Silent <!--(Don't Speak)--></button>
 							</div>
 							<div class="btn-group">
-								<button class="btn btn-primary" id="btnCoop" submitChoice="1">Betray <!--(Spill the Beans)--></button>
+								<button class="btn btn-primary" id="btnBetray" submitChoice="1">Betray <!--(Spill the Beans)--></button>
 							</div>
 						</div>
 						<br/>

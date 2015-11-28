@@ -19,10 +19,16 @@
 	<script src="js/zsparks.js"></script>
 	
 	<style>
-		#message 
+		#formbox 
 		{
 			width: 50%;
-			margin: 2% 40%;
+			margin: 2% 5%;
+		}
+		
+		#title
+		{
+			width: 50%;
+			margin: 2% 2%;
 		}
 	</style>
 </head>
@@ -60,34 +66,16 @@
 		</div><!-- /.container-fluid -->
 	</header><!--  end Navigation Bar -->
 	
-	<div id='message'>
-	<?php
-		//get the query
-		$id = $_POST['id'];
-			
-		//execute the query
-		$result = mysqli_query($dbc, "delete from users where id = '$id'");
-
-		if (!$result)
-		{
-			print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
-			exit;
-		}
-						
-		//if everything was ok:
-		if(mysqli_affected_rows($dbc) == 1)
-		{
-			//Ok message confirmation:
-			echo "Great. This account has been deleted. <br/>";
-			echo '<a href="editgame.php">Return to tables</a>';
-		}else{
-			echo "The account could not be changed due to a system error. <br/>";
-			echo '<a href="editgame.php">Return to tables</a>';
-		}
-		
-		//close connection to db:
-		mysqli_close($dbc);
+	<h1 id='title'>Permanently delete this user from all groups?</h1>
+	<?php						
+		echo "<form id='formbox' action='submit_delete_group.php' method='post'>
+			 <p>ID: <input type='text' name= 'id' size='20' maxlength='3' readonly value='".$_GET['id']."'/></p>
+			 <p>First Name: <input type='text' name= 'fname' size='20' maxlength='50' readonly value='".$_GET['fname']."'/></p>
+			 <p>Last Name: <input type='text' name= 'lname' size='20' maxlength='50' readonly value='".$_GET['lname']."'/></p>
+			 <p>Fixed Group: <input type='text' name= 'fgroup' size='10' maxlength='50' readonly value='".$_GET['fixed_group']."'/></p>	
+			 
+			 <p><input type='submit' name='Apply Changes' value='Submit' /></p>	   
+			 </form>";	
 	?>
-	</div>
 </body>
 </html>

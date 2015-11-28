@@ -67,7 +67,7 @@
 				<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
 					Random Play (deletes previous values)
 				</button>	
-			</div>
+			</div><hr/>
 		</div>
 		<br/>
 		<br/>
@@ -79,6 +79,7 @@
 		<div>
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Edit Users</span></h3>
 				<tr>
 					<th align='left'><b>Edit</b></th>
 					<th align='left'><b>Delete</b></th>
@@ -113,9 +114,48 @@
 			?>
 		</div>
 		<br/>
+		<div>			
+			<?php
+				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Edit Groups</span></h3>
+				<tr>
+					<th align='left'><b>Edit</b></th>
+					<th align='left'><b>Delete</b></th>
+					<th align='left'><b>Name</b></th>
+					<th align='left'><b>User Tag</b></th>					
+					<th align='left'><b>Iterative Groups</b></th>
+				</tr>";
+
+				$r = mysqli_query($dbc, "SELECT users_id, first_name, last_name, tag, fixed_group FROM users u JOIN teamcode tc ON u.id = tc.users_id");
+				while ($row = mysqli_fetch_array($r))
+				{
+					echo 
+					"<tr>
+					<td>
+						<a href='edit_group.php?id=".$row['users_id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&tag=".$row['tag']."&fixed_group=".$row['fixed_group']."'>Edit</a>
+					</td>
+					<td>
+						<a href='delete_group.php?id=".$row['users_id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&tag=".$row['tag']."&fixed_group=".$row['fixed_group']."'>Delete</a>
+					</td>
+					<td>".
+						$row["first_name"]. ' ' . $row["last_name"]
+					."</td>
+					<td>".
+						$row["tag"]
+					."</td>
+					<td>".
+						$row["fixed_group"]
+					."</td>
+					</tr>";
+				}
+				echo '</table>';
+			?>
+		</div>
+		<br/>
 		<div>
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Edit Courses</span></h3>
 				<tr>
 					<th align='left'><b>Edit</b></th>
 					<th align='left'><b>Delete</b></th>

@@ -99,20 +99,32 @@ $(document).ready(function()
 		return (sa);
 	}$("#btnExport").click(fnExcelReport);
 	
-	//GAME HISTORY TEST
-	function submitChoice(decision)
+	//GAME HISTORY TEST using coop/defect button
+	function submitCoop()
 	{
 		alert("found choice method!")
 		$.ajax({
-			//url_link = "./coopdefect_code.php?decision="+ decision
 			url: "./coopdefect.php?decision="+ $(this).attr('submitChoice'),
 			success: function() {
 				alert("METHOD UNDER CONSTRUCTION")
 			},
 		});		
 				
-	}$("#btnCoop").click(submitChoice);
+	}$("#btnCoop").click(submitCoop);
 	
+	
+	
+	function submitBetray()
+	{
+		alert("found choice method!")
+		$.ajax({
+			url: "./coopdefect.php?decision="+ $(this).attr('submitChoice'),
+			success: function() {
+				alert("METHOD UNDER CONSTRUCTION")
+			},
+		});		
+				
+	}$("#btnBetray").click(submitBetray);
 	/*
 	function defectButtonCode($decision)
 	{
