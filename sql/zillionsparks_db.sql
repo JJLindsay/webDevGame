@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2015 at 08:34 PM
+-- Generation Time: Dec 02, 2015 at 01:29 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -66,12 +66,44 @@ INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, 
 (1, 'Red-1', 'Green-1', NULL, NULL, 0, 0, 10),
 (2, 'Red-1', 'Blue-1', NULL, NULL, 0, 0, 10),
 (3, 'Green-1', 'Blue-1', NULL, NULL, 0, 0, 10),
-(4, 'Red-2', 'Green-2', 0, 1, 0, 5, 10),
-(5, 'Red-2', 'Green-4', 1, 0, 5, 0, 10),
+(4, 'Red-2', 'Green-2', NULL, NULL, 0, 0, 10),
+(5, 'Red-2', 'Green-4', NULL, NULL, 0, 0, 10),
 (6, 'Green-2', 'Green-4', NULL, NULL, 0, 0, 10),
 (7, 'Blue-3', 'Green-3', NULL, NULL, 0, 0, 10),
 (8, 'Blue-3', 'Red-3', NULL, NULL, 0, 0, 10),
 (9, 'Green-3', 'Red-3', NULL, NULL, 0, 0, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `games`
+--
+
+CREATE TABLE IF NOT EXISTS `games` (
+  `id` int(255) NOT NULL,
+  `player1` varchar(255) NOT NULL,
+  `player2` varchar(255) NOT NULL,
+  `time` int(50) NOT NULL,
+  `round1` varchar(3) NOT NULL DEFAULT '0-0',
+  `round2` varchar(3) NOT NULL DEFAULT '0-0',
+  `round3` varchar(3) NOT NULL DEFAULT '0-0',
+  `round4` varchar(3) NOT NULL DEFAULT '0-0',
+  `round5` varchar(3) NOT NULL DEFAULT '0-0',
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `games`
+--
+
+INSERT INTO `games` (`id`, `player1`, `player2`, `time`, `round1`, `round2`, `round3`, `round4`, `round5`, `status`) VALUES
+(5, '10', '6', 1448924626, '0-0', '0-0', '0-0', '0-0', '0-0', 6),
+(6, '4', '1', 1449014200, '0-0', '0-0', '0-0', '0-0', '0-0', 6),
+(7, '3', '1', 1449015086, '0-0', '0-0', '0-0', '0-0', '0-0', 6),
+(8, '2', '1', 1449015243, '0-0', '0-0', '0-0', '0-0', '0-0', 6),
+(9, '5', '1', 1449015405, '0-0', '0-0', '0-0', '0-0', '0-0', 6),
+(10, '1', '2', 1449015838, '1-1', '2-2', '1-2', '2-1', '0-0', 6),
+(11, '1', '2', 1449015998, '0-0', '0-0', '0-0', '0-0', '0-0', 0);
 
 -- --------------------------------------------------------
 
@@ -102,7 +134,14 @@ CREATE TABLE IF NOT EXISTS `history` (
   `player2` varchar(12) NOT NULL,
   `player1_choice` varchar(12) NOT NULL,
   `player2_choice` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `player1`, `player2`, `player1_choice`, `player2_choice`) VALUES
+(1, 'Red-2', 'Green-2', 'coop', 'coop');
 
 -- --------------------------------------------------------
 
@@ -124,15 +163,15 @@ CREATE TABLE IF NOT EXISTS `teamcode` (
 
 INSERT INTO `teamcode` (`users_id`, `tag`, `user_group`, `random_group`, `fixed_group`) VALUES
 (1, 'Red-1', 'red', 3, 1),
-(2, 'Green-1', 'green', 2, 1),
-(3, 'Blue-1', 'blue', 4, 1),
-(4, 'Red-2', 'red', 1, 2),
-(6, 'Green-2', 'green', 3, 2),
-(7, 'Blue-3', 'blue', 2, 3),
-(8, 'Green-3', 'green', 2, 3),
-(9, 'Red-3', 'red', 3, 3),
+(2, 'Green-1', 'green', 3, 1),
+(3, 'Blue-1', 'blue', 3, 1),
+(4, 'Red-2', 'red', 4, 2),
+(6, 'Green-2', 'green', 1, 2),
+(7, 'Blue-3', 'blue', 1, 3),
+(8, 'Green-3', 'green', 4, 3),
+(9, 'Red-3', 'red', 1, 3),
 (10, 'Green-4', 'green', 4, 2),
-(11, 'Red-4', 'red', 1, 4);
+(11, 'Red-4', 'red', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -179,25 +218,29 @@ CREATE TABLE IF NOT EXISTS `users` (
   `confirmed_pw` varchar(255) NOT NULL,
   `course` varchar(12) DEFAULT NULL,
   `section` int(2) DEFAULT NULL,
-  `online_status` int(1) NOT NULL DEFAULT '0'
+  `online_status` int(1) NOT NULL DEFAULT '0',
+  `score` int(3) DEFAULT '0',
+  `busy` tinyint(1) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rank` smallint(2) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`, `online_status`) VALUES
-(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 1),
-(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1),
-(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 1),
-(4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL4800', 6, 1),
-(5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 1),
-(6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 1),
-(7, 'test2', 'hobbo', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0),
-(8, 'test3', 'mac', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0),
-(9, 'test4', 'salsa', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0),
-(10, 'test5', 'fries', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 1),
-(11, 'test6', 'shake', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0);
+INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`, `online_status`, `score`, `busy`, `time`, `rank`) VALUES
+(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1, 11, 1, '2015-11-30 22:13:05', 0),
+(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1, 15, 1, '2015-11-30 22:13:05', 0),
+(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL4800', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 4, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(7, 'test2', 'hobbo', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(8, 'test3', 'mac', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(9, 'test4', 'salsa', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(10, 'test5', 'fries', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(11, 'test6', 'shake', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0);
 
 --
 -- Indexes for dumped tables
@@ -214,6 +257,12 @@ ALTER TABLE `course`
 -- Indexes for table `dilemmas`
 --
 ALTER TABLE `dilemmas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `games`
+--
+ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -261,10 +310,15 @@ ALTER TABLE `course`
 ALTER TABLE `dilemmas`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `games`
+--
+ALTER TABLE `games`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --

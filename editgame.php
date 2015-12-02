@@ -188,6 +188,48 @@
 				<button type="button" class="btn btn-lg btn-warning" style="position:relative; left:43%;" aria-haspopup="true" aria-expanded="false" id="addcour">
 					Add Course
 				</button>	
+		<br/><br/>
+		
+			
+			<h3><span style="width: 50%; margin: 0% 12.5%" class="label label-success">Edit Courses Playing Iterative</span></h3>
+
+			
+	<div style="width: 50%; margin: 0% 11.5%">			
+		<?php
+			echo "";
+			$r = mysqli_query($dbc, "SELECT * FROM course ORDER BY course_and_number, section");
+			$count = 0;
+			while ($row = mysqli_fetch_array($r))
+			{
+				echo 
+				"
+				<div class=\"col-lg-6\">
+					<div class=\"input-group\">
+					  <span class=\"input-group-addon\">
+						<input type=\"checkbox\" aria-label=\"...\">
+					  </span>
+					  <input type=\"text\" class=\"form-control\" readonly aria-label=\"...\" value='".$row["course_and_number"]." Section ".$row["section"]."'>
+					</div>
+				  </div> 
+				";
+				if ($count == 1){
+					echo "<br/><br/>";
+					$count=0;
+				}
+				else
+					$count++;
+			}
+		?>
+			
+
+
+				  
+				<br/>
+				<br/><br/>
+				<Button type="button" class="btn btn-lg btn-warning" style="position:relative; left:61%;" aria-haspopup="true" aria-expanded="false" >
+					Update Iterative
+				</button>
+			</div>
 		</div>		
 	</div>	
 

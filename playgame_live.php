@@ -50,7 +50,6 @@
 		</div><!-- /.container-fluid -->
 	</header><!-- end Navigation Bar -->	
 
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-2 top-margin" >
@@ -74,11 +73,11 @@
     			    				<?=$score?>
     			    			</span>
     			    		</h3><br>
-    			    		<h3><span class="label label-danger col-xs-12">Average score: 
+    			    		<!--h3><span class="label label-danger col-xs-12">Average score: 
     			    			<span class="badge" id="badge-as">
-    			    				<?=$score/$gplayed?>
+    			    				?=$score/$gplayed?>
     			    			</span>
-    			    		</h3>
+    			    		</h3-->
     			    	</div>
     			    </aside>
     			    <div class="col-xs-12 col-md-8" id="game_inside">
@@ -90,9 +89,6 @@
 			</div>
 		</div>
 	</div>
-	<?php
-							//}
-	?>
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script>
@@ -119,7 +115,6 @@
     </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script type=" src=js/myscript.js"></script>
 	<script src="js/zsparks.js"></script>
 	<script src="js/ion.sound.min.js"></script>	
 	</body>
