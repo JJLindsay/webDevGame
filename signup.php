@@ -106,12 +106,12 @@
 						$id = $id +1;
 						
 						$group = $values[2];
-						if ($group == 'Green')
+						if ($group == 'Yellow')
 							$group = 'Red';
 						else if ($group == 'Red')
 							$group = 'Blue';
 						else
-							$group = 'Green';
+							$group = 'Yellow';
 
 						$tag = $group . "-" . $id;
 						
