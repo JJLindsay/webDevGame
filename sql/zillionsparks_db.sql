@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2015 at 08:34 AM
+-- Generation Time: Dec 05, 2015 at 11:22 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -63,17 +63,17 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
 --
 
 INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`, `games_per_week`) VALUES
-(1, 'Red-1', 'Green-1', NULL, NULL, 0, 0, 10),
+(1, 'Red-1', 'Yellow-1', NULL, NULL, 0, 0, 10),
 (2, 'Red-1', 'Blue-1', NULL, NULL, 0, 0, 10),
-(3, 'Green-1', 'Blue-1', NULL, NULL, 0, 0, 10),
-(4, 'Red-2', 'Green-2', NULL, NULL, 0, 0, 10),
-(5, 'Red-2', 'Green-4', NULL, NULL, 0, 0, 10),
-(6, 'Green-2', 'Green-4', NULL, NULL, 0, 0, 10),
-(7, 'Blue-3', 'Green-3', NULL, NULL, 0, 0, 10),
+(3, 'Yellow-1', 'Blue-1', NULL, NULL, 0, 0, 10),
+(4, 'Red-2', 'Yellow-2', NULL, NULL, 0, 0, 10),
+(5, 'Red-2', 'Yellow-4', NULL, NULL, 0, 0, 10),
+(6, 'Yellow-2', 'Yellow-4', NULL, NULL, 0, 0, 10),
+(7, 'Blue-3', 'Yellow-3', NULL, NULL, 0, 0, 10),
 (8, 'Blue-3', 'Red-3', NULL, NULL, 0, 0, 10),
 (9, 'Blue-3', 'Red-4', NULL, NULL, 0, 0, 10),
-(10, 'Green-3', 'Red-3', NULL, NULL, 0, 0, 10),
-(11, 'Green-3', 'Red-4', NULL, NULL, 0, 0, 10),
+(10, 'Yellow-3', 'Red-3', NULL, NULL, 0, 0, 10),
+(11, 'Yellow-3', 'Red-4', NULL, NULL, 0, 0, 10),
 (12, 'Red-3', 'Red-4', NULL, NULL, 0, 0, 10);
 
 -- --------------------------------------------------------
@@ -145,6 +145,51 @@ CREATE TABLE IF NOT EXISTS `history` (
 
 INSERT INTO `history` (`id`, `player1`, `player2`, `player1_choice`, `player2_choice`) VALUES
 (1, 'Red-2', 'Green-2', 'coop', 'coop');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iterative_game`
+--
+
+CREATE TABLE IF NOT EXISTS `iterative_game` (
+  `id` int(2) NOT NULL,
+  `p1` varchar(12) NOT NULL,
+  `p2` varchar(12) NOT NULL,
+  `p1_choice` int(2) DEFAULT NULL,
+  `p2_choice` int(2) DEFAULT NULL,
+  `p1_score` int(3) DEFAULT '0',
+  `p2_score` int(3) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `iterative_game`
+--
+
+INSERT INTO `iterative_game` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, `p2_score`) VALUES
+(1, 'Red-1', 'Yellow-1', NULL, NULL, 0, 0),
+(2, 'Red-1', 'Blue-1', NULL, NULL, 0, 0),
+(3, 'Red-1', 'Red-2', NULL, NULL, 0, 0),
+(4, 'Yellow-1', 'Red-1', NULL, NULL, 0, 0),
+(5, 'Yellow-1', 'Blue-1', NULL, NULL, 0, 0),
+(6, 'Yellow-1', 'Yellow-2', NULL, NULL, 0, 0),
+(7, 'Blue-1', 'Red-1', NULL, NULL, 0, 0),
+(8, 'Blue-1', 'Yellow-1', NULL, NULL, 0, 0),
+(9, 'Blue-1', 'Blue-3', NULL, NULL, 0, 0),
+(10, 'Red-2', 'Red-1', NULL, NULL, 0, 0),
+(11, 'Red-2', 'Yellow-2', NULL, NULL, 0, 0),
+(12, 'Red-2', 'Blue-3', NULL, NULL, 0, 0),
+(13, 'Yellow-2', 'Yellow-1', NULL, NULL, 0, 0),
+(14, 'Yellow-2', 'Red-2', NULL, NULL, 0, 0),
+(15, 'Yellow-2', 'Blue-3', NULL, NULL, 0, 0),
+(16, 'Blue-3', 'Blue-1', NULL, NULL, 0, 0),
+(17, 'Blue-3', 'Red-2', NULL, NULL, 0, 0),
+(18, 'Blue-3', 'Yellow-2', NULL, NULL, 0, 0),
+(19, 'Yellow-3', 'Red-3', NULL, NULL, 0, 0),
+(20, 'Yellow-3', 'Yellow-4', NULL, NULL, 0, 0),
+(21, 'Red-3', 'Yellow-4', NULL, NULL, 0, 0),
+(22, 'Red-3', 'Red-4', NULL, NULL, 0, 0),
+(23, 'Yellow-4', 'Red-4', NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -308,6 +353,12 @@ ALTER TABLE `game_mode`
 -- Indexes for table `history`
 --
 ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `iterative_game`
+--
+ALTER TABLE `iterative_game`
   ADD PRIMARY KEY (`id`);
 
 --

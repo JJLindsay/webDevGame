@@ -2,7 +2,7 @@
 	error_reporting(-1);
 	include('connection.php');
 
-	mysqli_query($dbc, "TRUNCATE TABLE iterative_teams"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
+	mysqli_query($dbc, "TRUNCATE TABLE iterative_teams"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
 	
 	$query1 = 'SELECT *';
 	$query1 .= ' FROM teamcode';
@@ -11,7 +11,6 @@
 	
 	$row1 = mysqli_fetch_assoc($result1);  //give me this row
 	$first_user = $row1['tag'];
-	
 	
 	$query2 = 'SELECT *';
 	$query2 .= ' FROM teamcode';
@@ -473,4 +472,7 @@
 			mysqli_query($dbc, "INSERT INTO iterative_teams(id,member1) VALUES ($index, '$first_user')");			
 		}
 	}
+	
+		include('insert_iterate_game_table.php');
+	
 ?>
