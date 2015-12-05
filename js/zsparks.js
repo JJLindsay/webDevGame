@@ -57,7 +57,8 @@ $(document).ready(function()
 	{
 		alert("found method!")
 		$.ajax({
-			url: './random.php',
+			url: './iterate_classes.php',
+			//url: './random.php',
 			success: function() {
 				alert("Random configured: dilemmas table updated")
 			},

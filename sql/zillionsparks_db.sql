@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2015 at 01:29 AM
+-- Generation Time: Dec 05, 2015 at 08:34 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `dilemmas` (
   `p1_score` int(4) NOT NULL DEFAULT '0',
   `p2_score` int(4) NOT NULL DEFAULT '0',
   `games_per_week` int(2) NOT NULL DEFAULT '10'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dilemmas`
@@ -71,7 +71,10 @@ INSERT INTO `dilemmas` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_score`, 
 (6, 'Green-2', 'Green-4', NULL, NULL, 0, 0, 10),
 (7, 'Blue-3', 'Green-3', NULL, NULL, 0, 0, 10),
 (8, 'Blue-3', 'Red-3', NULL, NULL, 0, 0, 10),
-(9, 'Green-3', 'Red-3', NULL, NULL, 0, 0, 10);
+(9, 'Blue-3', 'Red-4', NULL, NULL, 0, 0, 10),
+(10, 'Green-3', 'Red-3', NULL, NULL, 0, 0, 10),
+(11, 'Green-3', 'Red-4', NULL, NULL, 0, 0, 10),
+(12, 'Red-3', 'Red-4', NULL, NULL, 0, 0, 10);
 
 -- --------------------------------------------------------
 
@@ -146,6 +149,36 @@ INSERT INTO `history` (`id`, `player1`, `player2`, `player1_choice`, `player2_ch
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `iterative_teams`
+--
+
+CREATE TABLE IF NOT EXISTS `iterative_teams` (
+  `id` int(3) NOT NULL,
+  `member1` varchar(12) DEFAULT NULL,
+  `member2` varchar(12) DEFAULT NULL,
+  `member3` varchar(12) DEFAULT NULL,
+  `member4` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `iterative_teams`
+--
+
+INSERT INTO `iterative_teams` (`id`, `member1`, `member2`, `member3`, `member4`) VALUES
+(1, 'Red-1', 'Yellow-1', 'Blue-1', 'Red-2'),
+(2, 'Yellow-1', 'Red-1', 'Blue-1', 'Yellow-2'),
+(3, 'Blue-1', 'Red-1', 'Yellow-1', 'Blue-3'),
+(4, 'Red-2', 'Red-1', 'Yellow-2', 'Blue-3'),
+(5, 'Yellow-2', 'Yellow-1', 'Red-2', 'Blue-3'),
+(6, 'Blue-3', 'Blue-1', 'Red-2', 'Yellow-2'),
+(7, 'Yellow-3', 'Red-3', 'Yellow-4', NULL),
+(8, 'Red-3', 'Yellow-4', 'Red-4', NULL),
+(9, 'Yellow-4', 'Red-4', NULL, NULL),
+(10, 'Red-4', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teamcode`
 --
 
@@ -163,14 +196,14 @@ CREATE TABLE IF NOT EXISTS `teamcode` (
 
 INSERT INTO `teamcode` (`users_id`, `tag`, `user_group`, `random_group`, `fixed_group`) VALUES
 (1, 'Red-1', 'red', 3, 1),
-(2, 'Green-1', 'green', 3, 1),
+(2, 'Yellow-1', 'yellow', 3, 1),
 (3, 'Blue-1', 'blue', 3, 1),
 (4, 'Red-2', 'red', 4, 2),
-(6, 'Green-2', 'green', 1, 2),
+(6, 'Yellow-2', 'yellow', 1, 2),
 (7, 'Blue-3', 'blue', 1, 3),
-(8, 'Green-3', 'green', 4, 3),
+(8, 'Yellow-3', 'yellow', 4, 3),
 (9, 'Red-3', 'red', 1, 3),
-(10, 'Green-4', 'green', 4, 2),
+(10, 'Yellow-4', 'yellow', 4, 2),
 (11, 'Red-4', 'red', 2, 3);
 
 -- --------------------------------------------------------
@@ -234,7 +267,7 @@ INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `con
 (2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1, 15, 1, '2015-11-30 22:13:05', 0),
 (3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0, 0, 1, '2015-11-30 22:13:05', 0),
 (4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL4800', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 1, 0, 1, '2015-11-30 22:13:05', 0),
 (6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 4, 0, 0, 1, '2015-11-30 22:13:05', 0),
 (7, 'test2', 'hobbo', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
 (8, 'test3', 'mac', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
@@ -278,6 +311,12 @@ ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `iterative_teams`
+--
+ALTER TABLE `iterative_teams`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teamcode`
 --
 ALTER TABLE `teamcode`
@@ -308,7 +347,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `dilemmas`
 --
 ALTER TABLE `dilemmas`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `games`
 --
