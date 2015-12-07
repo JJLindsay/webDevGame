@@ -83,24 +83,28 @@
 				<tr>
 					<th align='left'><b>Edit</b></th>
 					<th align='left'><b>Delete</b></th>
+					<th align='left'><b>User Tag</b></th>
 					<th align='left'><b>Name</b></th>
 					<th align='left'><b>Course</b></th>
 					<th align='left'><b>Section</b></th>
 				</tr>";
 
-				$r = mysqli_query($dbc, "SELECT * FROM users ORDER BY course, section");
+				$r = mysqli_query($dbc, "SELECT * FROM users u JOIN teamcode tc ON u.id = tc.users_id ORDER BY course, section");
 				while ($row = mysqli_fetch_array($r))
 				{
 					echo 
 					"<tr>
 					<td>
-						<a href='edit_user.php?id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&course=".$row['course']."&pwd=".$row['pw']."&section=".$row['section']."'>Edit</a>
+						<a href='edit_user.php?id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&course=".$row['course']."&pwd=".$row['pw']."&section=".$row['section']."&group=".$row['user_group']."'>Edit</a>
 					</td>
 					<td>
 						<a href='delete_user.php?id=".$row['id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&course=".$row['course']."&section=".$row['section']."'>Delete</a>
 					</td>
 					<td>".
-						$row["last_name"]." , ".$row["first_name"]
+						$row["tag"]
+					."</td>
+					<td>".
+						$row["last_name"].", ".$row["first_name"]
 					."</td>
 					<td>".
 						$row["course"]
@@ -117,34 +121,34 @@
 		<div>			
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
-				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Edit Groups</span></h3>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Current Iterative Groups</span></h3>
 				<tr>
-					<th align='left'><b>Edit</b></th>
-					<th align='left'><b>Delete</b></th>
-					<th align='left'><b>Name</b></th>
-					<th align='left'><b>User Tag</b></th>					
-					<th align='left'><b>Iterative Groups</b></th>
+					<th align='left'><b>Group Number</b></th>
+					<th align='left'><b>Group of User</b></th>				
+					<th align='left'><b>Group Member 02</b></th>					
+					<th align='left'><b>Group Member 03</b></th>
+					<th align='left'><b>Group Member 04</b></th>										
 				</tr>";
 
-				$r = mysqli_query($dbc, "SELECT users_id, first_name, last_name, tag, fixed_group FROM users u JOIN teamcode tc ON u.id = tc.users_id");
+				$r = mysqli_query($dbc, "SELECT * FROM iterative_teams");
 				while ($row = mysqli_fetch_array($r))
 				{
 					echo 
 					"<tr>
-					<td>
-						<a href='edit_group.php?id=".$row['users_id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&tag=".$row['tag']."&fixed_group=".$row['fixed_group']."'>Edit</a>
-					</td>
-					<td>
-						<a href='delete_group.php?id=".$row['users_id']."&fname=".$row['first_name']."&lname=".$row['last_name']."&tag=".$row['tag']."&fixed_group=".$row['fixed_group']."'>Delete</a>
-					</td>
 					<td>".
-						$row["first_name"]. ' ' . $row["last_name"]
+						$row["id"]
 					."</td>
 					<td>".
-						$row["tag"]
+						$row["member1"]
 					."</td>
 					<td>".
-						$row["fixed_group"]
+						$row["member2"]
+					."</td>
+					<td>".
+						$row["member3"]
+					."</td>
+					<td>".
+						$row["member4"]
 					."</td>
 					</tr>";
 				}
@@ -191,7 +195,7 @@
 		<br/><br/>
 		
 			
-			<h3><span style="width: 50%; margin: 0% 12.5%" class="label label-success">Edit Courses Playing Iterative</span></h3>
+			<h3><span style="width: 50%; margin: 0% 12.5%" class="label label-success">Select Courses to Play Iterative</span></h3>
 
 			
 	<div style="width: 50%; margin: 0% 11.5%">			
@@ -206,9 +210,9 @@
 				<div class=\"col-lg-6\">
 					<div class=\"input-group\">
 					  <span class=\"input-group-addon\">
-						<input type=\"checkbox\" aria-label=\"...\">
+						<input type=\"checkbox\" name='course' value='".$row["course_and_number"].",".$row["section"]."' >
 					  </span>
-					  <input type=\"text\" class=\"form-control\" readonly aria-label=\"...\" value='".$row["course_and_number"]." Section ".$row["section"]."'>
+					  <input type=\"text\" class=\"form-control\" readonly value='".$row["course_and_number"]." Section ".$row["section"]."'>
 					</div>
 				  </div> 
 				";
@@ -226,7 +230,7 @@
 				  
 				<br/>
 				<br/><br/>
-				<Button type="button" class="btn btn-lg btn-warning" style="position:relative; left:61%;" aria-haspopup="true" aria-expanded="false" >
+				<Button type="button" class="btn btn-lg btn-warning" id="updateIterative" style="position:relative; left:61%;" >
 					Update Iterative
 				</button>
 			</div>

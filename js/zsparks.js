@@ -57,7 +57,7 @@ $(document).ready(function()
 	{
 		alert("found method!")
 		$.ajax({
-			url: './iterate_classes.php',
+			url: './build_iterate_teams.php',
 			//url: './random.php',
 			success: function() {
 				alert("Random configured: dilemmas table updated")
@@ -144,5 +144,25 @@ $(document).ready(function()
 		alert("found choice method!");
 		window.open ('admin_add_course.php','_self');	
 	}$("#addcour").click(addCourse);
+
+	
+	$(function(){
+      $('#updateIterative').click(function(){
+        var val = [];
+		var classes = "";
+        $(':checkbox:checked').each(function(i){
+          //val[i] = $(this).val();
+		  classes += $(this).val() + "|";
+		  //alert($(this).val());
+		  //url: "./build_iterate_teams.php?checked="'+classes,
+		  //url: './build_iterate_teams.php?checked='+classes,
+        });
+		window.open ('build_iterate_teams.php?checked='+classes,'_self');	
+		//url: "build_iterate_teams.php?checked="'+classes,
+		alert("start:"+classes+":end");
+      });
+    });
+	
+	
 });
 

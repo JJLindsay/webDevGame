@@ -60,6 +60,7 @@
 			$section = $_POST['section'];
 			$password = $_POST['pwd'];
 			$id = $_POST['id'];
+			$userTag = $_POST['userTag'];
 				
 			//returns true or false for update
 			$result = mysqli_query($dbc, "UPDATE users SET first_name = '$fname', last_name = '$lname', 
@@ -69,7 +70,31 @@
 				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 				exit;
 			}
-							
+			
+			if ($userTag != NULL && (strtolower(substr($userTag,0,1)) == 'r' || strtolower(substr($userTag,0,1)) == 'y' || strtolower(substr($userTag,0,1)) == 'b'))
+			{
+				if (strtolower(substr($userTag,0,1)) == 'r')
+				{				
+					$usrgroup = "red";
+				}
+				elseif (strtolower(substr($userTag,0,1)) == 'b')
+				{				
+					$usrgroup = "blue";
+				}	
+				elseif (strtolower(substr($userTag,0,1)) == 'y')
+				{				
+					$usrgroup = "yellow";
+				}
+				
+				
+				$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE user_group = '$usrgroup'");
+				$num_rows = mysqli_num_rows($result1);
+				$num_rows++;
+				
+				$tag = ucfirst($usrgroup)."-".$num_rows;
+				$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup', where users_id = $id");
+			}
+						
 			//if everything was ok:
 			if(mysqli_affected_rows($dbc) == 1)
 			{
