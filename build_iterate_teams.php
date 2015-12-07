@@ -53,7 +53,7 @@
 <?php
 
 	mysqli_query($dbc, "TRUNCATE TABLE iterative_teams"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
-	
+	mysqli_query($dbc, "TRUNCATE TABLE added_iterate_classes"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
 	
 	if (!empty($_GET['checked']))
 	{
@@ -64,10 +64,13 @@
 		//echo $arr_classes[0];
 		list($course, $section) = explode(",", $arr_classes[0], 2);
 		$whereclause = "( SELECT id FROM users WHERE (course = '".$course."' AND section = ".$section.")";
+		mysqli_query($dbc, "INSERT INTO added_iterate_classes(id, course, section) VALUES (1,'$course', $section)");
 		
 		for($i = 1; $i < count($arr_classes)-1; $i++)
 		{
 			list($course, $section) = explode(",", $arr_classes[$i], 2);
+			mysqli_query($dbc, "INSERT INTO added_iterate_classes(id, course, section) VALUES ($i+1,'$course', $section)");
+			
 			$whereclause .= "OR (course = '".$course."' AND section = ".$section.")";		
 		}
 		$whereclause .= ")";

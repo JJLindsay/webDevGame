@@ -201,28 +201,58 @@
 	<div style="width: 50%; margin: 0% 11.5%">			
 		<?php
 			echo "";
-			$r = mysqli_query($dbc, "SELECT * FROM course ORDER BY course_and_number, section");
+			$unchecked_classes = mysqli_query($dbc, "SELECT course_and_number, section FROM course  WHERE (course_and_number, section) NOT IN (SELECT course, section FROM added_iterate_classes)");
+			$checked_classes = mysqli_query($dbc, "SELECT course, section FROM added_iterate_classes WHERE (course, section) IN (SELECT course_and_number, section FROM course)");
+
 			$count = 0;
-			while ($row = mysqli_fetch_array($r))
-			{
-				echo 
-				"
-				<div class=\"col-lg-6\">
-					<div class=\"input-group\">
-					  <span class=\"input-group-addon\">
-						<input type=\"checkbox\" name='course' value='".$row["course_and_number"].",".$row["section"]."' >
-					  </span>
-					  <input type=\"text\" class=\"form-control\" readonly value='".$row["course_and_number"]." Section ".$row["section"]."'>
-					</div>
-				  </div> 
-				";
-				if ($count == 1){
-					echo "<br/><br/>";
-					$count=0;
+				//$class = mysqli_fetch_array($classes);
+				//if ($class["course"]==$row["course_and_number"] && $class["section"]==$row["section"])
+				while ($checked_class = mysqli_fetch_array($checked_classes))
+				{
+					echo 
+					"
+					<div class=\"col-lg-6\">
+						<div class=\"input-group\">
+						  <span class=\"input-group-addon\">
+							<input type=\"checkbox\" name='course' value='".$checked_class["course"].",".$checked_class["section"]."' checked>
+						  </span>
+						  <input type=\"text\" class=\"form-control\" readonly value='".$checked_class["course"]." Section ".$checked_class["section"]."'>
+						</div>
+					  </div> 
+					";		
+
+					if ($count == 1)
+					{
+						echo "<br/><br/>";
+						$count=0;
+					}
+					else
+						$count++;					
 				}
-				else
-					$count++;
-			}
+				//else
+				//$count = 0;
+				while ($unchecked_class = mysqli_fetch_array($unchecked_classes))
+				{
+					echo 
+					"
+					<div class=\"col-lg-6\">
+						<div class=\"input-group\">
+						  <span class=\"input-group-addon\">
+							<input type=\"checkbox\" name='course' value='".$unchecked_class["course_and_number"].",".$unchecked_class["section"]."' >
+						  </span>
+						  <input type=\"text\" class=\"form-control\" readonly value='".$unchecked_class["course_and_number"]." Section ".$unchecked_class["section"]."'>
+						</div>
+					  </div> 
+					";
+					
+					if ($count == 1)
+					{
+						echo "<br/><br/>";
+						$count=0;
+					}
+					else
+						$count++;					
+				}					
 		?>
 			
 

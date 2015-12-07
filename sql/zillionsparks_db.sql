@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2015 at 11:22 PM
+-- Generation Time: Dec 07, 2015 at 06:40 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `zillionsparks_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `added_iterate_classes`
+--
+
+CREATE TABLE IF NOT EXISTS `added_iterate_classes` (
+  `id` int(2) NOT NULL,
+  `course` varchar(10) NOT NULL,
+  `section` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `added_iterate_classes`
+--
+
+INSERT INTO `added_iterate_classes` (`id`, `course`, `section`) VALUES
+(1, 'BIOL 1101K', 6),
+(2, 'BIOL 3400K', 1),
+(3, 'BIOL 1101K', 9);
 
 -- --------------------------------------------------------
 
@@ -187,9 +208,11 @@ INSERT INTO `iterative_game` (`id`, `p1`, `p2`, `p1_choice`, `p2_choice`, `p1_sc
 (18, 'Blue-3', 'Yellow-2', NULL, NULL, 0, 0),
 (19, 'Yellow-3', 'Red-3', NULL, NULL, 0, 0),
 (20, 'Yellow-3', 'Yellow-4', NULL, NULL, 0, 0),
-(21, 'Red-3', 'Yellow-4', NULL, NULL, 0, 0),
+(21, 'Red-3', 'Yellow-3', NULL, NULL, 0, 0),
 (22, 'Red-3', 'Red-4', NULL, NULL, 0, 0),
-(23, 'Yellow-4', 'Red-4', NULL, NULL, 0, 0);
+(23, 'Yellow-4', 'Yellow-3', NULL, NULL, 0, 0),
+(24, 'Yellow-4', 'Red-4', NULL, NULL, 0, 0),
+(25, 'Red-4', 'Yellow-4', NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -217,9 +240,9 @@ INSERT INTO `iterative_teams` (`id`, `member1`, `member2`, `member3`, `member4`)
 (5, 'Yellow-2', 'Yellow-1', 'Red-2', 'Blue-3'),
 (6, 'Blue-3', 'Blue-1', 'Red-2', 'Yellow-2'),
 (7, 'Yellow-3', 'Red-3', 'Yellow-4', NULL),
-(8, 'Red-3', 'Yellow-4', 'Red-4', NULL),
-(9, 'Yellow-4', 'Red-4', NULL, NULL),
-(10, 'Red-4', NULL, NULL, NULL);
+(8, 'Red-3', 'Yellow-3', 'Red-4', NULL),
+(9, 'Yellow-4', 'Yellow-3', 'Red-4', NULL),
+(10, 'Red-4', 'Yellow-4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -308,21 +331,27 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `usernames`, `first_name`, `last_name`, `email`, `confirmed_email`, `pw`, `confirmed_pw`, `course`, `section`, `online_status`, `score`, `busy`, `time`, `rank`) VALUES
-(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1, 11, 1, '2015-11-30 22:13:05', 0),
-(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'Biology', 4, 1, 15, 1, '2015-11-30 22:13:05', 0),
-(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', NULL, NULL, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL4800', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(1, 'mmodi26', 'Mitesh', 'Modi', 'mitesh.modi003@gmail.com', 'mitesh.modi003@gmail.com', 'nirmauni', 'nirmauni', 'BIOL 1101K', 9, 1, 11, 1, '2015-11-30 22:13:05', 0),
+(2, 'jpatel90', 'Jay', 'Patel', 'jpatel@gmail.com', 'jpatel@gmail.com', 'nirmauni', 'nirmauni', 'BIOL 1101K', 9, 1, 15, 1, '2015-11-30 22:13:05', 0),
+(3, 'hpatel91', 'Harshal', 'Patel', 'hpatel91@gmail.com', 'hpatel91@gmail.com', 'nirmauni', 'nirmauni', 'BIOL 3400K', 1, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(4, 'jdoe', 'john', 'doe', 'jdoe@aol.com', 'jdoe@aol.com', '123456', '123456', 'BIOL 1101K', 9, 0, 0, 1, '2015-11-30 22:13:05', 0),
 (5, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', '123456', '123456', 'BIOL2111', 9, 1, 0, 1, '2015-11-30 22:13:05', 0),
-(6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 4, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(7, 'test2', 'hobbo', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(8, 'test3', 'mac', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(9, 'test4', 'salsa', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(10, 'test5', 'fries', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0),
-(11, 'test6', 'shake', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'Biology', 12, 0, 0, 1, '2015-11-30 22:13:05', 0);
+(6, 'test1', 'hobbit', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 3400K', 1, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(7, 'test2', 'hobbo', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 1101K', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(8, 'test3', 'mac', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 1101K', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(9, 'test4', 'salsa', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 1101K', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(10, 'test5', 'fries', 'Jon', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 1101K', 6, 0, 0, 1, '2015-11-30 22:13:05', 0),
+(11, 'test6', 'shake', 'Jane', 'test1@aol.com', 'test1@aol.com', '123456', '123456', 'BIOL 1101K', 6, 0, 0, 1, '2015-11-30 22:13:05', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `added_iterate_classes`
+--
+ALTER TABLE `added_iterate_classes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `course`
