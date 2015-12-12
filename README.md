@@ -10,4 +10,4 @@ This is a semester long group project.
 <b>Requirement:</b> In short a Biology professor expressed a desire to have a Prionser's Dilemma website using an unspecified number of classes, each with an unspecified number of students.
 
 <b>Outcome:</b>
-We have achieved most of what was requested and we are performing some final tuning. Intial impressions from our client have been very positive. We will hand everything over shortly after final tunings have been completed.
+This project is closed. All requirements were met and it has been successfully handed over.
