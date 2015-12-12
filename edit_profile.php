@@ -10,11 +10,14 @@
 			$cname=$_POST['CourseName'];
 			$section=$_POST['Section'];
 			
-			$query3=mysql_query("UPDATE users SET first_name='$fname', last_name='$lname', email='$email', confirmed_email='$email', usernames='$uname', course_name='$cname', section='$section' where id='$login_id'");
-			if($query3)
+			$query3= "UPDATE users SET first_name='$fname', last_name='$lname', email='$email', confirmed_email='$email', usernames='$uname', course='$cname', section='$section' where id='$login_id'";
+			$result = mysqli_query($dbc, $query3);
+			//if everything was ok:
+			if(mysqli_affected_rows($dbc) == 1)			
 			{
 				header('location:profilepage.php');
-			}
+			}else
+				echo "Unable to update profile.";
 	}
 ?>
 <!doctype html>
@@ -46,10 +49,23 @@
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Home</a></li>
-					<li><a href="useronline.php">Who's Online</a></li>
-					<li><a href="playgame.php">Play Game</a></li>
-					<li><a href="playgame_live.php">Play Game Live</a></li>
-					<li><a href="#">Check Score</a></li>
+					<?php
+						if($_SESSION['admin_course'] == 'admin')
+						{
+					?>		
+						<li><a href="editgame.php">Edit Game</a></li>
+						<li><a href="administration.php">Check Scores</a></li>																				
+					<?php	
+						}
+						else
+						{
+					?>
+						<li><a href="useronline.php">Who's Online</a></li>  
+						<li><a href="playgame.php">Play Game</a></li>   
+						<li><a href="playgame_live.php">Play Game Live</a></li> 					
+					<?php
+						}
+					?>
 					<li class="dropdown active">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -77,8 +93,8 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-3 col-md-3 col-lg-3" align="center">
-								<div class="outerContainer red">
-									<div class="innerContainer"><br><?php echo $login_id; ?>
+								<div class="outerContainer" style='background-color:<?php echo $login_teamcolor ?>'>
+									<div class="innerContainer" style='color:black;'><br><?php echo $login_teamcolor_num; ?>
 									</div>
 								</div> 
 							</div>
@@ -138,6 +154,11 @@
 		</div>
 	</div><!-- end Profile Table -->
 
+	<?php
+		mysqli_query($dbc, "COMMIT");
+		//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+		mysqli_close($dbc); //dbc is for connection.php
+	?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

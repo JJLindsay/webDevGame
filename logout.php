@@ -4,7 +4,7 @@ include('session.php');
 if(session_destroy()) // Destroying All Sessions
 {
 			//echo "You've gone offline now!";
-			$update_status_query = mysql_query("UPDATE users SET online_status='0' WHERE usernames='$user_check'", $connection);
+			$update_status_query = mysql_query("UPDATE users SET online_status='0' WHERE usernames='$user_check'", $dbc); //changed from connection
 			/*$ses_sql=mysql_query("SELECT * from users where usernames='$user_check'", $connection);
 			$row = mysql_fetch_assoc($ses_sql);
 		
@@ -22,5 +22,9 @@ if(session_destroy()) // Destroying All Sessions
 		
 	// TAKES YOU TO INDEX.PHP if the session is destroyed
 	header("Location: index.php"); // Redirecting To Home Page
+	
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php	
 }
 ?>

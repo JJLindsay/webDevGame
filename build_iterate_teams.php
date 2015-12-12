@@ -263,6 +263,7 @@
 				
 				if ($result3 != False && ($row3['member2'] == NULL || $row3['member3'] == NULL || $row3['member4'] == NULL)) //there is an open slot on this team
 				{
+					//echo $row3['member2'];
 					//echo "FOUND YELLOW3!";
 					//echo "Searching for2.5: $second_user <br/>";
 					if (substr($second_user, 0,1) == 'R')  //if older user/established team owner
@@ -333,6 +334,33 @@
 							$query3 .= " WHERE member1 = '$second_user'";
 							$result3 = mysqli_query($dbc, $query3);					
 						}
+						//the second user had no vacancy on its team BUT it does have first user in its team so first user must add second user to its team
+						elseif ($row3 == NULL && ($row4['member2'] == $first_user || $row4['member3'] == $first_user || $row4['member4'] == $first_user))
+						{
+							$query3 = "SELECT *";
+							$query3 .= " FROM iterative_teams";
+							$query3 .= " WHERE member1 = '$first_user'";
+							$result3 = mysqli_query($dbc, $query3);
+							
+							$row3 = mysqli_fetch_assoc($result3);
+							
+							if ($row3['member2']==NULL)
+							{
+								$column = "member2";
+							}
+							elseif($row3['member3']==NULL)
+							{
+								$column = "member3";
+							}
+							else
+							{
+								$column = "member4";
+							}
+							$query3 = "UPDATE iterative_teams";
+							$query3 .= " SET $column = '$second_user'";
+							$query3 .= " WHERE member1 = '$first_user'";
+							$result3 = mysqli_query($dbc, $query3);							
+						}
 					}
 					elseif (substr($second_user, 0,1) == 'B')
 					{
@@ -401,7 +429,34 @@
 							$query3 .= " SET $column = '$first_user'";
 							$query3 .= " WHERE member1 = '$second_user'";
 							$result3 = mysqli_query($dbc, $query3);					
-						}				
+						}		
+						//the second user had no vacancy on its team BUT it does have first user in its team so first user must add second user to its team
+						elseif ($row3 == NULL && ($row4['member2'] == $first_user || $row4['member3'] == $first_user || $row4['member4'] == $first_user))
+						{
+							$query3 = "SELECT *";
+							$query3 .= " FROM iterative_teams";
+							$query3 .= " WHERE member1 = '$first_user'";
+							$result3 = mysqli_query($dbc, $query3);
+							
+							$row3 = mysqli_fetch_assoc($result3);
+							
+							if ($row3['member2']==NULL)
+							{
+								$column = "member2";
+							}
+							elseif($row3['member3']==NULL)
+							{
+								$column = "member3";
+							}
+							else
+							{
+								$column = "member4";
+							}
+							$query3 = "UPDATE iterative_teams";
+							$query3 .= " SET $column = '$second_user'";
+							$query3 .= " WHERE member1 = '$first_user'";
+							$result3 = mysqli_query($dbc, $query3);							
+						}						
 					}
 					elseif (substr($second_user, 0,1) == 'Y')
 					{
@@ -471,7 +526,7 @@
 							$query3 .= " WHERE member1 = '$second_user'";
 							$result3 = mysqli_query($dbc, $query3);					
 						}
-						//the second user had not vacancy on its team BUT it does have first user in its team so first user must and second user to its team
+						//the second user had no vacancy on its team BUT it does have first user in its team so first user must add second user to its team
 						elseif ($row3 == NULL && ($row4['member2'] == $first_user || $row4['member3'] == $first_user || $row4['member4'] == $first_user))
 						{
 							$query3 = "SELECT *";
@@ -589,9 +644,15 @@
 	else
 	{
 		echo "<div id='message'>";
-		echo "No checkboxes where found checked.";
+		echo "No checkboxes where checked.<br/>Everyone was removed from Iterative Play.<br/>Please Refresh Random Play.<br/>";
+		echo '<a href="editgame.php">Return to tables</a>';
 		echo "</div>";
 	}
+	include('iterate.php');
+	
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
 ?>
 </body>
 </html>

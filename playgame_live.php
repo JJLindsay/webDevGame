@@ -36,7 +36,6 @@
 					<li><a href="useronline.php">Who's Online</a></li>
 					<li><a href="playgame.php">Play Game</a></li>
 					<li class="active"><a href="playgame_live.php">Play Game Live</a></li>
-					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">

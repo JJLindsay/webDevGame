@@ -26,16 +26,16 @@ if (isset($_POST['submit'])) {
 		//$db = mysql_select_db("zillionsparks_db", $connection);  //CONNECTIN.PHP did this
 		// SQL query to fetch information of registerd users and finds user match.
 		//$query = mysql_query("select * from users where pw='$password' AND usernames='$username'", $connection);
-		$result=mysqli_query($dbc, "select first_name from users where pw='$password' AND usernames='$username'"); //THE REPLACEMENT FOR mysql_query
+		$result=mysqli_query($dbc, "select course from users where pw='$password' AND usernames='$username'"); //THE REPLACEMENT FOR mysql_query
 		$rows = mysqli_num_rows($result);
 		if ($rows == 1) {
 			$_SESSION['login_user']=$username; // Initializing Session
 			
 			//retrieves the row
-			$fnames = $result->fetch_assoc(); 
-			$fname = array_values($fnames);  //splits the fetched row contents into an array			
-			$adminname = htmlspecialchars($fname[0]);
-			$_SESSION['admin_name'] = $adminname;
+			$courses = $result->fetch_assoc(); 
+			$course = array_values($courses);  //splits the fetched row contents into an array			
+			$admincourse = htmlspecialchars($course[0]);
+			$_SESSION['admin_course'] = $admincourse;
 				//header("location: profile.php"); // Redirecting To Other Page
 		} else {
 			$error = "Username or Password is invalid";
@@ -43,4 +43,8 @@ if (isset($_POST['submit'])) {
 		//mysql_close($connection); // Closing Connection  //closed in index so not needed
 	}
 }
+
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
 ?>

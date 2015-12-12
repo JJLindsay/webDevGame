@@ -106,12 +106,12 @@
 						$id = $id +1;
 						
 						$group = $values[2];
-						if ($group == 'Green')
+						if ($group == 'Yellow')
 							$group = 'Red';
 						else if ($group == 'Red')
 							$group = 'Blue';
 						else
-							$group = 'Green';
+							$group = 'Yellow';
 
 						$tag = $group . "-" . $id;
 						
@@ -242,6 +242,11 @@
             </div>
             </form>
         </div>
+		<?php
+			mysqli_query($dbc, "COMMIT");
+			//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+			mysqli_close($dbc); //dbc is for connection.php		
+		?>
         <footer style="margin-top: 60px; margin-left:10px; margin-bottom:5px">ZillionSparks &copy; 2015</footer>
         <!-- javascript -->
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>

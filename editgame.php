@@ -19,7 +19,6 @@
 	<script src="js/zsparks.js"></script>
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -55,27 +54,7 @@
 	
 	<div class="page-header">
 	  <h1>Welcome Administrator <small>TO THE EDIT GAME MENU</small></h1>	
-		<div> 
-			<!--img src='img/American History X-Cellent.jpg' alt='' class='img-rounded myimg' / --> 
-			<div class='bigwrapper'> 			
-				<br/>
-				<br/>
-				Select how you wish the class to play. (Iterative play is set by default)
-				<button type="button" class="btn btn-lg btn-warning" aria-haspopup="true" aria-expanded="false" id="iterationbtn">
-					Iterative Play (deletes previous values)
-				</button>
-				<button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="playrandombtn">
-					Random Play (deletes previous values)
-				</button>	
-			</div><hr/>
-		</div>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>		
+		<hr/>
 		<div>
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
@@ -84,7 +63,7 @@
 					<th align='left'><b>Edit</b></th>
 					<th align='left'><b>Delete</b></th>
 					<th align='left'><b>User Tag</b></th>
-					<th align='left'><b>Name</b></th>
+					<th align='left'><b>Full Name</b></th>
 					<th align='left'><b>Course</b></th>
 					<th align='left'><b>Section</b></th>
 				</tr>";
@@ -104,7 +83,7 @@
 						$row["tag"]
 					."</td>
 					<td>".
-						$row["last_name"].", ".$row["first_name"]
+						$row["first_name"]." ".$row["last_name"]
 					."</td>
 					<td>".
 						$row["course"]
@@ -121,7 +100,7 @@
 		<div>			
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
-				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Current Iterative Groups</span></h3>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Current Iterative Groups</span><small><a href='iterative_limit.php'>Set Round Limit</a></small></h3>
 				<tr>
 					<th align='left'><b>Group Number</b></th>
 					<th align='left'><b>Group of User</b></th>				
@@ -156,6 +135,53 @@
 			?>
 		</div>
 		<br/>
+		<div>			
+			<?php
+				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
+				<h3><span style=\"width: 50%; margin: 0% 12.5%\" class=\"label label-success\">Current Random Groups</span><small><a href='random_limit.php'>Set Round Limit</a></small></h3> 
+				<tr>
+					<th align='left'><b>Group Number</b></th>
+					<th align='left'><b>Group Member 01</b></th>				
+					<th align='left'><b>Group Member 02</b></th>					
+					<th align='left'><b>Group Member 03</b></th>									
+				</tr>";
+
+				$whereclause = "(SELECT id FROM users WHERE (course, section) NOT IN (SELECT course, section FROM added_iterate_classes))";
+				$rnd_groups = mysqli_query($dbc, "SELECT DISTINCT random_group FROM teamcode WHERE users_id IN ".$whereclause." ORDER BY random_group");
+				$rnd_count = mysqli_num_rows($rnd_groups); //how many 
+				//echo $rnd_count;
+				$rnd_group = mysqli_fetch_array($rnd_groups); //who are they								
+				echo $rnd_group['random_group'];
+				$r = mysqli_query($dbc, "SELECT * FROM teamcode WHERE users_id IN ".$whereclause." AND random_group = ".$rnd_group['random_group']);
+				$i = 0;
+				
+				//check that players are in the random table first!
+				$random_table_populated = mysqli_query($dbc, "SELECT * FROM random_game");
+				if (mysqli_num_rows($random_table_populated) > 0)
+					while ($i < $rnd_count)
+					{
+						echo 
+						"<tr>
+						<td>".
+							$i
+						."</td>";
+						while ($row = mysqli_fetch_array($r))
+						{
+							echo "<td>".
+								$row["tag"]
+							."</td>";
+						}
+						echo "</tr>";
+						
+						//call the next group and then call all users in that group
+						$rnd_group = mysqli_fetch_array($rnd_groups); //who are they
+						$r = mysqli_query($dbc, "SELECT * FROM teamcode WHERE users_id IN ".$whereclause." AND random_group = ".$rnd_group['random_group']);				
+						$i++;
+					}
+				echo '</table>';
+			?>
+		</div>		
+		
 		<div>
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>
@@ -254,20 +280,24 @@
 						$count++;					
 				}					
 		?>
-			
-
-
-				  
 				<br/>
 				<br/><br/>
 				<Button type="button" class="btn btn-lg btn-warning" id="updateIterative" style="position:relative; left:61%;" >
-					Update Iterative
+					Refresh Iterative Teams
 				</button>
+				<br/>
+				<button type="button" class="btn btn-lg btn-success" id="updateRandom" style="position:relative; left:61%; margin: 1% 0%">
+					Refresh Random Teams 
+				</button><br/>
+				<div style="width:50%; margin:-1% auto; position:relative; left:35%;">
+				(<span style="color:red;">Unchecked</span> classes will play random)	
+				</div>		
 			</div>
 		</div>		
 	</div>	
 
 	<?php
+		mysqli_query($dbc, "COMMIT");
 		mysqli_close($dbc); //always close the connection for security
 	?>
 </body>

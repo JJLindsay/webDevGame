@@ -51,7 +51,7 @@
 		//include('status.php'); // updates user's online_status to 1
 		if(isset($_SESSION['login_user']))
 		{
-			if($_SESSION['admin_name'] == 'admin'){
+			if($_SESSION['admin_course'] == 'admin'){
 				header("location:administration.php");
 			}
 			else{
@@ -104,6 +104,7 @@
 	</div>
 
 <?php
+	mysqli_query($dbc, "COMMIT");
 	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
 	mysqli_close($dbc); //dbc is for connection.php
 ?>	

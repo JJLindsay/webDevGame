@@ -4,6 +4,7 @@
 <?php
 	error_reporting(-1);
 	include('connection.php');
+	include('session.php');
 ?>
     <meta charset="utf-8">
     <title>Prisoner's Dilemma</title>
@@ -93,10 +94,16 @@
 				?>
 				<li class='list-group-item'>					
 					<form method = "POST" action = "<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
-						<input type = "hidden" name = "course" value = "history"/>
-						<button style="background-color:#ddd; color:black" type = "submit" class="btn btn-default">History</button>
+						<input type = "hidden" name = "course" value = "iterate_history"/>
+						<button style="background-color:#ddd; color:black" type = "submit" class="btn btn-default">Iterate History</button>
 					</form>
 				</li>
+				<li class='list-group-item'>					
+					<form method = "POST" action = "<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
+						<input type = "hidden" name = "course" value = "random_history"/>
+						<button style="background-color:#ddd; color:black" type = "submit" class="btn btn-default">Random History</button>
+					</form>
+				</li>				
 		<?php
 		echo "</ul> ".
 		"</span> ".
@@ -116,7 +123,7 @@
 			  "<table class='table table-hover table-bordered table-striped' border=1 id='inner'> ".
 						"<tr> ";
 						
-					if (IsSet($_POST["course"]) && $_POST["course"] == "history")
+					if (IsSet($_POST["course"]) && ($_POST["course"] == "iterate_history" || $_POST["course"] == "random_history"))
 					{
 						echo
 							"<th>Player 01</th> ".
@@ -135,19 +142,25 @@
 							"<th>Section</th> ";
 					}
 						echo "</tr> ";
-					if (IsSet($_POST["course"]) && $_POST["course"] == "history")
+					if (IsSet($_POST["course"]) && $_POST["course"] == "iterate_history")
 					{
 						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM history';
-					}	
+						
+					}
+					elseif (IsSet($_POST["course"]) && $_POST["course"] == "random_history")
+					{	
+						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM random_history';
+					}					
 					elseif (!IsSet($_POST["course"]) || !IsSet($_POST["section"]))
 					{
 							
-						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id;';
+						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id ORDER BY course, section;';
 					}
 					else{
 						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id WHERE course LIKE \''.
-							$_POST["course"].'\' AND section LIKE \''.$_POST["section"].'\';';
+							$_POST["course"].'\' AND section LIKE \''.$_POST["section"].'\' ORDER BY course, section;';
 					}
+						$_SESSION['query'] = $query;
 						trim($query);
 						$query = stripslashes($query);
 						
@@ -195,20 +208,14 @@
 			  ?>
 					</table>
 				 </div>
-				 <button type="button" class="btn btn-lg btn-success" aria-haspopup="true" aria-expanded="false" id="exportbtn">
-					Export to SpreadSheet
+				 <button type="button" class="btn btn-lg btn-success" id="exportbtn query=<?php echo $_SESSION['query']?>">
+					<a href="export_table.php">Export to SpreadSheet</a>
 				</button>			
 			</div>
 		</div>
 	</div>
-
-	<!--There needs to be a button >
-	<iframe id="txtArea1" style="display:none"></iframe>
-<button id="btnExport"> EXPORT </button -->
-
-
 <?php
-
+	mysqli_query($dbc, "COMMIT");
 	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
 	mysqli_close($dbc);
 ?>

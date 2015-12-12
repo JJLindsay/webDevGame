@@ -61,12 +61,10 @@
 	<div id='message'>
 		<?php
 			//get the query
-			$course = $_POST['course'];
-			$section = $_POST['section'];
-			$id = $_POST['id'];
+			$limit = $_POST['limit'];
 				
 			//returns true or false for update
-			$result = mysqli_query($dbc, "UPDATE course SET course_and_number = '$course', section = '$section' WHERE id = $id");
+			$result = mysqli_query($dbc, "UPDATE iterative_game SET round_limit =".$limit);
 			if (!$result)
 			{
 				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
@@ -74,13 +72,13 @@
 			}
 							
 			//if everything was ok:
-			if(mysqli_affected_rows($dbc) == 1)
+			if(mysqli_affected_rows($dbc) >= 1)
 			{
 				//Ok message confirmation:
-				echo "Great. This course has been updated. <br/>";
+				echo "Great. The limit for iterative games has been changed. <br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}else{
-				echo "The course could not be changed due to a system error. <br/>";
+				echo "The limit could not be added due to a system error. <br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}
 			

@@ -476,5 +476,9 @@ $('.btn_unbusy').click(function(){
         In your last match you $ca and got $cs points, your partner $oa and got $os points
         </div>
     ";
+	
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php	
     ?>
 </table>

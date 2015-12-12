@@ -56,4 +56,7 @@
 		
 		$row1 = mysqli_fetch_assoc($groups);  //give me this row
 	}
+	
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
 ?>

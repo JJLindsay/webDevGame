@@ -85,8 +85,9 @@
 			echo '<a href="editgame.php">Return to tables</a>';
 		}
 		
-		//close connection to db:
-		mysqli_close($dbc);
+		mysqli_query($dbc, "COMMIT");
+		//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+		mysqli_close($dbc); //dbc is for connection.php
 	?>
 	</div>
 </body>

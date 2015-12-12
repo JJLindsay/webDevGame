@@ -23,125 +23,56 @@ $(document).ready(function()
 	{
 		window.open ('signup.php','_self')	
 	}$("#regPagebtn").click(index);
-	
-
-	/*profile page scripts*/
-	function editbtn()
-	{
-		//todo
-	}$("#id_here").click(editbtn);
-
-
 
 	/*admin page script*/
 	function exportbtn()
 	{
-		//todo
-	}$("#id_here").click(exportbtn);
+		window.open ('export_table.php','_self');
+		//window.open ('export_table.php?query="'+$(this).attr('query'),'_self');
+
+	}$("#exportbtn").click(exportbtn);
 
 
 	//executes Play Iteration
 	function playIteration()
 	{
-		alert("found method!")
+		//alert("found method!")
 		$.ajax({
 			url: './iterate.php',
 			success: function() {
-				alert("Fixed group configured: updated dilemmas table!")
+				//alert("Fixed group configured: updated dilemmas table!")
 			},
 		});				
 	}$("#iterationbtn").click(playIteration);
-
-	//executes Play Random
-	function playAtRandom()
-	{
-		alert("found method!")
-		$.ajax({
-			url: './build_iterate_teams.php',
-			//url: './random.php',
-			success: function() {
-				alert("Random configured: dilemmas table updated")
-			},
-		});				
-	}$("#playrandombtn").click(playAtRandom);
-	
-	//export to excel spreadsheet
-	function fnExcelReport()
-	{
-		var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
-		var textRange; var j=0;
-		tab = document.getElementById('headerTable'); // id of table
-
-		for(j = 0 ; j < tab.rows.length ; j++) 
-		{     
-			tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-			//tab_text=tab_text+"</tr>";
-		}
-
-		tab_text=tab_text+"</table>";
-		tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-		tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
-		tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-
-		var ua = window.navigator.userAgent;
-		var msie = ua.indexOf("MSIE "); 
-
-		if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-		{
-			txtArea1.document.open("txt/html","replace");
-			txtArea1.document.write(tab_text);
-			txtArea1.document.close();
-			txtArea1.focus(); 
-			sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
-		}  
-		else                 //other browser not tested on IE 11
-			sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
-
-		return (sa);
-	}$("#btnExport").click(fnExcelReport);
 	
 	//GAME HISTORY TEST using coop/defect button
 	function submitCoop()
 	{
-		alert("found choice method!")
+		//alert("found choice method!")
 		$.ajax({
 			url: "./coopdefect.php?decision="+ $(this).attr('submitChoice'),
 			success: function() {
-				alert("METHOD UNDER CONSTRUCTION")
+				//alert("METHOD UNDER CONSTRUCTION")
 			},
 		});		
 				
 	}$("#btnCoop").click(submitCoop);
 	
-	
-	
 	function submitBetray()
 	{
-		alert("found choice method!")
+		//alert("found choice method!")
 		$.ajax({
 			url: "./coopdefect.php?decision="+ $(this).attr('submitChoice'),
 			success: function() {
-				alert("METHOD UNDER CONSTRUCTION")
+				//alert("METHOD UNDER CONSTRUCTION")
 			},
 		});		
 				
 	}$("#btnBetray").click(submitBetray);
-	/*
-	function defectButtonCode($decision)
-	{
-		alert("found defect method!")
-		$.ajax({
-			url: './random.php?decision=$decision',
-			success: function() {
-				alert("defect configured: dilemmas table updated")
-			},
-		});		
-			
-	}$("#btnDef").click(defectButtonCode);*/
 	
 	function addCourse()
 	{
-		alert("found choice method!");
+		//alert("found choice method!");
 		window.open ('admin_add_course.php','_self');	
 	}$("#addcour").click(addCourse);
 
@@ -151,18 +82,25 @@ $(document).ready(function()
         var val = [];
 		var classes = "";
         $(':checkbox:checked').each(function(i){
-          //val[i] = $(this).val();
 		  classes += $(this).val() + "|";
-		  //alert($(this).val());
-		  //url: "./build_iterate_teams.php?checked="'+classes,
-		  //url: './build_iterate_teams.php?checked='+classes,
         });
 		window.open ('build_iterate_teams.php?checked='+classes,'_self');	
-		//url: "build_iterate_teams.php?checked="'+classes,
-		alert("start:"+classes+":end");
+		//alert("start:"+classes+":end");
       });
     });
 	
 	
+	$(function(){
+      $('#updateRandom').click(function(){
+        var val = [];
+		var classes = "";
+		$("input:checkbox:not(:checked)").each(function(i){
+          //val[i] = $(this).val();
+		  classes += $(this).val() + "|";
+        });
+		window.open ('random.php?unchecked='+classes,'_self');	
+		//alert("start:"+classes+":end");
+      });
+    });	
+	
 });
-

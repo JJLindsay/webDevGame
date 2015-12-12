@@ -61,26 +61,36 @@
 	<div id='message'>
 		<?php
 			//get the query
-			$course = $_POST['course'];
-			$section = $_POST['section'];
-			$id = $_POST['id'];
+			$limit = $_POST['limit'];
 				
 			//returns true or false for update
-			$result = mysqli_query($dbc, "UPDATE course SET course_and_number = '$course', section = '$section' WHERE id = $id");
+			$result = mysqli_query($dbc, "SELECT * FROM random_game");
+			$count = mysqli_num_rows($result);
+			$i = 1;	
+				
 			if (!$result)
 			{
 				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
 				exit;
+			}
+			else
+			{				
+				while($i <= $count)
+				{
+					$rndNum = rand(1, $limit); //values are inclusive	
+					$result = mysqli_query($dbc, "UPDATE random_game SET round_limit =".$rndNum." WHERE id=".$i);
+					$i++;
+				}
 			}
 							
 			//if everything was ok:
 			if(mysqli_affected_rows($dbc) == 1)
 			{
 				//Ok message confirmation:
-				echo "Great. This course has been updated. <br/>";
+				echo "Great. The range limit for Random games has been set. <br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}else{
-				echo "The course could not be changed due to a system error. <br/>";
+				echo "The range limit for Random games could not be set due to a system error. <br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}
 			

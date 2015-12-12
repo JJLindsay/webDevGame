@@ -32,7 +32,6 @@
 					<li class="active"><a href="useronline.php">Who's Online</a></li>
 					<li><a href="playgame.php">Play Game</a></li>
 					<li><a href="playgame_live.php">Play Game Live</a></li>
-					<li><a href="#">Check Score</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -79,105 +78,27 @@
 				}
 				?>
 				</li>
-
 				<li>
-				<?php
-				if ($result1 -> num_rows > 0) {
-					while ($row = $result1->fetch_assoc()) 
-					{
-					echo "&nbsp;"."<div class='outerContainer red'>".
-						"<div class='innerContainer'>" .$row['id']."<br />".
-						"</div>".
-					"</div>";
-					}
-				}		
-				?>
+					<?php
+					if ($result1 -> num_rows > 0) {
+						while ($row = $result1->fetch_assoc()) 
+						{
+						echo "&nbsp;"."<div class='outerContainer red'>".
+							"<div class='innerContainer'>" .$row['id']."<br />".
+							"</div>".
+						"</div>";
+						}
+					}		
+					?>
 				</li>
-<!--
-				<li>
-					<div class="outerContainer green">
-						<div class="innerContainer">1
-						</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="outerContainer black">
-						<div class="innerContainer">1
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="outerContainer blue">
-						<div class="innerContainer">2
-						</div>
-					</div>
-				</li>
-				
-				<li>
-					<div class="outerContainer black">
-						<div class="innerContainer">2
-						</div>
-					</div>
-				</li>
-				
-				<li>
-					<div class="outerContainer red">
-						<div class="innerContainer">2
-						</div>
-					</div>
-				</li>
-				
-				<li>
-					<div class="outerContainer green">
-						<div class="innerContainer">2
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="outerContainer blue">
-						<div class="innerContainer">3
-						</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="outerContainer green">
-						<div class="innerContainer">3
-						</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="outerContainer black">
-						<div class="innerContainer">3
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="outerContainer blue">
-						<div class="innerContainer">4
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="outerContainer red">
-						<div class="innerContainer">4
-						</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="outerContainer blue">
-						<div class="innerContainer">5
-						</div>
-					</div>
-				</li>
--->
 			</ul>
 		</div>
 	</div>
-	
+<?php
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
+?>	
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

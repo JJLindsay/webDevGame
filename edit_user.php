@@ -75,7 +75,7 @@
 		<p>Course: <input type='text' name= 'course' size='10' maxlength='50' value='".$_GET['course']."'/></p>	
 		<p>Section: <input type='text' name= 'section' size='2' maxlength='50' value='".$_GET['section']."'/></p>
 		<p>Password: <input type='text' name= 'pwd' size='20' maxlength='50' value='".$_GET['pwd']."'/></p>
-		<p>User ID: <input type='test' name= 'userTag' size='20' placeholder='Red/Blue/Yellow' maxlength=50'/> (Currently: ".$_GET['group'].")</p>
+		<p>User ID: <input type='test' name= 'userTag' size='20' placeholder='Red/Blue/Yellow OR blue-1' maxlength=50'/> (Currently: ".$_GET['group'].")</p>
 		
 		<p><input type='submit' name='Apply Changes' value='Submit' /></p>	   
 		</form>";

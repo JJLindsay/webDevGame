@@ -16,6 +16,13 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/zsparks.js"></script>
+	<style>
+		#message 
+		{
+			width: 50%;
+			margin: 2% 40%;
+		}
+	</style>	
 </head>
 <body>
 
@@ -88,11 +95,33 @@
 				
 				
 				$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE user_group = '$usrgroup'");
-				$num_rows = mysqli_num_rows($result1);
-				$num_rows++;
+				$num_rows = mysqli_num_rows($result);
+				//$num_rows++;
 				
-				$tag = ucfirst($usrgroup)."-".$num_rows;
-				$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup', where users_id = $id");
+				$i=0;
+				while ($i < 5)
+				{
+					$tag = ucfirst($usrgroup)."-".$num_rows++;
+					$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE tag = '$tag'");
+					echo $tag;
+					if(mysqli_affected_rows($dbc) < 1)
+					{
+						$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");
+						break;
+					}
+					$i++;
+				}
+				
+				/*
+				if (preg_match('/[1-99]/', $userTag))
+				{
+					$tag = $userTag;
+					$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");
+				}
+				else{
+					$tag = ucfirst($usrgroup)."-".$num_rows;
+					$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");					
+				}*/
 			}
 						
 			//if everything was ok:
@@ -106,8 +135,9 @@
 				echo '<a href="editgame.php">Return to tables</a>';
 			}
 			
-			//close connection to db:
-			mysqli_close($dbc);
+			mysqli_query($dbc, "COMMIT");
+			//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+			mysqli_close($dbc); //dbc is for connection.php
 		?>
 	</div>
 </body>

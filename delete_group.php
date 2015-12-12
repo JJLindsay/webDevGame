@@ -3,7 +3,6 @@
 <head>
 <?php
 	error_reporting(-1);
-	include('connection.php');
 ?>
     <meta charset="utf-8">
     <title>Prisoner's Dilemma</title>

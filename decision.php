@@ -13,4 +13,8 @@
     $time = time()+120;
     $sql = "UPDATE games SET round$actual='$de',time='$time' WHERE id='$id'";
     $dbc->query($sql);
+	
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
 ?>

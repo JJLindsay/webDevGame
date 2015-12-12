@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 <head>
-<?php
-	error_reporting(-1);
-	include('connection.php');
-?>
+	<?php
+		error_reporting(-1);
+	?>
+
     <meta charset="utf-8">
     <title>Prisoner's Dilemma</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +16,22 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/zsparks.js"></script>
+
 	<style>
-		#message 
+		#formbox 
 		{
 			width: 50%;
-			margin: 2% 40%;
+			margin: 2% 5%;
 		}
-	</style>	
+		
+		#title
+		{
+			width: 50%;
+			margin: 2% 2%;
+		}
+	</style>
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -57,37 +63,14 @@
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</header><!--  end Navigation Bar -->
-	
-	<div id='message'>
-		<?php
-			//get the query
-			$course = $_POST['course'];
-			$section = $_POST['section'];
-			$id = $_POST['id'];
-				
-			//returns true or false for update
-			$result = mysqli_query($dbc, "UPDATE course SET course_and_number = '$course', section = '$section' WHERE id = $id");
-			if (!$result)
-			{
-				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
-				exit;
-			}
-							
-			//if everything was ok:
-			if(mysqli_affected_rows($dbc) == 1)
-			{
-				//Ok message confirmation:
-				echo "Great. This course has been updated. <br/>";
-				echo '<a href="editgame.php">Return to tables</a>';
-			}else{
-				echo "The course could not be changed due to a system error. <br/>";
-				echo '<a href="editgame.php">Return to tables</a>';
-			}
+
+	<h1 id='title'>Set the Maximum Range for Random</h1>
+	<?php
+		echo "<form id='formbox' action='submit_random_limit.php' method='post'>
+			 <p>Max Range: <input type='text' name= 'limit' size='10' maxlength='2' placeholder='default 5'/></p>	
 			
-			mysqli_query($dbc, "COMMIT");
-			//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
-			mysqli_close($dbc); //dbc is for connection.php
-		?>
-	</div>
+			 <p><input type='submit' name='Apply Changes' value='Submit' /></p>	   
+			 </form>";
+	?>	
 </body>
 </html>

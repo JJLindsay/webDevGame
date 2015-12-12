@@ -66,5 +66,8 @@ list($totalOnline) = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM users")
 // Outputting the number as plain text:
 echo $totalOnline;
 
+	mysqli_query($dbc, "COMMIT");
+	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+	mysqli_close($dbc); //dbc is for connection.php
 
 ?>

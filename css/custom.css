@@ -246,6 +246,9 @@ background-color:white;
 }
 
 /* playgame page <probably should be automatic somehow>*/
+.yellow {
+	background-color: yellow;
+}
 .red {
 	background-color: red;
 }
