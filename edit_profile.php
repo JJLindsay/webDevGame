@@ -23,7 +23,6 @@
 <!doctype html>
 <html>
 <head>
-	<!--<meta charset="utf-8">-->
 	<title>Prisoner's Dilemma</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
@@ -98,11 +97,8 @@
 									</div>
 								</div> 
 							</div>
-							<div class="col-sm-9 col-md-9 col-lg-9 "> 
-							
-							
-								<table class="table table-user-information">
-									
+							<div class="col-sm-9 col-md-9 col-lg-9 ">
+								<table class="table table-user-information">	
 									<form method="post" action="<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 										<tr>
 											<td>First Name</td>
@@ -131,24 +127,14 @@
 										<tr>
 											<td> </td>
 											<td>
-												<input type="submit" name="submit" value="Update" class="btn btn-default dropdown-toggle btn-warning" style="float:right" id="editbtn" />
-												
-												<!--<button type="submit" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
-													<i class="glyphicon glyphicon-edit"></i> Update Profile
-												</button>-->
+												<input type="submit" name="submit" value="Update" class="btn btn-default dropdown-toggle btn-warning" style="float:right" id="editbtn" />											
 											</td>
 										</tr>
-									</form>
-										
+									</form>	
 								</table>
-								
-								
-								<!-- a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="float:right"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a -->
-
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

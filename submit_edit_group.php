@@ -25,7 +25,6 @@
 	</style>	
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">

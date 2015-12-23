@@ -1,6 +1,4 @@
 <?php
-
-
 	function highscore($users_id) 
 	{
 		include('connection.php');

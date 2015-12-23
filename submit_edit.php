@@ -93,10 +93,8 @@
 					$usrgroup = "yellow";
 				}
 				
-				
 				$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE user_group = '$usrgroup'");
 				$num_rows = mysqli_num_rows($result);
-				//$num_rows++;
 				
 				$i=0;
 				while ($i < 5)
@@ -111,19 +109,7 @@
 					}
 					$i++;
 				}
-				
-				/*
-				if (preg_match('/[1-99]/', $userTag))
-				{
-					$tag = $userTag;
-					$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");
-				}
-				else{
-					$tag = ucfirst($usrgroup)."-".$num_rows;
-					$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");					
-				}*/
-			}
-						
+			}						
 			//if everything was ok:
 			if(mysqli_affected_rows($dbc) == 1)
 			{

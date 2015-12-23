@@ -1,11 +1,5 @@
 $(document).ready(function()
-{
-	/*home page scripts
-	function login()
-	{
-		window.open ('profile.php','_self')
-	}$("#loginbtn").click(login);*/
-	
+{	
 	function register()
 	{
 		window.open ('signup.php','_self',false)
@@ -45,7 +39,7 @@ $(document).ready(function()
 		});				
 	}$("#iterationbtn").click(playIteration);
 	
-	//GAME HISTORY TEST using coop/defect button
+	//player chose to cooperate with their partner and remain quiet
 	function submitCoop()
 	{
 		//alert("found choice method!")
@@ -58,6 +52,7 @@ $(document).ready(function()
 				
 	}$("#btnCoop").click(submitCoop);
 	
+	//player chose to betray their partner and speak
 	function submitBetray()
 	{
 		//alert("found choice method!")

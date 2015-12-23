@@ -27,7 +27,7 @@ include('session.php');
 				$ses_sql=mysql_query("SELECT * from users where usernames='$user_check'", $connection);
 				$row = mysql_fetch_assoc($ses_sql);
 			
-			//Checks if user is online or not (for online users, the online_status = 1)		
+				//Checks if user is online or not (for online users, the online_status = 1)		
 				if ($row['online_status'] == 1) 
 				{
 					echo "Your Online status has been updated!!";

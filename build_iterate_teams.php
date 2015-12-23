@@ -59,9 +59,6 @@
 	{
 		$allclasses = $_GET['checked'];
 		$arr_classes = explode("|", $allclasses);
-		//echo "entered".$arr_classes[2];
-		//echo "count:".count($arr_classes);
-		//echo $arr_classes[0];
 		list($course, $section) = explode(",", $arr_classes[0], 2);
 		$whereclause = "( SELECT id FROM users WHERE (course = '".$course."' AND section = ".$section.")";
 		mysqli_query($dbc, "INSERT INTO added_iterate_classes(id, course, section) VALUES (1,'$course', $section)");
@@ -91,42 +88,28 @@
 		$query2 .= ' WHERE users_id IN ';
 		$query2 .= $whereclause;
 		$result2 = mysqli_query($dbc, $query2);
-		//$num_rows2 = mysqli_num_rows($result2);
-		
-		//$row2 = mysqli_fetch_assoc($result2);  //give me this row
-		//$second_user = $row2['tag'];
 		
 		$index = 1;
 		$inner_index = 1;
 		mysqli_query($dbc, "INSERT INTO iterative_teams(id,member1) VALUES ($index, '$first_user')");
-		//mysqli_query($dbc, "COMMIT");
 		
 		while ($index <= $num_rows1)
 		{
-			//echo "$inner_index ::";
-			//echo "$index !!";
 			$row2 = mysqli_fetch_assoc($result2);  //give me this row
 			$second_user = $row2['tag'];
 		
 			if ($first_user == $second_user)
 			{
-				//echo "YES equal<br/>";
 				$row2 = mysqli_fetch_assoc($result2);  //give me this row or NULL
 				$second_user = $row2['tag'];
-				
-				//echo "$first_user";
 				
 				$query3 = "SELECT *";
 				$query3 .= " FROM iterative_teams";
 				$query3 .= " WHERE member1 = '$first_user'";
 				$result3 = mysqli_query($dbc, $query3);  //returns object or FALSE on failure
 				
-				
-				//$num_rows3 = mysqli_num_rows($result3);
-				
 				if ($row2 != NULL && $result3 != false)
 				{
-					//echo "Searching for: $second_user";
 					if (substr($second_user, 0,1) == 'R')
 					{
 						$query3 = "SELECT *";
@@ -199,7 +182,6 @@
 					}
 					elseif (substr($second_user, 0,1) == 'Y')
 					{
-						//echo "$second_user inside Y!";
 						$query3 = "SELECT *";
 						$query3 .= " FROM iterative_teams";
 						$query3 .= " WHERE member1 = '$first_user' AND ( member2 LIKE 'Y%' OR member3 LIKE 'Y%' OR member4 LIKE 'Y%')";
@@ -233,27 +215,10 @@
 							$result3 = mysqli_query($dbc, $query3);
 						}				
 					}
-					
-					
-					//$values = array_values($row);
-					//$second_user = $values['tag'];
-					//$member2 = $second_user;
 				}
-				/*$values = array_values($row);
-				$second_user = $values['tag'];
-				$member3 = $second_user;
-				
-				$values = array_values($row);
-				$second_user = $values['tag'];
-				$member4 = $second_user;
-				
-				$query .= 'INSERT INTO iterative_teams(id, member1, member2, member3, member4)';
-				$query .= ' VALUES($id, $first_user,$member2, $member3, $member4)';
-				*/
 			}
 			else
 			{
-				//echo "Searching for2: $second_user <br/>";
 				$query3 = "SELECT *";
 				$query3 .= " FROM iterative_teams";
 				$query3 .= " WHERE member1 = '$second_user'";
@@ -263,9 +228,6 @@
 				
 				if ($result3 != False && ($row3['member2'] == NULL || $row3['member3'] == NULL || $row3['member4'] == NULL)) //there is an open slot on this team
 				{
-					//echo $row3['member2'];
-					//echo "FOUND YELLOW3!";
-					//echo "Searching for2.5: $second_user <br/>";
 					if (substr($second_user, 0,1) == 'R')  //if older user/established team owner
 					{
 						$query3 = "SELECT *";
@@ -557,8 +519,6 @@
 				}
 				else //there is no open slot on second user but first user may be on second user's team.
 				{
-					//echo "Searching for3: $second_user <br/>";
-					//$row3 = mysqli_fetch_assoc($result3);  //give me this row or NULL
 					if ($row3['member2'] == $first_user || $row3['member3'] == $first_user || $row3['member4'] == $first_user)
 					{
 						$query3 = "SELECT *";
@@ -585,34 +545,9 @@
 						$query3 .= " WHERE member1 = '$first_user'";
 						$result3 = mysqli_query($dbc, $query3);
 					}
-				}
-				
-				/*
-				$row3 = mysqli_fetch_assoc($result3);  //give me this row
-				
-				
-				
-				if ($row3['member2']==$first_user)
-				{
-					$column = "member2";
-				}
-				elseif($row3['member3']==$first_user)
-				{
-					$column = "member3";
-				}
-				elseif ($row3['member4']==$first_user)
-				{
-					$column = "member4";
-				}
-				
-									$query3 = "UPDATE iterative_teams";
-							$query3 = " SET $column = '$second_user'";
-							$query3 = " WHERE member1 = '$first_user'";
-							$result3 = mysqli_query($dbc, $query3);
-				*/		
+				}	
 			}
-			
-					
+								
 			$inner_index++;
 			//this is used to move to next first user, reset the second user, and insert new first user
 			if ($inner_index > $num_rows1)

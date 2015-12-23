@@ -10,7 +10,6 @@
 	
 	<link href="css/custom.css" rel="stylesheet">
 </head>
-
 <body>
 	<!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
@@ -54,9 +53,9 @@
 		$offline_users_query="SELECT * from users WHERE online_status='0'";
 		$result = $dbc -> query($online_users_query);
 		$result1 = $dbc -> query($offline_users_query);
-		if ($result -> num_rows > 0) {
-		
-		
+		if ($result -> num_rows > 0) 
+		{
+
 	?>
 	
 	<div class="container">
@@ -75,7 +74,7 @@
 								
 							}
 						} 
-				}
+		}
 				?>
 				</li>
 				<li>
@@ -94,13 +93,13 @@
 			</ul>
 		</div>
 	</div>
-<?php
-	mysqli_query($dbc, "COMMIT");
-	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
-	mysqli_close($dbc); //dbc is for connection.php
-?>	
+	<?php
+		mysqli_query($dbc, "COMMIT");
+		//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+		mysqli_close($dbc); //dbc is for connection.php
+	?>	
 	
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type=" src=js/myscript.js"></script>

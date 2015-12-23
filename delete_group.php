@@ -10,8 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/stylesheet.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-    <!--<script src="js/respond.js"></script -->	
+	<link href="css/custom.css" rel="stylesheet">	
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

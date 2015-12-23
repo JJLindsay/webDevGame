@@ -63,7 +63,6 @@
                     $cs += 10;
                     $os -= 10;
                     break;
-
             }
         }
         return $cs.";".$os.";".$num;
@@ -111,6 +110,19 @@
                 $ad = "Defect";
                 break;
         }
+		//get user color and tag
+    	$query = "SELECT * FROM teamcode WHERE users_id='$cp'";
+    	$result = $dbc->query($query);
+    	$user = $result->fetch_assoc();
+    	$tag = $user['tag'];
+		$user_piece = explode("-", $tag);
+		//get user color and tag
+    	$query = "SELECT * FROM teamcode WHERE users_id='$op'";
+    	$result = $dbc->query($query);
+    	$opponent = $result->fetch_assoc();
+    	$tag = $opponent['tag'];
+		$opponent_piece = explode("-", $tag);
+
     	$t2 = time();
     	$tr = $ti-$t2;
     	if($tr <= 0){
@@ -177,69 +189,66 @@
             }
             $sql = "UPDATE games SET status=status+1 WHERE id='$id'";
             $dbc->query($sql);
-        } else {
+        } 
+		else 
+		{			
+			$query=mysqli_query($dbc,"SELECT id FROM users WHERE course='$course' AND section=$section");	
+			$result = mysqli_num_rows($query);
+			$group= round($result / 3);	//10
+			$doublegroup= $group + $group;	//20					
+			$query1=mysqli_query($dbc,"SELECT rank FROM users WHERE id='$cp'");
+			$fetchrankrow=$query1->fetch_assoc(); //fetch for $cp
+			$resultrank=$fetchrankrow['rank']; // rank for $cp
 			
-		//$dbc=mysqli_connect("localhost","root","","zillionsparks_db");
-		//$query=mysqli_query($dbc,"SELECT num_of_students FROM admin WHERE class_name='$course' AND class_section='$section'");	
-		$query=mysqli_query($dbc,"SELECT id FROM users WHERE course='$course' AND section=$section");	
-		//$fetchrow=$query->fetch_assoc();
-		//$result=$fetchrow['num_of_students'];  //30
-		$result = mysqli_num_rows($query);
-		$group= round($result / 3);	//10
-		$doublegroup= $group + $group;	//20					
-		$query1=mysqli_query($dbc,"SELECT rank FROM users WHERE id='$cp'");
-		$fetchrankrow=$query1->fetch_assoc(); //fetch for $cp
-		$resultrank=$fetchrankrow['rank']; // rank for $cp
-		
-		$query2=mysqli_query($dbc,"SELECT rank FROM users WHERE id='$op'");
-		$fetchrankrow1=$query2->fetch_assoc(); //fetch for $op
-		$resultrank1=$fetchrankrow1['rank']; // rank for $op
-		
-		// Assigned Group to current players
-		if($resultrank <= $group) {
-		    $cpp = "<span style='color:white;background-color:red;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."R-".$cp."</span>";
-		} else if (($resultrank > $group && $resultrank <= $doublegroup)) {
-			$cpp = "<span style='color:white;background-color:green;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."G-".$cp."</span>";
-		} else {
-			$cpp = "<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."B-".$cp."</span>";
-		}
-		// Assigned Group to Opponent
-		if($resultrank1 <= $group) {
-			$opp = "<span style='color:white;background-color:red;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."R-".$op."</span>";
-		} else if (($resultrank1 > $group && $resultrank1 <= $doublegroup)) {
-			$opp = "<span style='color:white;background-color:green;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."G-".$op."</span>";
-		} else {
-			$opp = "<span style='color:white;background-color:blue;border-radius: 5px;padding:0% 1%;'>"."PLAYER "."B-".$op."</span>";
-		}
+			$query2=mysqli_query($dbc,"SELECT rank FROM users WHERE id='$op'");
+			$fetchrankrow1=$query2->fetch_assoc(); //fetch for $op
+			$resultrank1=$fetchrankrow1['rank']; // rank for $op
 			
-        	//Display Who's Versus Who when Both players are available to play
-			echo "<h3 class='text-center'>".$cpp."<br>"."<div style='margin:5px'>"." VS "."</div>".$opp."<small>"."	<br>"."(Round ".$actual." )"."</small>"."</h3>";
-    
-       
-			if($cpd == 0){
-                echo "<div class='buttons col-xs-12 col-md-8 col-md-offset-2'>
-            	        <div class='btn-group btn-group-justified' role='group' aria-label='decision'>
-                            <a id='cooperate' class='btn_co btn btn-success'>Cooperate</a>
-                            <a id='defect' class='btn_de btn btn-warning'>Defect</a>
-                            <input type='hidden' id='game_id' value='$id'>
-                        </div>
-            	</div>";
-            }
-        	echo "<div class='decision col-xs-12 col-md-8 col-md-offset-2'>
-        	        <h4 class='text-center'>Your decision: $ad</h4>
-        	</div>";
-            echo "<div class='timer col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-4'>
-                <span class='glyphicon glyphicon-time'></span> $tr
-            </div>";
-            echo "<script>
-                $('document').ready(function(){
-                    ion.sound.play('door_bell');";
-                    ?>
-                    setTimeout('ion.sound.destroy("door_bell")',3000);
-                    <?php
-            echo "
-                });
-            </script>";
+			// Assigned Group to current players
+			if($resultrank <= $group) {
+				$cpp = "<span style='color:white;background-color:".$user_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."R-".$user_piece[1]."</span>";
+			} else if (($resultrank > $group && $resultrank <= $doublegroup)) {
+				$cpp = "<span style='color:white;background-color:".$user_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."G-".$user_piece[1]."</span>";
+			} else {
+				$cpp = "<span style='color:white;background-color:".$user_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."B-".$user_piece[1]."</span>";
+			}
+			// Assigned Group to Opponent
+			if($resultrank1 <= $group) {
+				$opp = "<span style='color:white;background-color:".$opponent_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."R-".$opponent_piece[1]."</span>";
+			} else if (($resultrank1 > $group && $resultrank1 <= $doublegroup)) {
+				$opp = "<span style='color:white;background-color:".$opponent_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."G-".$opponent_piece[1]."</span>";
+			} else {
+				$opp = "<span style='color:white;background-color:".$opponent_piece[0].";border-radius: 5px;padding:0% 1%;'>"."PLAYER "."B-".$opponent_piece[1]."</span>";
+			}
+				
+				//Display Who's Versus Who when Both players are available to play
+				echo "<h3 class='text-center'>".$cpp."<br>"."<div style='margin:5px'>"." VS "."</div>".$opp."<small>"."	<br>"."(Round ".$actual." )"."</small>"."</h3>";
+		
+		   
+				if($cpd == 0){
+					echo "<div class='buttons col-xs-12 col-md-8 col-md-offset-2'>
+							<div class='btn-group btn-group-justified' role='group' aria-label='decision'>
+								<a id='cooperate' class='btn_co btn btn-success'>Cooperate</a>
+								<a id='defect' class='btn_de btn btn-warning'>Defect</a>
+								<input type='hidden' id='game_id' value='$id'>
+							</div>
+					</div>";
+				}
+				echo "<div class='decision col-xs-12 col-md-8 col-md-offset-2'>
+						<h4 class='text-center'>Your decision: $ad</h4>
+				</div>";
+				echo "<div class='timer col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-4'>
+					<span class='glyphicon glyphicon-time'></span> $tr
+				</div>";
+				echo "<script>
+					$('document').ready(function(){
+						ion.sound.play('door_bell');";
+						?>
+						setTimeout('ion.sound.destroy("door_bell")',3000);
+						<?php
+				echo "
+					});
+				</script>";
         }
         $sql = "SELECT * FROM games WHERE id='$id'";
         $query = $dbc->query($sql);

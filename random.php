@@ -18,7 +18,6 @@
 	<script src="js/zsparks.js"></script>
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -31,7 +30,6 @@
 				</button>
 				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
-
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -54,8 +52,7 @@
 <?php
 	mysqli_query($dbc, "TRUNCATE TABLE random_game"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
 	mysqli_query($dbc, "UPDATE teamcode SET random_group = "); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
-	mysqli_query($dbc, "COMMIT");
-	
+	mysqli_query($dbc, "COMMIT");	
 	if (!empty($_GET['unchecked']))
 	{
 		$allclasses = $_GET['unchecked'];
@@ -82,7 +79,6 @@
 			$max_fixed_group = ($max_fixed_group / 3) + 1;
 		else
 			$max_fixed_group = $max_fixed_group / 3;
-		
 		
 		//how many groups to fill with 3 students
 		$rndNum = rand(1, $max_fixed_group); //values are inclusive
@@ -158,9 +154,7 @@
 					
 					$p2_values = array_values($p2);  //splits the row contents into an array
 					$p2 = htmlspecialchars($p2_values[0]);
-					//echo "('$p1','$p2')<br/>";
 					mysqli_query($dbc, "INSERT INTO random_game (p1, p2) VALUES ('$p1','$p2')");
-					//mysqli_query($dbc, "COMMIT");
 					
 					if (!$allset)
 						$arr[] = $p2;
@@ -179,14 +173,12 @@
 			$teamcode = $groups->fetch_assoc();  //get the contents of the next row.
 			
 			mysqli_query($dbc,"UPDATE game_mode SET play_random = 1"); 
-			//mysqli_query($dbc,"COMMIT"); 
 		}
 		//Ok message confirmation:
 		echo "<div id='message'>";
 		echo "Great. The Random groups have been set. <br/>";
 		echo '<a href="editgame.php">Return to tables</a>';
 		echo "</div>";
-		
 	}
 	else{
 		echo "<div id='message'>";

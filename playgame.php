@@ -10,17 +10,12 @@
 
 	<link href="css/custom.css" rel="stylesheet">
 </head>
-
 <body>
 	<?php
 		error_reporting(-1);
-		//session_start(); // Starting Session 
 		include('connection.php');
 		include('session.php');
-		include('functions.php');
-		//include('useronline.php');
-		
-							
+		include('functions.php');						
 	?>
 	<!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
@@ -96,13 +91,9 @@
 						</div>
 						<br/>
 
-						
-						
 						<div class="list-group" id="gameContacts">
 							<b>Current Dilemmas</b>
 							<!--LOOP  set the id and collect the score against id-->
-							
-							
 							<?php
 								//IS THE USER PLAYING ITERATIVE OR RANDOM?
 								$query = "SELECT *";
@@ -115,8 +106,7 @@
 								$result = mysqli_query($dbc, $query);
 								$rows = mysqli_num_rows($result);
 								if ($rows == 1)  //USER'S CLASS IS PLAYING ITERATIVE
-								{							
-									//$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");							
+								{												
 									$query = "SELECT *";
 									$query .= " FROM iterative_game";
 									$query .= " WHERE p1 IN (SELECT tag";
@@ -124,8 +114,7 @@
 									$query .= " WHERE users_id=".$_SESSION['login_id'].")";
 								}
 								else  //USER'S CLASS IS PLAYING RANDOM
-								{
-									//$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");							
+								{						
 									$query = "SELECT *";
 									$query .= " FROM random_game";
 									$query .= " WHERE p1 IN (SELECT tag";
@@ -143,7 +132,7 @@
 									
 									for ($index = 0; $index <  $num_rows; $index++)
 									{						
-										//sets which button color to use>>
+										//sets which button color to use
 										//get the group color of p1 if play random is false
 										//else get random group color of p1 if play random is true
 										
@@ -152,16 +141,10 @@
 										$query .= " WHERE tag LIKE '".$row['p2']."'";
 										
 										$teamcode_result = mysqli_query($dbc, $query);
-										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.
+										$getColor = $teamcode_result->fetch_assoc();  //get the contents of the row.								
+										$color = $getColor['user_group'];
 										
-										//include('game_mode.php');
-										
-										//if ($play_random == 0)
-											$color = $getColor['user_group'];
-										//else
-											//$color = $getColor['random_group'];
-										
-										//sets which button to use>>
+										//sets which button to use
 										//if p1_score !null and p2_score is Null
 										if (!is_null($row['p2_choice']) && is_null($row['p1_choice']) && $row['round_limit'] > 0)
 										{
@@ -195,8 +178,7 @@
 								$result = mysqli_query($dbc, $query);
 								$rows = mysqli_num_rows($result);
 								if ($rows == 1)  //USER'S CLASS IS PLAYING ITERATIVE
-								{							
-									//$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");							
+								{													
 									$query = "SELECT *";
 									$query .= " FROM iterative_game";
 									$query .= " WHERE p2 IN (SELECT tag";
@@ -204,8 +186,7 @@
 									$query .= " WHERE users_id=".$_SESSION['login_id'].")";
 								}
 								else  //USER'S CLASS IS PLAYING RANDOM
-								{
-									//$db = mysqli_connect("localhost", "root", "", "zillionsparks_db");							
+								{						
 									$query = "SELECT *";
 									$query .= " FROM random_game";
 									$query .= " WHERE p2 IN (SELECT tag";
@@ -225,7 +206,7 @@
 									//loop through
 									for ($index = 0; $index <  $num_rows; $index++)
 									{
-										//sets which button color to use>>
+										//sets which button color to use
 										//get the group color of p1 if play random is false
 										//else get random group color of p1 if play random is true
 										
@@ -238,7 +219,7 @@
 										
 										$color = $getColor['user_group'];
 										
-										//sets which button to use>>
+										//sets which button to use
 										if (!is_null($row['p1_choice']) && is_null($row['p2_choice']) && $row['round_limit'] > 0)
 										{
 											 ?>
@@ -303,6 +284,5 @@
 		}
 		
 	</script>
-	
 </body>
 </html>

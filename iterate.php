@@ -32,6 +32,5 @@ error_reporting(-1);
 		}		
 	}
 	
-	//mysqli_query($dbc,"UPDATE game_mode SET play_random = 0"); 
 	mysqli_query($dbc, "COMMIT");
 ?>

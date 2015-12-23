@@ -38,15 +38,6 @@ opacity:.9;
  color:#fff;
 }
 
-/*changes the banner fonts
-
-.navbar-default .navbar-nav>.active>a, 
-.navbar-default .navbar-nav>.active>a:focus, 
-.navbar-default .navbar-nav>.active>a:hover {
-    color: #FFF;
-    background-color: #25D434;
-}
-*/
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color:black;
@@ -169,8 +160,6 @@ background-color:white;
 {
 	border:#ffd90f 1px solid;	
 }
-
-
 
 #zsname
 {

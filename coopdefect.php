@@ -1,5 +1,5 @@
 <?php
-	//GAME HISTORY TEST using coop/defect buttons: This file is called by zsparks submitChoice()
+	//This file is called by zsparks.js submitChoice()
 	include('connection.php');
 	include('session.php');
 	error_reporting(-1);

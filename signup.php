@@ -61,24 +61,14 @@
 		$password2 = $_POST['RePassword'];
 		$Course	   = $_POST['CourseName'];
 		$Section   = $_POST['Section'];
-		
-		
-		
+
 		//if values are not empty, proceed to store them in the database
-		
 		if (!empty($fname) && !empty($lname) && !empty($email1) && !empty($email2) && !empty($users) && !empty($password1) && !empty($password2)) {
-			//echo "<h4> No Field is empty! </h4>";
-			
-			if ((!filter_var($email1, FILTER_VALIDATE_EMAIL) === false) && (!filter_var($email2, FILTER_VALIDATE_EMAIL) === false)) {
-				//echo "<h4> Emails are valid as well!</h4>";
-				
+			if ((!filter_var($email1, FILTER_VALIDATE_EMAIL) === false) && (!filter_var($email2, FILTER_VALIDATE_EMAIL) === false)) {	
 				if($password1 == $password2) {
-					//echo "<h4> Passwords also match!! </h4>";
 						
 					mysqli_query($dbc, "INSERT INTO users(usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw) 
 										VALUES ('$users', '$fname', '$lname', '$email1', '$email2', '$Course', '$Section', '$password1', '$password2')");
-					
-					
 					
 					//SET TEAMCODE ID's
 					$max = mysqli_query($dbc, "SELECT * FROM teamcode WHERE users_id = (SELECT MAX(users_id) FROM teamcode)");  
@@ -87,7 +77,6 @@
 					/* 
 					loop through each group:
 					turns true/false. Success actually returns a mysqli_result object 
-					
 					
 					>>UPDATE CODE
 					if all count of group(fixed group) = 3
@@ -114,8 +103,7 @@
 							$group = 'Yellow';
 
 						$tag = $group . "-" . $id;
-						
-						
+
 						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES ($id,'$tag','$group')");  //sets the total score to 0 on registration
 						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration
 					}
@@ -124,30 +112,9 @@
 						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (1,'B1','blue')");  //sets the total score to 0 on registration
 						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES (1, 0)");  //sets the total score to 0 on registration
 					}
-							
-							
-					/*
-					max(fixed_group)
-					if doesn't exist start at 1
-					eles
-					Red Max(grop_id) + 1
-					Green Max(grop_id) + 1
-					Blue Max(grop_id) + 1
-					
-					
-					
-					
-					*/
-					
-			
-					//"SELECT tag,user_group FROM teamcode WHERE id = (SELECT MAX(id) FROM teamcode)";
-					
-					//echo "<h4> User Data inserted Successfully, Everything Worked Fine!</h4>";
 					header('Location:index.php');
 				}
-
 			}
-
 		} else
 		if (empty($fname)){
 			$fnameErr = "First name is required";
@@ -172,12 +139,9 @@
 		} else {
 			$emptyErr = "Please complete the form...";
 		}
-
 	}
-
 	?>					
 					<span class="error"> <?php  echo $emptyErr; ?></span>
-					<!--PHP Ends HERE-->
                     <select class = "dropdown_1" style="margin-left: 10px; margin-top: 10px; height:30px">
                         <option>Mr</option>
                         <option>Ms</option>
@@ -218,11 +182,9 @@
 							while ($row = mysqli_fetch_array($result))
 							{
 								echo "<option>". $row['section']."</option>";
-							}
-							
+							}					
 						?>
-                    </select>	
-						
+                    </select>						
 					<div style="font-size:14px; margin-left: 10px; margin-top: 10px">
                         <p>By clicking Sign Up, you agree to our 
                             <a href="" target="" rel="nofollow">Terms</a> 
@@ -231,7 +193,6 @@
                         </p>
                     </div>
                     <div style="margin-top:10px; margin-left: 10px">
-                        <!--type="submit" removed for demo purposes for type=button-->
 						<button style="background-color:green; height:40px; width:150px;  -moz-border-radius: 15px;
                             -webkit-border-radius: 15px;
                             border: 3px solid #009900;

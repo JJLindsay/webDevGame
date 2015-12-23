@@ -10,7 +10,6 @@
 	<link href="css/custom.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
 </head>
-
 <body>
 	<?php
 		include('connection.php');
@@ -72,11 +71,6 @@
     			    				<?=$score?>
     			    			</span>
     			    		</h3><br>
-    			    		<!--h3><span class="label label-danger col-xs-12">Average score: 
-    			    			<span class="badge" id="badge-as">
-    			    				?=$score/$gplayed?>
-    			    			</span>
-    			    		</h3-->
     			    	</div>
     			    </aside>
     			    <div class="col-xs-12 col-md-8" id="game_inside">

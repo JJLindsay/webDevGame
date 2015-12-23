@@ -16,7 +16,7 @@
 </head>
 <body class="indexbody">
 
-<!-- Navigation Bar begin -->
+	<!-- Navigation Bar begin -->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand/Logo and toggle get grouped for better mobile display -->
@@ -26,13 +26,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Prisoner's Dilemma</a>
+				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
 
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 				</ul>
 			</div><!--.navbar-collapse -->
 		</div><!--.container-fluid -->
@@ -48,7 +48,6 @@
 	<?php
 
 		include('loginnn.php'); // Includes Login Script
-		//include('status.php'); // updates user's online_status to 1
 		if(isset($_SESSION['login_user']))
 		{
 			if($_SESSION['admin_course'] == 'admin'){
@@ -59,8 +58,11 @@
 			}
 			include('session.php');//this may be too late to start a session
 			$update_status_query = mysqli_query($dbc, "UPDATE users SET online_status='1' WHERE usernames='$user_check'");
+			
+			mysqli_query($dbc, "COMMIT");
+			//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
+			mysqli_close($dbc); //dbc is for connection.php
 		}
-	
 	?>
 		
 		<div class="form-group">
@@ -95,19 +97,13 @@
 		</div>
 	</div></center>
 
-<!--Creates footer with navigation to repositroy-->
+	<!--Creates footer with navigation to repositroy-->
 	<div class="container">
 		<p class="pull-left">			
 			<a href="https://github.com/JJLindsay/webDevGame"> ZillionSparks</a>
 			&copy 2015                    
 		</p>
 	</div>
-
-<?php
-	mysqli_query($dbc, "COMMIT");
-	//3. ALWAYS CLOSE A DATABASE AFTER USING IT.
-	mysqli_close($dbc); //dbc is for connection.php
-?>	
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

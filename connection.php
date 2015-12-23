@@ -8,6 +8,4 @@ $dbname = "zillionsparks_db";
 
 //making the connection to mysql
 $dbc = mysqli_connect($hostname, $username, $password, $dbname) OR die("could not connect to database, ERROR: ".mysqli_connect_error());
-
-//echo "<h1>you are connected to ".$dbname." Database</h1>";
 ?>

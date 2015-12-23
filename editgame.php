@@ -12,7 +12,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/stylesheet.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
-    <!--<script src="js/respond.js"></script -->	
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -149,7 +148,6 @@
 				$whereclause = "(SELECT id FROM users WHERE (course, section) NOT IN (SELECT course, section FROM added_iterate_classes))";
 				$rnd_groups = mysqli_query($dbc, "SELECT DISTINCT random_group FROM teamcode WHERE users_id IN ".$whereclause." ORDER BY random_group");
 				$rnd_count = mysqli_num_rows($rnd_groups); //how many 
-				//echo $rnd_count;
 				$rnd_group = mysqli_fetch_array($rnd_groups); //who are they								
 				echo $rnd_group['random_group'];
 				$r = mysqli_query($dbc, "SELECT * FROM teamcode WHERE users_id IN ".$whereclause." AND random_group = ".$rnd_group['random_group']);
@@ -231,8 +229,6 @@
 			$checked_classes = mysqli_query($dbc, "SELECT course, section FROM added_iterate_classes WHERE (course, section) IN (SELECT course_and_number, section FROM course)");
 
 			$count = 0;
-				//$class = mysqli_fetch_array($classes);
-				//if ($class["course"]==$row["course_and_number"] && $class["section"]==$row["section"])
 				while ($checked_class = mysqli_fetch_array($checked_classes))
 				{
 					echo 
@@ -255,8 +251,6 @@
 					else
 						$count++;					
 				}
-				//else
-				//$count = 0;
 				while ($unchecked_class = mysqli_fetch_array($unchecked_classes))
 				{
 					echo 

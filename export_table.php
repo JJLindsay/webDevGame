@@ -2,8 +2,10 @@
 	error_reporting(-1);
 	include('connection.php');
 	include('session.php');
-  // Original PHP code by Chirp Internet: www.chirp.com.au
-  // Please acknowledge use of this code by including this header.
+	
+	// FULL DISCLAIMER: The export table code is not my own. See below.
+	// Original PHP code by Chirp Internet: www.chirp.com.au
+	// Please acknowledge use of this code by including this header.
 
   function cleanData(&$str)
   {

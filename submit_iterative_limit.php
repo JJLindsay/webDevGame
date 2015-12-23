@@ -25,7 +25,6 @@
 	</style>	
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -38,7 +37,6 @@
 				</button>
 				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
-
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">

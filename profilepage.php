@@ -59,14 +59,12 @@
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
-	</header><!-- end Navigation Bar -->	
-	
+	</header><!-- end Navigation Bar -->
 
 	<!-- Profile Table begin-->
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 top-margin" >
-
 
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -108,22 +106,18 @@
 								<button type="button" class="btn btn-default dropdown-toggle btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right" id="editbtn">
 									<i class="glyphicon glyphicon-edit"></i> Edit Profile
 								</button>
-								<!-- a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="float:right"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a -->
-
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div><!-- end Profile Table -->
 
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type=" src=js/myscript.js"></script>
-<script src="js/zsparks.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type=" src=js/myscript.js"></script>
+	<script src="js/zsparks.js"></script>
 </body>
 </html>
