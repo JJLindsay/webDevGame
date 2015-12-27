@@ -25,7 +25,6 @@
 	</style>	
 </head>
 <body>
-
 	<!-- Navigation Bar begin-->
 	<header class="navbar navbar-default">
 		<div class="container-fluid">
@@ -38,7 +37,6 @@
 				</button>
 				<a class="navbar-brand" href="index.php">Prisoner's Dilemma</a>
 			</div>
-
 			<!-- Collect the nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -59,66 +57,43 @@
 	</header><!--  end Navigation Bar -->
 	
 	<div id='message'>
-		<?php
-			//get the query
-			$fname = $_POST['fname'];
-			$lname = $_POST['lname'];
-			$course = $_POST['course'];
-			$section = $_POST['section'];
-			$password = $_POST['pwd'];
-			$id = $_POST['id'];
-			$userTag = $_POST['userTag'];
-				
-			//returns true or false for update on everything except tag
-			$result = mysqli_query($dbc, "UPDATE users SET first_name = '$fname', last_name = '$lname', 
-			course = '$course', section = '$section', pw = '$password' where id = $id");
-			if (!$result)
-			{
-				print "Error - the query could not be executed: <br/>" . mysqli_error($dbc);
-				exit;
-			}
+		<?php							
+			//Deletes all the data in all the tables
+			mysqli_query($dbc, "TRUNCATE TABLE iterative_game"); 
+			mysqli_query($dbc, "TRUNCATE TABLE random_game"); 			
+			mysqli_query($dbc, "TRUNCATE TABLE added_iterate_classes"); 
+			mysqli_query($dbc, "TRUNCATE TABLE course"); 
+			mysqli_query($dbc, "TRUNCATE TABLE game_mode"); 
+			mysqli_query($dbc, "TRUNCATE TABLE history"); 
+			mysqli_query($dbc, "TRUNCATE TABLE iterative_teams"); 
+			mysqli_query($dbc, "TRUNCATE TABLE random_history"); 
+			mysqli_query($dbc, "TRUNCATE TABLE teamcode"); 
+			mysqli_query($dbc, "TRUNCATE TABLE totals"); 
+			mysqli_query($dbc, "TRUNCATE TABLE games");
+
+			mysqli_query($dbc, "ALTER TABLE totals DROP FOREIGN KEY totalsUsersID_fk");
+			mysqli_query($dbc, "ALTER TABLE teamcode DROP FOREIGN KEY usersTeamCode_fk");
 			
-			//the following code is to change the tag
-			if ($userTag != NULL && (strtolower(substr($userTag,0,1)) == 'r' || strtolower(substr($userTag,0,1)) == 'y' || strtolower(substr($userTag,0,1)) == 'b'))
-			{
-				if (strtolower(substr($userTag,0,1)) == 'r')
-				{				
-					$usrgroup = "Red";
-				}
-				elseif (strtolower(substr($userTag,0,1)) == 'b')
-				{				
-					$usrgroup = "Blue";
-				}	
-				elseif (strtolower(substr($userTag,0,1)) == 'y')
-				{				
-					$usrgroup = "Yellow";
-				}
-				
-				$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE user_group = '$usrgroup'");
-				$num_rows = mysqli_num_rows($result);
-				
-				$i=0;
-				while ($i < 5)  //attempt only a max of 5x to insert a tag
-				{
-					$tag = ucfirst($usrgroup)."-".$num_rows++;
-					$result = mysqli_query($dbc, "SELECT * FROM teamcode WHERE tag = '$tag'");
-					//echo $tag;
-					if(mysqli_affected_rows($dbc) < 1)
-					{
-						$result = mysqli_query($dbc, "UPDATE teamcode SET tag = '$tag', user_group = '$usrgroup' where users_id = $id");
-						break;
-					}
-					$i++;
-				}
-			}						
+			mysqli_query($dbc, "TRUNCATE TABLE users");
+			
+			mysqli_query($dbc, "ALTER TABLE teamcode ADD CONSTRAINT usersTeamCode_fk FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE");			
+			mysqli_query($dbc, "ALTER TABLE totals ADD CONSTRAINT totalsUsersID_fk FOREIGN KEY (users_id) REFERENCES users (id) ON DELETE CASCADE");
+			
+			//Adds the administrator back
+			mysqli_query($dbc, "INSERT INTO users(id, usernames, first_name, last_name, email, confirmed_email, course, section, pw, confirmed_pw)
+								VALUES (1, 'aadmin', 'admin', 'admin', 'admin@hotmail.com', 'admin@hotmail.com', 'admin', 0, 123456, 123456)");
+			//mysqli_query($dbc, "Delete FROM teamcode WHERE users_id = 1");	
+			//mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration			
+		
 			//if everything was ok:
 			if(mysqli_affected_rows($dbc) == 1)
 			{
 				//Ok message confirmation:
-				echo "Great. This account has been updated. <br/>";
+				echo "Excellent. All data across all tables has been deleted.<br/>";
+				echo "Admin login has defaulted to username: aadmin and password:123456.<br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}else{
-				echo "The account could not be changed due to a system error. <br/>";
+				echo "All data could not be dumped due to a system error. <br/>";
 				echo '<a href="editgame.php">Return to tables</a>';
 			}
 			

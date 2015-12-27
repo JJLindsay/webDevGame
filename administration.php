@@ -123,7 +123,7 @@
 			  "<table class='table table-hover table-bordered table-striped' border=1 id='inner'> ".
 						"<tr> ";
 						
-					if (IsSet($_POST["course"]) && ($_POST["course"] == "iterate_history" || $_POST["course"] == "random_history"))
+					if (IsSet($_POST["course"]) && ($_POST["course"] == "iterate_history" || $_POST["course"] == "random_history"))  //set the appropriate header for history or not history tables
 					{
 						echo
 							"<th>Player 01</th> ".
@@ -142,23 +142,23 @@
 							"<th>Section</th> ";
 					}
 						echo "</tr> ";
-					if (IsSet($_POST["course"]) && $_POST["course"] == "iterate_history")
-					{
-						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM history';
 						
+					if (IsSet($_POST["course"]) && $_POST["course"] == "iterate_history")  //display iterate history
+					{
+						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM history';						
 					}
-					elseif (IsSet($_POST["course"]) && $_POST["course"] == "random_history")
+					elseif (IsSet($_POST["course"]) && $_POST["course"] == "random_history")  //display random history
 					{	
 						$query = 'SELECT player1, player2, player1_choice, player2_choice FROM random_history';
 					}					
-					elseif (!IsSet($_POST["course"]) || !IsSet($_POST["section"]))
-					{
-							
-						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id ORDER BY course, section;';
+					elseif (!IsSet($_POST["course"]) || !IsSet($_POST["section"]))  //display all courses and sections
+					{							
+						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u left join totals ts on u.id = ts.users_id ORDER BY course, section;';
 					}
-					else{
-						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u join totals ts on u.id = ts.users_id WHERE course LIKE \''.
-							$_POST["course"].'\' AND section LIKE \''.$_POST["section"].'\' ORDER BY course, section;';
+					else  //display one course and section
+					{
+						$query = 'select usernames, last_name, first_name, totalscore, course, section from users u left join totals ts on u.id = ts.users_id WHERE course LIKE \''.
+									$_POST["course"].'\' AND section LIKE \''.$_POST["section"].'\' ORDER BY course, section;';
 					}
 						$_SESSION['query'] = $query;
 						trim($query);
@@ -208,7 +208,7 @@
 			  ?>
 					</table>
 				 </div>
-				 <button type="button" class="btn btn-lg btn-success" id="exportbtn query=<?php echo $_SESSION['query']?>">
+				 <button type="button" class="btn btn-lg btn-success" id="exportbtn">
 					<a href="export_table.php">Export to SpreadSheet</a>
 				</button>			
 			</div>

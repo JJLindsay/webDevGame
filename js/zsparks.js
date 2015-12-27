@@ -5,6 +5,7 @@ $(document).ready(function()
 		window.open ('signup.php','_self',false)
 	}$("#regPagebtn").click(register);
 
+	
 	/*edit profile page button scripts*/	
 	function editprofile()
 	{
@@ -18,6 +19,7 @@ $(document).ready(function()
 		window.open ('signup.php','_self')	
 	}$("#regPagebtn").click(index);
 
+	
 	/*admin page script*/
 	function exportbtn()
 	{
@@ -39,6 +41,7 @@ $(document).ready(function()
 		});				
 	}$("#iterationbtn").click(playIteration);
 	
+	
 	//player chose to cooperate with their partner and remain quiet
 	function submitCoop()
 	{
@@ -52,6 +55,7 @@ $(document).ready(function()
 				
 	}$("#btnCoop").click(submitCoop);
 	
+	
 	//player chose to betray their partner and speak
 	function submitBetray()
 	{
@@ -61,16 +65,16 @@ $(document).ready(function()
 			success: function() {
 				//alert("METHOD UNDER CONSTRUCTION")
 			},
-		});		
-				
+		});						
 	}$("#btnBetray").click(submitBetray);
+	
 	
 	function addCourse()
 	{
 		//alert("found choice method!");
 		window.open ('admin_add_course.php','_self');	
 	}$("#addcour").click(addCourse);
-
+	
 	
 	$(function(){
       $('#updateIterative').click(function(){
@@ -98,4 +102,10 @@ $(document).ready(function()
       });
     });	
 	
+	
+	/*submit table dump button scripts*/	
+	function dumpTables()
+	{
+		window.open ('dump_tables.php','_self')	
+	}$("#dumpSemesterData").click(dumpTables);
 });

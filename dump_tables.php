@@ -64,21 +64,13 @@
 		</div><!-- /.container-fluid -->
 	</header><!--  end Navigation Bar -->
 
-	<h1 id='title'>Make your changes below</h1>
-	<?php
-		$id = $_GET['id'];
-		
-		echo "<form id='formbox' action='submit_edit.php' method='post'>
-		<p>ID: <input type='text' name= 'id' size='20' maxlength='3' readonly value='".$_GET['id']."'/></p>
-		<p>First Name: <input type='text' name= 'fname' size='20' maxlength='50' value='".$_GET['fname']."'/></p>
-		<p>Last Name: <input type='text' name= 'lname' size='20' maxlength='50' value='".$_GET['lname']."'/></p>
-		<p>Course: <input type='text' name= 'course' size='10' maxlength='50' value='".$_GET['course']."'/></p>	
-		<p>Section: <input type='text' name= 'section' size='2' maxlength='50' value='".$_GET['section']."'/></p>
-		<p>Password: <input type='text' name= 'pwd' size='20' maxlength='50' value='".$_GET['pwd']."'/></p>
-		<p>User Tag: <input type='test' name= 'userTag' size='25' placeholder='Red/Blue/Yellow OR Blue-1' maxlength=50'/> (Currently: ".$_GET['group'].")</p>
-		
-		<p><input type='submit' name='Apply Changes' value='Submit' /></p>	   
-		</form>";
+	<h1 id='title'>Dump All Tables?</h1>
+	<?php		
+		echo "<form id='formbox' action='submit_dump_tables.php' method='post'>
+			 <p>Are you sure you want to start the semester fresh and delete all data on all tables?</p>
+			
+			 <p><input type='submit' name='Apply Changes' value='Yes, Delete Everything' /></p>	   
+			 </form>";
 	?>	
 </body>
 </html>

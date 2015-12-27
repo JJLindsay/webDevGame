@@ -54,6 +54,9 @@
 	<div class="page-header">
 	  <h1>Welcome Administrator <small>TO THE EDIT GAME MENU</small></h1>	
 		<hr/>
+				<Button type="button" class="btn btn-lg btn-danger" id="dumpSemesterData" style="position:relative; left:40%;" >
+					Dump Semester Data
+				</button>		
 		<div>
 			<?php
 				echo "<table align='center' border=1 cellspace='3' cellpadding='3' width='75%'>

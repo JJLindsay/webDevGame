@@ -43,7 +43,19 @@
         </div>
         <div class="right">
             <div class="border_form">
-			<div id='myForm_errorloc'> </div>
+			<?php
+				if (!empty($_POST['CourseName']) && !empty($_POST['Section'])){
+					$Course	   = $_POST['CourseName'];
+					$Section   = $_POST['Section'];
+					echo "<div id='myForm_errorloc'></div>";
+				}
+				elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
+					$Course = "";
+					$Section = "";
+					echo "<div id='myForm_errorloc'>Select a course and Section</div>";
+				}
+			?>
+			<!--div id='myForm_errorloc'> </div-->
                 <form id="myForm" action="<?php  echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <p class="p_signUp_attributes">Registeration Form</p>
 					<!--PHP Code-->
@@ -59,11 +71,9 @@
 		$users     = $_POST['Username'];
 		$password1 = $_POST['Password'];
 		$password2 = $_POST['RePassword'];
-		$Course	   = $_POST['CourseName'];
-		$Section   = $_POST['Section'];
-
+		
 		//if values are not empty, proceed to store them in the database
-		if (!empty($fname) && !empty($lname) && !empty($email1) && !empty($email2) && !empty($users) && !empty($password1) && !empty($password2)) {
+		if (!empty($fname) && !empty($lname) && !empty($email1) && !empty($email2) && !empty($users) && !empty($password1) && !empty($password2) && $Course != "") {
 			if ((!filter_var($email1, FILTER_VALIDATE_EMAIL) === false) && (!filter_var($email2, FILTER_VALIDATE_EMAIL) === false)) {	
 				if($password1 == $password2) {
 						
@@ -107,37 +117,40 @@
 						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES ($id,'$tag','$group')");  //sets the total score to 0 on registration
 						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES ($id, 0)");  //sets the total score to 0 on registration
 					}
-					else  //no one is in team code therefore non one in users table and this is first registration
+					else  //no one is in team code therefore no one is in the users table and this is first registration
 					{
-						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (1,'B1','blue')");  //sets the total score to 0 on registration
-						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES (1, 0)");  //sets the total score to 0 on registration
+						mysqli_query($dbc, "INSERT INTO teamcode(users_id, tag, user_group) VALUES (2,'Blue-2','Blue')");  //sets the total score to 0 on registration
+						mysqli_query($dbc, "INSERT INTO totals(users_id, totalscore) VALUES (2, 0)");  //sets the total score to 0 on registration
 					}
 					header('Location:index.php');
 				}
 			}
-		} else
-		if (empty($fname)){
-			$fnameErr = "First name is required";
-		} else
-		if (empty($lname)){
-			$lnameErr = "Last name is required";
-		} else
-		if (empty($email1)){
-			$emailErr1 = "Email is required";
-		} else
-		if (empty($email2)){
-			$emailErr2 = "Re-typed Email is required";
-		} else
-		if (empty($users)){
-			$userErr = "User name is required";
-		} else
-		if (empty($password1)){
-			$passErr1 = "Password is required";
-		} else
-		if (empty($password2)){
-			$passErr2 = "Re-typed Password is required";
-		} else {
-			$emptyErr = "Please complete the form...";
+		} 
+		else{
+			if (empty($fname)){
+				$fnameErr = "First name is required";
+			} 
+			if (empty($lname)){
+				$lnameErr = "Last name is required";
+			} 
+			if (empty($email1)){
+				$emailErr1 = "Email is required";
+			} 
+			if (empty($email2)){
+				$emailErr2 = "Re-typed Email is required";
+			} 
+			if (empty($users)){
+				$userErr = "User name is required";
+			} 
+			if (empty($password1)){
+				$passErr1 = "Password is required";
+			} 
+			if (empty($password2)){
+				$passErr2 = "Re-typed Password is required";
+			} 
+			if ($Course == "Course" || $Section == "Section" || $Course == "" || $Section == ""){
+				$courseSectionErr = "Select a course and Section";			
+			}
 		}
 	}
 	?>					
@@ -163,25 +176,27 @@
 						<span class="error"> <?php  echo $passErr1; ?></span>
 					<label> <input type="password" name="RePassword" id="pass2" placeholder="Confirm Password" size="55px" style="margin-left: 10px; margin-top: 10px; height:30px" /> </label>
 						<span class="error"> <?php  echo $passErr2; ?></span>
-					<label style="margin-top:10px; font-size:1.2em">&nbsp;&nbsp;<strong>Current Course & Section</strong></label><br><select class = "dropdown_1" name="CourseName" style="margin-left: 10px; margin-top: 10px; height:30px">
-                        <option hidden>Course</option>
+					<label style="margin-top:10px; font-size:1.2em">&nbsp;&nbsp;<strong>Current Course & Section</strong></label><br>
+					<select class = "dropdown_1" name="CourseName" style="margin-left: 10px; margin-top: 10px; height:30px">
+                        <span class="error"> <?php  echo $courseSectionErr; ?></span>
+						<option hidden value='0'>Course</option>
 						<?php
-							$result = mysqli_query($dbc, "SELECT * FROM course");
+							$result = mysqli_query($dbc, "SELECT DISTINCT course_and_number FROM course");
 							
 							while ($row = mysqli_fetch_array($result))
 							{
-								echo "<option>". $row['course_and_number']."</option>";
+								echo "<option value='".$row['course_and_number']."'>". $row['course_and_number']."</option>";
 							}
 						?>
                     </select>
 					<select class = "dropdown_1" name="Section" style="margin-left: 10px; margin-top: 10px; height:30px">
-                        <option hidden>Section</option>
+                        <option hidden value='0'>Section</option>
 						<?php
-							$result = mysqli_query($dbc, "SELECT * FROM course");
+							$result = mysqli_query($dbc, "SELECT DISTINCT section FROM course ORDER BY section");
 							
 							while ($row = mysqli_fetch_array($result))
 							{
-								echo "<option>". $row['section']."</option>";
+								echo "<option value='".$row['section']."'>". $row['section']."</option>";
 							}					
 						?>
                     </select>						
@@ -196,7 +211,7 @@
 						<button style="background-color:green; height:40px; width:150px;  -moz-border-radius: 15px;
                             -webkit-border-radius: 15px;
                             border: 3px solid #009900;
-                            padding: 5px;" name="websubmit" id="completeregistrationbtn">
+                            padding: 5px;" name="websubmit" id="completeregistrationbtn" onclick="validate()">
                         <span style="color:white; font-weight:bold">Register</span>
                         </button>
                     </div>
