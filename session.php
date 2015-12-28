@@ -38,7 +38,7 @@
 	$result2 = $dbc->query("SELECT * from teamcode where users_id='$login_id'");
 	$row2 = $result2->fetch_assoc();
 	$login_teamcolor = $row2['user_group'];
-	$login_teamcolor_num = substr($row2['tag'],-1);
+	$login_teamcolor_num = $row2['users_id'];
 	if(!isset($login_session))
 	{
 		mysqli_close($dbc);

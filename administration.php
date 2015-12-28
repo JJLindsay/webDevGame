@@ -186,20 +186,20 @@
 
 							print "</tr>";
 									
-								//output the values of the fields in the rows
-								for ($row_num = 0; $row_num <  $num_rows; $row_num++)
+							//output the values of the fields in the rows
+							for ($row_num = 0; $row_num <  $num_rows; $row_num++)
+							{
+								print "<tr>";
+								$values = array_values($row);
+								for ($index = 0; $index < $num_fields; $index++)
 								{
-									print "<tr>";
-									$values = array_values($row);
-									for ($index = 0; $index < $num_fields; $index++)
-									{
-										$value = htmlspecialchars($values[$index]);
-										print "<td>" . $value . "</td>";
-									}	//* end of for ($index ...
-									
-									print "</tr>";
-									$row = mysqli_fetch_assoc($result);  //get the contents of the next row.
-								}	
+									$value = htmlspecialchars($values[$index]);
+									print "<td>" . $value . "</td>";
+								}	//* end of for ($index ...
+								
+								print "</tr>";
+								$row = mysqli_fetch_assoc($result);  //get the contents of the next row.
+							}	
 						}
 						else
 						{

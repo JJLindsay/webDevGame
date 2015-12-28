@@ -78,8 +78,8 @@
 							silent - betray<br/>
 							     0  -  5<br/>
 								 betray - betray<br/>
-							     1  -  1</h4><h3>
-								 <small style="margin: 0% 20%">Selecting a partner displays your last score.</small>
+							     1  -  1</h4><h4>
+								 <small style="margin: 0% 25%">Selecting a partner displays your last score.</small></h4>
 						</div>
 						<div class="btn-group btn-group-justified">
 							<div class="btn-group">

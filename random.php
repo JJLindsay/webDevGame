@@ -51,7 +51,7 @@
 
 <?php
 	mysqli_query($dbc, "TRUNCATE TABLE random_game"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNSS
-	mysqli_query($dbc, "UPDATE teamcode SET random_group = "); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
+	mysqli_query($dbc, "UPDATE teamcode SET random_group = 0"); //DELETES EVERY THING IN THE TABLE EXCEPT COLUMNS
 	mysqli_query($dbc, "COMMIT");	
 	if (!empty($_GET['unchecked']))
 	{
@@ -81,6 +81,7 @@
 			$max_fixed_group = $max_fixed_group / 3;
 		
 		//how many groups to fill with 3 students
+		//The idea: Randomly assign a student to a max fixed group. The group they are given is random and only one group per student until 3 students are in the same group
 		$rndNum = rand(1, $max_fixed_group); //values are inclusive
 
 		$p1_index = 0;
